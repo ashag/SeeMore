@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 describe SessionsController do
   describe "GET 'create'" do
     context "when using developer authorization" do
@@ -38,7 +40,7 @@ describe SessionsController do
           expect(session[:user_id]).to eq user.id
         end
       end
-      
+
     end
   end
 end
