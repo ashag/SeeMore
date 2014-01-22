@@ -19,23 +19,16 @@
     </button>
     
   </div>
-
-
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav">
-      <!-- this clause exists to easily check for a current user once current user is implemented -->
-      <% if false %>
-        <!-- should eventually link to sign up path -->
-        <li class="active"><%= link_to 'Sign Up', root_path %></li>
-        <!-- should eventually link to sign in path -->
-        <li><%= link_to 'Sign In', root_path %></li>
-        <!-- should eventually link to the user show page -->
+    <li><%= link_to "Feed", root_path %></li>
+      <% if @current_user %>
+        <li><%= link_to "Profile", show_user_path(@current_user) %></li>
+        <li><%= link_to "Sign Out", root_path %></li>
       <% else %>
-        <li class="active"><%= link_to 'Feed', root_path %></li>
-        <li><%= link_to 'Predator Profile', root_path %></li>
-        <!-- should eventually link to the sign out path -->
-        <li><%= link_to 'Sign Out', root_path %></li>
-      <% end %>
+        <li class="active"><%= link_to 'Sign Up', 'auth/developer' %></li>
+        <li><%= link_to 'Sign In', 'auth/developer' %></li>
+      <% end %> 
     </ul>
 
     <!-- <form class="navbar-form navbar-left" role="search"> -->
@@ -48,7 +41,9 @@
 
   </div><!-- /.navbar-collapse -->
 </nav>
-  
+
+  <p class="notice"><%= notice %></p>
+
   <%= yield %>
 
   </body>
