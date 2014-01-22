@@ -1,16 +1,7 @@
 class UsersController < ApplicationController
 before_action :set_user, only: [:show, :edit, :update, :destroy]
 
-  def new
-    
-  end
-
-  def create
-    @user = User.new(set_user_params)
-
-    redirect_to user_path(@user)
-  end
-
+# do we need any of these for bronze level?
   def show
   end
 
