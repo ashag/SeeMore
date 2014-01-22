@@ -5,6 +5,9 @@ class ApplicationController < ActionController::Base
 
   def search
     user_name = params[:search]
+    @search = HTTParty.get("https://api.twitter.com/1.1/users/lookup.json?screen_name=#{user_name}")
+    puts @search
+    redirect_to root_path
   end
 
 end
