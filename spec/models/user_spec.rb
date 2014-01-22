@@ -1,14 +1,15 @@
 require 'spec_helper'
 
 describe User do
+	let!(:user) {User.new(username: 'firstuser', provider: 'developer', email: 'a@g.com')}
   describe 'validations' do 
   	it 'is valid' do 
   		expect(user).to be_valid
   	end
 
   	it 'requires an email' do
-  		user.email = nil
-  		expect(user).to be_invalid
+  		new_user = User.new(username: 'something', provider: 'developer', email: nil)
+  		expect(new_user).to be_invalid
   	end
 
   	it 'requires a username' do 
@@ -25,4 +26,5 @@ describe User do
   		user.provider = nil
   		expect(user).to be_invalid
   	end
+  end
 end
