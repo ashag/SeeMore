@@ -8,7 +8,7 @@ before_action :set_user, only: [:show, :edit, :update, :destroy]
   def create
     @user = User.new(set_user_params)
 
-    redirect_to :show_user
+    redirect_to user_path(@user)
   end
 
   def show

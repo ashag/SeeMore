@@ -5,13 +5,15 @@ SeeMore::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'welcome#index'
 
-  get 'user/new' => 'users#new', as: :new_user
   post 'user' => 'users#create'
   get 'user/:id' => 'users#show', as: :show_user
   get 'user/:id/edit' => 'users#edit', as: :edit_user
   put 'user/:id' => 'users#update'
   get 'goodbye' => 'users#goodbye', as: :goodbye
   delete '/user/:id' => 'users#destroy'
+  
+  post '/auth/:provider/callback', :to => 'sessions#create'
+  get '/auth/failure', :to => 'sessions#failure'
 
 
 
