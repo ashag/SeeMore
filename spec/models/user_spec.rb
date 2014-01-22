@@ -25,4 +25,5 @@ describe User do
   		user.provider = nil
   		expect(user).to be_invalid
   	end
+  end
 end
