@@ -13,6 +13,11 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
 RSpec.configure do |config|
+  config.before(:suite) do 
+    OmniAuth.config.test_mode = true
+
+    OmniAuth.config.mock_auth[:developer] = OmniAuth::AuthHash.new({:provider => 'developer', :uid => '123545', info: {email: "a@b.com", nickname: "FeedHunter"}})
+  end
   # ## Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
