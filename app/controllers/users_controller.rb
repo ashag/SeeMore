@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
-before_action :set_user, only: [:show, :edit, :update, :destroy]
 
+	def show
 
+	end
 
 # for potential future use in order to delete a user's profile
   # def destroy
