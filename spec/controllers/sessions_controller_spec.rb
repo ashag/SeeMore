@@ -38,28 +38,7 @@ describe SessionsController do
           expect(session[:user_id]).to eq user.id
         end
       end
-
-    #   context "fails on github" do
-    #     before { request.env["omniauth.auth"] = :invalid_credential }
-
-    #     it "redirect to home with flash error" do
-    #       get :create, provider: :github
-    #       expect(response).to redirect_to root_path
-    #       expect(flash[:notice]).to include "Failed to authenticate"
-    #     end
-    #   end
-
-    #   context "when failing to save the user" do
-    #     before { 
-    #       request.env["omniauth.auth"] = {"uid" => "1234", "info" => {}}
-    #     }
-
-    #     it "redirect to home with flash error" do
-    #       get :create, provider: :github
-    #       expect(response).to redirect_to root_path
-    #       expect(flash[:notice]).to include "Failed to save the user"
-    #     end
-    #   end
+      
     end
   end
 end
