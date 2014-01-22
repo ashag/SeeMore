@@ -11,11 +11,11 @@ describe UsersController  do
 
   describe "POSTcreate" do
     it "redirects on creation" do 
+      # new_user = User.create(username: "newuser", email: "123@123.com", provider: "a thing", uid: "uid sample" )
       post :create, user: {username: "newuser", email: "123@123.com", provider: "a thing", uid: "uid sample" }
-      expect(response.code).to eq '304'
+      expect(response.code).to redirect_to show_user(assigns(:user).id)
+      
     end 
   end
 
-
-  
 end
