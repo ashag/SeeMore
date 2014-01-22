@@ -1,15 +1,15 @@
 require 'spec_helper'
 
 describe User do
-	let!(:user) {User.new(username: 'firstuser', provider: 'developer', email: 'a@g.com')}
+	let!(:user) {User.new(username: 'firstuser', uid: '12345', provider: 'developer', email: 'a@g.com')}
   describe 'validations' do 
   	it 'is valid' do 
   		expect(user).to be_valid
   	end
 
   	it 'requires an email' do
-  		new_user = User.new(username: 'something', provider: 'developer', email: nil)
-  		expect(new_user).to be_invalid
+  		user.email = nil
+  		expect(user).to be_invalid
   	end
 
   	it 'requires a username' do 
