@@ -26,8 +26,8 @@
         <li><%= link_to "Profile", show_user_path(@current_user) %></li>
         <li><%= link_to "Sign Out", sign_out_path %></li>
       <% else %>
-        <li class="active"><%= link_to 'Sign Up', 'auth/developer' %></li>
-        <li><%= link_to 'Sign In', 'auth/developer' %></li>
+        <li class="active"><%= link_to 'Sign Up', signin_path %></li>
+        <li><%= link_to 'Sign In', signin_path %></li>
       <% end %> 
     </ul>
     <form class="navbar-form navbar-right" role="search">

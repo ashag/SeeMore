@@ -11,6 +11,7 @@ SeeMore::Application.routes.draw do
   post '/auth/:provider/callback', :to => 'sessions#create'
   get '/auth/failure', :to => 'sessions#failure'
   get 'sign_out' => 'sessions#destroy', as: :sign_out
+  get '/signin' => 'welcome#signin', as: :signin
 
 
 end
