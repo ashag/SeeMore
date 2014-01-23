@@ -95,10 +95,16 @@ GEM
     mime-types (1.25.1)
     minitest (4.7.5)
     multi_json (1.8.4)
+    oauth (0.4.7)
     multipart-post (2.0.0)
     omniauth (1.2.1)
       hashie (>= 1.2, < 3)
       rack (~> 1.0)
+    omniauth-oauth (1.0.1)
+      oauth
+      omniauth (~> 1.0)
+    omniauth-tumblr (1.1)
+      omniauth-oauth (~> 1.0)
     pg (0.17.1)
     polyglot (0.3.3)
     pry (0.9.12.4)
@@ -210,6 +216,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   omniauth
+  omniauth-tumblr
   pg
   rails (= 4.0.1)
   rails_12factor
