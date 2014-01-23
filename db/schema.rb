@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140122003408) do
+ActiveRecord::Schema.define(version: 20140122211649) do
+
+  create_table "prey", force: true do |t|
+    t.string   "uid"
+    t.string   "provider"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "username"
