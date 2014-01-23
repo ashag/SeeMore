@@ -1,13 +1,12 @@
-heres a page
-
-<%= form_tag "/auth/identity/callback" do %>  
+<h2> Sign up or Sign in below </h2>
+<%= form_tag "/auth/developer/callback" do %>  
+    <div class="field">  
+    <%= label_tag :name %><br>  
+    <%= text_field_tag :name %>  
+ 	 </div>  
   <div class="field">  
-    <%= label_tag :auth_key, "Email" %><br>  
-    <%= text_field_tag :auth_key %>  
-  </div>  
-  <div class="field">  
-    <%= label_tag :password %><br>  
-    <%= password_field_tag :password %>  
+    <%= label_tag :email, "Email" %><br>  
+    <%= text_field_tag :email %>  
   </div>  
   <div class="actions"><%= submit_tag "Login" %></div>  
 <% end %>  
