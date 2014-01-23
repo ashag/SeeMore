@@ -11,10 +11,6 @@
  *= require_self
  *= require_tree .
  */
-body{
-  
-}
-
 
 /*Temp background on container for main content to make it readable*/
 .container {
