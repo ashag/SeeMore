@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :current_user
-  before_action :twitter_client, only: [:search]
+  before_action :twitter_client, only: [:search, :next_search_page]
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
@@ -12,15 +12,15 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def search
-    @page_num = 1
-    prep_twitter_search
-    render 'welcome/results'
-  end
+    @page_num =
+      if params[:page]
+        params[:page].to_i
+      else
+        1
+      end
 
-  def next_search_page
-    @page_num += 1
     prep_twitter_search
-    
+
     # Replacing old search for now.
     render 'welcome/results'
   end
