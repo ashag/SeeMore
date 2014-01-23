@@ -1,0 +1,12 @@
+<h2> Sign up or Sign in below </h2>
+<%= form_tag "/auth/developer/callback" do %>  
+    <div class="field">  
+    <%= label_tag :name %><br>  
+    <%= text_field_tag :name %>  
+ 	 </div>  
+  <div class="field">  
+    <%= label_tag :email, "Email" %><br>  
+    <%= text_field_tag :email %>  
+  </div>  
+  <div class="actions"><%= submit_tag "Login" %></div>  
+<% end %>  
