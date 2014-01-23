@@ -19,8 +19,8 @@ class ApplicationController < ActionController::Base
         1
       end
 
-    prep_twitter_search
-
+    @user_name = params[:search]
+    @search = @twitter_client.user_search(@user_name, page: @page_num).collect
     # Replacing old search for now.
     render 'welcome/results'
   end
@@ -34,10 +34,4 @@ class ApplicationController < ActionController::Base
       config.access_token_secret = ENV["TWITTER_ACCESS_TOKEN_SECRET"]
     end
   end
-
-  def prep_twitter_search
-    @user_name = params[:search]
-    @search = @twitter_client.user_search(@user_name, page: @page_num).collect
-  end
-
 end

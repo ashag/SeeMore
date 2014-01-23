@@ -1,6 +1,6 @@
-    <% @search.each do |user| %>
-      <%= image_tag("#{user.profile_image_url}") %>
-      <%= link_to user.screen_name, "https://www.twitter.com/#{user.screen_name}" %><br>
-    <% end %>
+<% @search.each do |user| %>
+  <%= image_tag("#{user.profile_image_url}") %>
+  <%= link_to user.screen_name, "https://www.twitter.com/#{user.screen_name}" %><br>
+<% end %>
 
-    <%= button_to "See More", search_path(page: @page_num + 1, search: params[:search]) %>
+<%= button_to "See More", search_path(page: @page_num + 1, search: params[:search]), method: :get %>
