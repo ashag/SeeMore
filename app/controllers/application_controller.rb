@@ -13,7 +13,8 @@ class ApplicationController < ActionController::Base
 
   def search
     user_name = params[:search]
-    @search = @client.user_search(user_name, page: 2).collect
+    page_num = params[:page]
+    @search = @client.user_search(user_name, page: page_num).collect
     render 'welcome/results'
   end
 
