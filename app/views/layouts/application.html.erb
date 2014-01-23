@@ -37,7 +37,6 @@
     <%= form_tag search_path, :class =>"navbar-form navbar-right", :method => 'post' do %>
       <div class="form-group">
         <input type="text" name="search" class="form-control" placeholder="Search">
-        <%= hidden_field_tag :page, 1 %>
       </div>
       <button type="submit" class="btn btn-default">Hunt for Prey</button>
     <% end %>
