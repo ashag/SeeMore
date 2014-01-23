@@ -18,8 +18,8 @@ class ApplicationController < ActionController::Base
       config.access_token        = "2305620871-17k90hzVPJmaNRpDOpbZGGuw1F2mkiwmCViyXCm"
       config.access_token_secret = "gmDn7WKp2QvBOUUCarNf42atJlWEQ5lyi0PZlQOLjGhnm"
     end
-    @search = client.search(user_name, :count => 10).take(10).collect do |tweet|
-      "#{tweet.user.screen_name}: #{tweet.text}"
+    @search = client.user_search(user_name, :count => 50).take(50).collect do |tweet|
+      puts tweet.screen_name
     end
     puts @search
     render 'welcome/results'

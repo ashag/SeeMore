@@ -1,4 +1,7 @@
-
+<textarea>
   <% if @search %>
-    <%= @search.inspect %>
+    <% @search.each do |item| %>
+      <%= item %><br>
+    <% end %>
   <% end %>
+</textarea>
