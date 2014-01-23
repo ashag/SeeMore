@@ -16,8 +16,8 @@ skip_before_action :verify_authenticity_token
     end
   end
 
-  # def destroy
-  #   @current_user(session[:user_id]) = nil
-  #   redirect_to root_path, :notice => "Goodbye"
-  # end
+  def destroy
+    reset_session
+    redirect_to root_path, :notice => "You have been successfully signed out."
+  end
 end

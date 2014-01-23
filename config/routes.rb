@@ -10,7 +10,7 @@ SeeMore::Application.routes.draw do
   get '/auth/:provider/callback', to: 'sessions#create'
   post '/auth/:provider/callback', :to => 'sessions#create'
   get '/auth/failure', :to => 'sessions#failure'
-  get 'sign_out' => 'sessions#destroy'
+  get 'sign_out' => 'sessions#destroy', as: :sign_out
 
 
 end
