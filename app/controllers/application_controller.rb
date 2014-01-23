@@ -12,9 +12,17 @@ class ApplicationController < ActionController::Base
 
   def search
     user_name = params[:search]
-    @search = HTTParty.get("https://api.twitter.com/1.1/users/lookup.json?screen_name=#{user_name}")
+    client = Twitter::REST::Client.new do |config|
+      config.consumer_key        = "4ZAESuILP0GXfv3MvGIh9g"
+      config.consumer_secret     = "B2pFG63VtYoUBNwZi8T37XhBHmTp9zxKgNbkswiyc"
+      config.access_token        = "2305620871-17k90hzVPJmaNRpDOpbZGGuw1F2mkiwmCViyXCm"
+      config.access_token_secret = "gmDn7WKp2QvBOUUCarNf42atJlWEQ5lyi0PZlQOLjGhnm"
+    end
+    @search = client.search(user_name, :count => 10).take(10).collect do |tweet|
+      "#{tweet.user.screen_name}: #{tweet.text}"
+    end
     puts @search
-    redirect_to root_path
+    render 'welcome/results'
   end
 
 end

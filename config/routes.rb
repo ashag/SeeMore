@@ -5,6 +5,7 @@ SeeMore::Application.routes.draw do
 
 
   post 'search' => 'application#search', :as => 'search'
+  get 'results' => 'welcome#results', as: 'results'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -16,6 +17,5 @@ SeeMore::Application.routes.draw do
   post '/auth/:provider/callback', :to => 'sessions#create'
   get '/auth/failure', :to => 'sessions#failure'
   get 'sign_out' => 'sessions#destroy'
-
 
 end
