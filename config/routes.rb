@@ -5,6 +5,7 @@ SeeMore::Application.routes.draw do
 
 
   post 'search' => 'application#search', :as => 'search'
+  get 'search', to: 'welcome#index'
   get 'results' => 'welcome#results', as: 'results'
 
   # Example of regular route:
