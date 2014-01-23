@@ -57,3 +57,5 @@ end
 gem 'figaro'
 
 gem 'omniauth-tumblr'
+
+gem 'tumblr_client'
