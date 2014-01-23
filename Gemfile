@@ -52,6 +52,8 @@ group :development do
   gem "guard-rspec"
 end
 
+gem 'figaro'
+gem 'omniauth-tumblr'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
