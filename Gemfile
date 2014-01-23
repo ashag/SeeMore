@@ -12,7 +12,7 @@ group :production do
   gem 'rails_12factor'
 end
 
-gem 'twitter'
+gem 'twitter', '>= 4.0.0'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -53,6 +53,8 @@ group :development do
   gem 'rspec-rails'
   gem "guard-rspec"
 end
+
+gem 'figaro'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

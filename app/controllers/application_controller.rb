@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :current_user
+  before_action :twitter_client, only: [:search]
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
@@ -12,17 +13,18 @@ class ApplicationController < ActionController::Base
 
   def search
     user_name = params[:search]
-    client = Twitter::REST::Client.new do |config|
-      config.consumer_key        = "4ZAESuILP0GXfv3MvGIh9g"
-      config.consumer_secret     = "B2pFG63VtYoUBNwZi8T37XhBHmTp9zxKgNbkswiyc"
-      config.access_token        = "2305620871-17k90hzVPJmaNRpDOpbZGGuw1F2mkiwmCViyXCm"
-      config.access_token_secret = "gmDn7WKp2QvBOUUCarNf42atJlWEQ5lyi0PZlQOLjGhnm"
-    end
-    @search = client.user_search(user_name, :count => 50).take(50).collect do |tweet|
-      puts tweet.screen_name
-    end
-    puts @search
+    @search = @client.user_search(user_name, count: 50).collect
     render 'welcome/results'
+  end
+
+  private
+  def twitter_client
+    @client = Twitter::REST::Client.new do |config|
+      config.consumer_key        = ENV["TWITTER_CONSUMER_KEY"]
+      config.consumer_secret     = ENV["TWITTER_CONSUMER_SECRET"]
+      config.access_token        = ENV["TWITTER_ACCESS_TOKEN"]
+      config.access_token_secret = ENV["TWITTER_ACCESS_TOKEN_SECRET"]
+    end
   end
 
 end
