@@ -3,8 +3,6 @@
   <%= link_to user.screen_name, "https://www.twitter.com/#{user.screen_name}" %><br>
 <% end %>
 
-<%= button_to "See More", search_path(page: @page_num + 1, search: params[:search]), method: :get %>
-
 <%= form_tag("search", method: "get") do %>
   <%= hidden_field_tag :page, @page_num + 1 %>
   <%= hidden_field_tag :search, params[:search] %>
