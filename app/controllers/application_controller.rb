@@ -14,6 +14,7 @@ class ApplicationController < ActionController::Base
   def search
     user_name = params[:search]
     @search = @client.user_search(user_name, count: 50).collect
+    @tumblr_search = @tumblr_client.posts("#{user_name}.tumblr.com")
     render 'welcome/results'
   end
 
@@ -27,4 +28,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def tumblr_client
+    @tumblr_client = Tumblr::Client.new do |config|
+      config.consumer_key       = ENV["TUMBLR_CONSUMER_KEY"]
+      config.consumer_secret    = ENV["TUMBLR_CONSUMER_SECRET"]
+      config.oauth_token        = ENV["TUMBLR_ACCESS_TOKEN"]
+      config.oauth_token_secret = ENV["TUMBLR_ACCESS_TOKEN_SECRET"]
+    end
+  end
 end
+

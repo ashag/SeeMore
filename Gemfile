@@ -58,4 +58,4 @@ gem 'figaro'
 
 gem 'omniauth-tumblr'
 
-gem 'tumblr_client'
+gem 'tumblr_client', '= 0.8.2'
