@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :current_user
-  before_action :twitter_client, only: [:search]
+  before_action :twitter_client, only: [:search, :next_search_page]
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
@@ -12,19 +12,26 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def search
-    user_name = params[:search]
-    @search = @client.user_search(user_name, count: 50).collect
+    @page_num =
+      if params[:page]
+        params[:page].to_i
+      else
+        1
+      end
+
+    @user_name = params[:search]
+    @search = @twitter_client.user_search(@user_name, page: @page_num).collect
+    # Replacing old search for now.
     render 'welcome/results'
   end
 
   private
   def twitter_client
-    @client = Twitter::REST::Client.new do |config|
+    @twitter_client = Twitter::REST::Client.new do |config|
       config.consumer_key        = ENV["TWITTER_CONSUMER_KEY"]
       config.consumer_secret     = ENV["TWITTER_CONSUMER_SECRET"]
       config.access_token        = ENV["TWITTER_ACCESS_TOKEN"]
       config.access_token_secret = ENV["TWITTER_ACCESS_TOKEN_SECRET"]
     end
   end
-
 end
