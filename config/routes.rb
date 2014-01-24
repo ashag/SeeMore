@@ -4,7 +4,8 @@ SeeMore::Application.routes.draw do
   get '/user/:id' => 'users#show', as: :show_user
 
 
-  post 'search' => 'application#search', :as => 'search'
+  get 'search' => 'application#search', :as => 'search'
+  # get 'search', to: 'welcome#index'
   get 'results' => 'welcome#results', as: 'results'
 
   # Example of regular route:
