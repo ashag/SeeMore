@@ -4,7 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :current_user
-  before_action :twitter_client, only: [:search, :next_search_page]
+  # before_action :twitter_client, only: [:search, :next_search_page]
+  before_action :tumblr_client, only: [:search, :next_search_page]
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
@@ -20,8 +21,8 @@ class ApplicationController < ActionController::Base
       end
 
     @user_name = params[:search]
-    @search = @twitter_client.user_search(@user_name, page: @page_num).collect
-    @tumblr_search = @tumblr_client.posts("#{user_name}.tumblr.com")
+    # @search = @twitter_client.user_search(@user_name, page: @page_num).collect
+    @tumblr_search = @tumblr_client.posts("#{@user_name}.tumblr.com")
     render 'welcome/results'
   end
 
