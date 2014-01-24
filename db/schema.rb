@@ -11,11 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140122211649) do
+ActiveRecord::Schema.define(version: 20140124203200) do
 
-  create_table "prey", force: true do |t|
+  create_table "feeds", force: true do |t|
     t.string   "uid"
-    t.string   "provider"
+    t.string   "type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_feeds", force: true do |t|
+    t.string   "user_id"
+    t.string   "feed_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,4 +1,3 @@
-
 <h2> Tumblr Search Results </h2>
 <hr>
 <% if @tumblr_blog_info["status"] = "404" %>
@@ -13,8 +12,32 @@
 
 <h2> Twitter Search Results </h2>
 <% @search.each do |user| %>
-  <p><%= image_tag("#{user.profile_image_url}") %>
-  <%= link_to user.screen_name, "https://www.twitter.com/#{user.screen_name}" %></p>
+<% @search.each do |result| %>
+  <p>
+    <%= image_tag("#{result.profile_image_url}") %>
+    <%= link_to result.screen_name, "https://www.twitter.com/#{result.screen_name}" %>
+
+    <% if Feed.exist?(result.id) %>
+      <% if UserFeed.following?(@current_user.id, result.id) %>
+        You're already hunting.
+      <% else %>
+        <!-- Follow Button -->
+        <%= form_tag(create_feed_path, method: "post") do %>
+          <%= hidden_field_tag :uid, "#{result.id}" %>
+          <%= hidden_field_tag :type, "TwitterFeed" %>
+          <%= submit_tag("Follow", :class => "btn btn-default") %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <!-- Follow Button -->
+      <%= form_tag(create_feed_path, method: "post") do %>
+        <%= hidden_field_tag :uid, "#{result.id}" %>
+        <%= hidden_field_tag :type, "TwitterFeed" %>
+        <%= submit_tag("Follow", :class => "btn btn-default") %>
+      <% end %>
+    <% end %>
+
+  </p><br>
 <% end %>
 
 <%= form_tag("search", method: "get") do %>

@@ -3,6 +3,7 @@ SeeMore::Application.routes.draw do
   root 'welcome#index'
   get '/user/:id' => 'users#show', as: :show_user
 
+  post '/feeds'      => 'feeds#create',      as: "create_feed"
 
   get 'search' => 'application#search', :as => 'search'
   # get 'search', to: 'welcome#index'

@@ -1,0 +1,2 @@
+class TwitterFeed < Feed
+end
