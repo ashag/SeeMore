@@ -1,6 +1,13 @@
-  <%= @tumblr_search %>
 
+<h2> Tumblr Search Results </h2>
+<hr>
+<%= image_tag(@tumblr_avatar) %>
+<%= link_to @tumblr_blog_info["blog"]["title"], @tumblr_blog_info["blog"]["url"] %>
 
+<hr>
+<br>
+
+<h2> Twitter Search Results </h2>
 <% @search.each do |user| %>
   <p><%= image_tag("#{user.profile_image_url}") %>
   <%= link_to user.screen_name, "https://www.twitter.com/#{user.screen_name}" %></p>
