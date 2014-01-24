@@ -2,6 +2,10 @@ class UserFeed < ActiveRecord::Base
   belongs_to :feed
   belongs_to :user
 
+  def self.following?(user_id, result_id)
+    UserFeed.where("user_id = ? AND feed_id = ?", user_id, result_id)
+  end
+
   def self.create_relationship(feed, user)
     self.create!(
       feed_id: feed.id,
@@ -9,7 +13,4 @@ class UserFeed < ActiveRecord::Base
     )
   end
 
-  def self.find_relationship(feed, user)
-    @relationship = UserFeed.find_by_feed_and_user(feed, user)
-  end
 end
