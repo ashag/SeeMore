@@ -22,7 +22,8 @@ class ApplicationController < ActionController::Base
 
     @user_name = params[:search]
     @search = @twitter_client.user_search(@user_name, page: @page_num).collect
-    @tumblr_search = @tumblr_client.posts("#{@user_name}.tumblr.com")
+    @tumblr_blog_info = @tumblr_client.blog_info(@user_name)
+    @tumblr_avatar = @tumblr_client.avatar(@user_name)
     render 'welcome/results'
   end
 
