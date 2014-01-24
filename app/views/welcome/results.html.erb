@@ -1,6 +1,8 @@
 <% @search.each do |user| %>
+  <%= user.inspect %>
   <p><%= image_tag("#{user.profile_image_url}") %>
-  <%= link_to user.screen_name, "https://www.twitter.com/#{user.screen_name}" %></p>
+  <%= link_to user.screen_name, "https://www.twitter.com/#{user.screen_name}" %>
+  <%= button_tag("Follow", :class => "btn btn-default btn-xs") %></p>
 <% end %>
 
 <%= form_tag("search", method: "get") do %>
