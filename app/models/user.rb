@@ -2,6 +2,9 @@ class User < ActiveRecord::Base
 
   validates :email, :username, :uid, :provider, presence: true
 
+  has_many :user_feeds
+  has_many :feeds, through: :user_feeds
+
   def self.find_or_create_from_omniauth(auth_hash)
     User.find_by(uid: auth_hash["uid"]) || create_from_omniauth(auth_hash)
   end
