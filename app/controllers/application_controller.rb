@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 
   before_action :current_user
   before_action :twitter_client, only: [:search, :next_search_page]
+  before_action :tumblr_client, only: [:search]
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
@@ -21,7 +22,8 @@ class ApplicationController < ActionController::Base
 
     @user_name = params[:search]
     @search = @twitter_client.user_search(@user_name, page: @page_num).collect
-    # Replacing old search for now.
+    @tumblr_blog_info = @tumblr_client.blog_info(@user_name)
+    @tumblr_avatar = @tumblr_client.avatar(@user_name)
     render 'welcome/results'
   end
 
@@ -34,4 +36,15 @@ class ApplicationController < ActionController::Base
       config.access_token_secret = ENV["TWITTER_ACCESS_TOKEN_SECRET"]
     end
   end
+
+  def tumblr_client
+    Tumblr.configure do |config|
+      config.consumer_key       = ENV["TUMBLR_CLIENT_ID"]
+      config.consumer_secret    = ENV["TUMBLR_CLIENT_SECRET"]
+      config.oauth_token        = ENV["TUMBLR_ACCESS_TOKEN"]
+      config.oauth_token_secret = ENV["TUMBLR_ACCESS_TOKEN_SECRET"]
+    end
+  @tumblr_client = Tumblr::Client.new
+  end
 end
+
