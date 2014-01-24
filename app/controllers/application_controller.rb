@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   before_action :current_user
   # before_action :twitter_client, only: [:search, :next_search_page]
-  before_action :tumblr_client, only: [:search, :next_search_page]
+  before_action :tumblr_client, only: [:search]
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
