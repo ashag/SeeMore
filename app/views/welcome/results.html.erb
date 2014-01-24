@@ -1,8 +1,20 @@
 <% @search.each do |user| %>
-  <%= user.inspect %>
-  <p><%= image_tag("#{user.profile_image_url}") %>
-  <%= link_to user.screen_name, "https://www.twitter.com/#{user.screen_name}" %>
-  <%= button_tag("Follow", :class => "btn btn-default btn-xs") %></p>
+  <p>
+    <%= image_tag("#{user.profile_image_url}") %>
+    <%= link_to user.screen_name, "https://www.twitter.com/#{user.screen_name}" %>
+
+    <% unless @relationship %>
+      <!-- Follow Button -->
+      <%= form_tag(create_feed_path, method: "post") do %>
+        <%= hidden_field_tag :uid, "#{user.id}" %>
+        <%= hidden_field_tag :type, "TwitterFeed" %>
+        <%= submit_tag("Follow", :class => "btn btn-default") %>
+      <% end %>
+    <% else %>
+      You're already hunting.
+    <% end %>
+
+  </p><br>
 <% end %>
 
 <%= form_tag("search", method: "get") do %>
