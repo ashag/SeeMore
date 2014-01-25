@@ -1,4 +1,3 @@
-
 Welcome, predator.
 <% unless @current_user %>
   Sign in to FeedHunter to find your prey.
@@ -6,9 +5,13 @@ Welcome, predator.
 <br>
 <% if @current_user && @current_user.feeds.length > 0 %>
   <% @current_user.feeds.each do |feed| %>
-    <%= image_tag(feed.get_pic(feed.uid)) %>
-    <% user_array = feed.get_user_link(feed.uid) %>
-    <%= link_to user_array[0], user_array[1] %><br>
+    <% feed.get_posts(feed.uid).each do |post| %>
+      <%= image_tag(feed.get_pic(feed.uid)) %>
+      <% user_array = feed.get_user_link(feed.uid) %>
+      <%= link_to user_array[0], user_array[1] %>
+      <%= post %>
+      <br>
+    <% end %>
   <% end %>
 <% elsif @current_user %>
   Search for users to grow your feed!

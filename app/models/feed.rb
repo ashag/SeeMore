@@ -32,4 +32,7 @@ class Feed < ActiveRecord::Base
   # This will return the content of a post (so a tweet, a tumblr post, etc.)
   def get_content
   end
+
+  def get_posts
+  end
 end
