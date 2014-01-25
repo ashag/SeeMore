@@ -1,8 +1,13 @@
 <h2> Tumblr Search Results </h2>
 <hr>
-<!-- I removed the Tumblr search logic here because it was throwing an error -->
-<!-- and I was having difficulty commenting it out. KEEP IT on any merges! DO -->
-<!-- NOT keep the comments at the expense of the logic! -ellen -->
+<%= @tumblr_blog_info %>
+<hr>
+<% if @tumblr_blog_info["status"] == 404 %>
+  <%= "No tumblr '#{@user_name}' was found." %> 
+<% else %>
+  <%= image_tag(@tumblr_avatar) %>
+  <%= link_to @tumblr_blog_info["blog"]["title"], @tumblr_blog_info["blog"]["url"] %>
+<% end %>
 
 <hr>
 <br>

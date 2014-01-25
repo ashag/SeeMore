@@ -6,8 +6,10 @@ Welcome, predator.
 <br>
 <% if @current_user && @current_user.feeds.length > 0 %>
   <% @current_user.feeds.each do |feed| %>
-    <% twitter_user = @twitter_client.user(feed.uid.to_i) %>
-    <%= image_tag("#{twitter_user.profile_image_url}") %>
-    <%= link_to twitter_user.screen_name, "https://www.twitter.com/#{twitter_user.screen_name}" %><br>
+    <%= image_tag(feed.get_pic(feed.uid)) %>
+    <% user_array = feed.get_user_link(feed.uid) %>
+    <%= link_to user_array[0], user_array[1] %><br>
   <% end %>
+<% elsif @current_user %>
+  Search for users to grow your feed!
 <% end %>

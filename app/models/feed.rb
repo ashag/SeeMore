@@ -24,9 +24,9 @@ class Feed < ActiveRecord::Base
   def get_pic
   end
 
-  # This will return a link to a username. It will be used in the feed so you can
-  # click on a user to go to their external page.
-  def get_user
+  # This will return an array to build a link to the user. It will be used in the feed so you can
+  # click on a user to go to their external page. The format should be [name, html_link_info]
+  def get_user_link
   end
 
   # This will return the content of a post (so a tweet, a tumblr post, etc.)
