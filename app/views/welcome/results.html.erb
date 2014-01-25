@@ -22,7 +22,7 @@
       <% else %>
         <!-- Follow Button -->
         <%= form_tag(create_feed_path, method: "post") do %>
-          <%= hidden_field_tag :uid, "#{result.id}" %>
+          <%= hidden_field_tag :uid, "#{result.id}.to_s" %>
           <%= hidden_field_tag :type, "TwitterFeed" %>
           <%= submit_tag("Follow", :class => "btn btn-default") %>
         <% end %>
@@ -30,7 +30,7 @@
     <% else %>
       <!-- Follow Button -->
       <%= form_tag(create_feed_path, method: "post") do %>
-        <%= hidden_field_tag :uid, "#{result.id}" %>
+        <%= hidden_field_tag :uid, "#{result.id}.to_s" %>
         <%= hidden_field_tag :type, "TwitterFeed" %>
         <%= submit_tag("Follow", :class => "btn btn-default") %>
       <% end %>
