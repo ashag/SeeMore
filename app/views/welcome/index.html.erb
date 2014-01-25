@@ -1,3 +1,13 @@
 
-Welcome, predator
-Sign in to FeedHunter to find your prey.
+Welcome, predator.
+<% unless @current_user %>
+  Sign in to FeedHunter to find your prey.
+<% end %>
+<br>
+<% if @current_user && @current_user.feeds.length > 0 %>
+  <% @current_user.feeds.each do |feed| %>
+    <% twitter_user = @twitter_client.user(feed.uid.to_i) %>
+    <%= image_tag("#{twitter_user.profile_image_url}") %>
+    <%= link_to twitter_user.screen_name, "https://www.twitter.com/#{twitter_user.screen_name}" %><br>
+  <% end %>
+<% end %>

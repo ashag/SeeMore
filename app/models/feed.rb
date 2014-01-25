@@ -18,4 +18,18 @@ class Feed < ActiveRecord::Base
   rescue ActiveRecord::RecordInvalid
     nil
   end
+
+  # Not sure what the default will be; this method will be specified in the
+  # inherited tables to show an avatar, user pic, etc.
+  def get_pic
+  end
+
+  # This will return a link to a username. It will be used in the feed so you can
+  # click on a user to go to their external page.
+  def get_user
+  end
+
+  # This will return the content of a post (so a tweet, a tumblr post, etc.)
+  def get_content
+  end
 end

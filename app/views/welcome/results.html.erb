@@ -1,19 +1,13 @@
 <h2> Tumblr Search Results </h2>
 <hr>
-<%= @tumblr_blog_info %>
-<hr>
-<% if @tumblr_blog_info["status"] == 404 %>
-  <%= "No tumblr '#{@user_name}' was found." %> 
-<% else %>
-  <%= image_tag(@tumblr_avatar) %>
-  <%= link_to @tumblr_blog_info["blog"]["title"], @tumblr_blog_info["blog"]["url"] %>
-<% end %>
+<!-- I removed the Tumblr search logic here because it was throwing an error -->
+<!-- and I was having difficulty commenting it out. KEEP IT on any merges! DO -->
+<!-- NOT keep the comments at the expense of the logic! -ellen -->
 
 <hr>
 <br>
 
 <h2> Twitter Search Results </h2>
-
 <% if @search.count == 0 %>
   <%= "No search results found." %><br><br>
 <% else %>
@@ -28,7 +22,7 @@
         <% else %>
           <!-- Follow Button -->
           <%= form_tag(create_feed_path, method: "post") do %>
-            <%= hidden_field_tag :uid, "#{result.id}.to_s" %>
+            <%= hidden_field_tag :uid, "#{result.id}" %>
             <%= hidden_field_tag :type, "TwitterFeed" %>
             <%= submit_tag("Follow", :class => "btn btn-default") %>
           <% end %>
@@ -36,7 +30,7 @@
       <% else %>
         <!-- Follow Button -->
         <%= form_tag(create_feed_path, method: "post") do %>
-          <%= hidden_field_tag :uid, "#{result.id}.to_s" %>
+          <%= hidden_field_tag :uid, "#{result.id}" %>
           <%= hidden_field_tag :type, "TwitterFeed" %>
           <%= submit_tag("Follow", :class => "btn btn-default") %>
         <% end %>
