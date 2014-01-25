@@ -21,10 +21,7 @@ class ApplicationController < ActionController::Base
 
     @user_name = params[:search]
     @search = @twitter_client.user_search(@user_name, page: @page_num).collect
-    # I'm adding this logic because searching for a name with a space threw an error
-    @user_name = @user_name.split.join
-    @tumblr_blog_info = @tumblr_client.blog_info(@user_name)
-    @tumblr_avatar = @tumblr_client.avatar(@user_name)
+    tumblr_search(@user_name)
     render 'welcome/results'
   end
 
@@ -38,6 +35,15 @@ class ApplicationController < ActionController::Base
       config.oauth_token_secret = ENV["TUMBLR_ACCESS_TOKEN_SECRET"]
     end
     @tumblr_client = Tumblr::Client.new
+  end
+
+
+  def tumblr_search(user_name)
+    @tumblr_search_term = @user_name.delete(' ')
+    @tumblr_blog_info = @tumblr_client.blog_info(@tumblr_search_term)
+    @tumblr_avatar = @tumblr_client.avatar(@tumblr_search_term)
+    @tumblr_blog_info
+    @tumblr_avatar
   end
 end
 
