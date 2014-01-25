@@ -1,6 +1,8 @@
 <h2> Tumblr Search Results </h2>
 <hr>
-<% if @tumblr_blog_info["status"] = "404" %>
+<%= @tumblr_blog_info %>
+<hr>
+<% if @tumblr_blog_info["status"] == 404 %>
   <%= "No tumblr '#{@user_name}' was found." %> 
 <% else %>
   <%= image_tag(@tumblr_avatar) %>
@@ -11,7 +13,6 @@
 <br>
 
 <h2> Twitter Search Results </h2>
-<% @search.each do |user| %>
 <% @search.each do |result| %>
   <p>
     <%= image_tag("#{result.profile_image_url}") %>
