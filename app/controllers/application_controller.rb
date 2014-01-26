@@ -27,6 +27,11 @@ class ApplicationController < ActionController::Base
     render 'welcome/results'
   end
 
+  def rss_feed
+    @feed_search = params[:search]
+    feed = Feedzirra::Feed.fetch_and_parse("#{@feed_search}")
+  end
+
   private
   def twitter_client
     @twitter_client = Twitter::REST::Client.new do |config|
@@ -44,7 +49,7 @@ class ApplicationController < ActionController::Base
       config.oauth_token        = ENV["TUMBLR_ACCESS_TOKEN"]
       config.oauth_token_secret = ENV["TUMBLR_ACCESS_TOKEN_SECRET"]
     end
-  @tumblr_client = Tumblr::Client.new
+    @tumblr_client = Tumblr::Client.new
   end
 end
 

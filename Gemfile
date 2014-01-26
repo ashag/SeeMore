@@ -59,3 +59,5 @@ gem 'figaro'
 gem 'omniauth-tumblr'
 
 gem 'tumblr_client', '= 0.8.2'
+
+gem 'feedzirra'
