@@ -13,7 +13,6 @@
 <br>
 
 <h2> Twitter Search Results </h2>
-
 <% if @search.count == 0 %>
   <%= "No search results found." %><br><br>
 <% else %>
@@ -28,7 +27,7 @@
         <% else %>
           <!-- Follow Button -->
           <%= form_tag(create_feed_path, method: "post") do %>
-            <%= hidden_field_tag :uid, "#{result.id}.to_s" %>
+            <%= hidden_field_tag :uid, "#{result.id}" %>
             <%= hidden_field_tag :type, "TwitterFeed" %>
             <%= submit_tag("Follow", :class => "btn btn-default") %>
           <% end %>
@@ -36,7 +35,7 @@
       <% else %>
         <!-- Follow Button -->
         <%= form_tag(create_feed_path, method: "post") do %>
-          <%= hidden_field_tag :uid, "#{result.id}.to_s" %>
+          <%= hidden_field_tag :uid, "#{result.id}" %>
           <%= hidden_field_tag :type, "TwitterFeed" %>
           <%= submit_tag("Follow", :class => "btn btn-default") %>
         <% end %>
