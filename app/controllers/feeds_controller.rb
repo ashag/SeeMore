@@ -38,7 +38,7 @@ class FeedsController < ApplicationController
 	  # feed does not exist and user is not following 
 	  else
 	  	create_rss = Feed.create(uid: @feed_find, type: 'RSSFeed')
-	  	UserFeed.create_relationship(create_rss.id, @current_user)
+	  	UserFeed.create_relationship(create_rss, @current_user)
 	  	redirect_to root_path, notice: "Feed is added"
 	  end
  end
