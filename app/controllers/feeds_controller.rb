@@ -3,8 +3,8 @@ class FeedsController < ApplicationController
   def create
     @feed = Feed.find_or_create(params)
     UserFeed.create_relationship(@feed, @current_user)
-    uid = params[:uid]
 
+    uid = params[:uid]
     @feed.get_posts(uid).each do |post|
       @feed.find_or_create_post(params[:uid], post)
     end

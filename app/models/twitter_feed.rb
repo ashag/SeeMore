@@ -6,7 +6,7 @@ class TwitterFeed < Feed
               <%= link_to #{user_array[0]}, #{user_array[1]} %>
               <%= #{post.text}"
     date = post.created_at
-    Post.find_by(content: content) || Post.create(content: content, feed_id: feed_id, date: date)
+    Post.find_by(content: content) || Post.create(content: content, feed_id: id, date: date)
   end
 
   def get_user_link(id)

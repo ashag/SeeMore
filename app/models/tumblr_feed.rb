@@ -28,13 +28,13 @@ class TumblrFeed < Feed
     posts
   end
 
-    def find_or_create_post(feed_id, post)
-    user_array = get_user_link(feed_id)
-    content = "<% image_tag(Feed.get_pic(feed_id) %>
+    def find_or_create_post(feed_uid, post)
+    user_array = get_user_link(feed_uid)
+    content = "<% image_tag(TumblrFeed.find_by_feed_uid(feed_uid).get_pic(feed_uid)) %>
               <%= link_to #{user_array[0]}, #{user_array[1]} %>
               <%= #{post[1]}"
     date = post[0]
-    Post.find_by(content: content) || Post.create(content: content, feed_id: feed_id, date: date)
+    Post.find_by(content: content) || Post.create(content: content, feed_id: id, date: date)
   end
 
 end
