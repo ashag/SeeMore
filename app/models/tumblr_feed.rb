@@ -1,0 +1,2 @@
+class TumblrFeed < Feed
+end

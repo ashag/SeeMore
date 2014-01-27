@@ -12,6 +12,8 @@ group :production do
   gem 'rails_12factor'
 end
 
+gem 'twitter', '>= 4.0.0'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
@@ -52,14 +54,8 @@ group :development do
   gem "guard-rspec"
 end
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.1.2'
+gem 'figaro'
 
-# Use unicorn as the app server
-# gem 'unicorn'
+gem 'omniauth-tumblr'
 
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
+gem 'tumblr_client', '= 0.8.2'
