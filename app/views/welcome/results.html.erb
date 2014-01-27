@@ -20,7 +20,7 @@
       <%= image_tag("#{result.profile_image_url}") %>
       <%= link_to result.screen_name, "https://www.twitter.com/#{result.screen_name}" %>
 
-      <% if Feed.exist?(result.id) && UserFeed.following?(@current_user.id, result.id) %>
+      <% if Feed.exist?(result.id.to_s) && UserFeed.following?(@current_user.id, result.id.to_s) %>
           You're already hunting.
       <% else %>
         <!-- Follow Button -->
