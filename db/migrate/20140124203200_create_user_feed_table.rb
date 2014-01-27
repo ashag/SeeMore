@@ -1,8 +1,8 @@
 class CreateUserFeedTable < ActiveRecord::Migration
   def change
     create_table :user_feeds do |t|
-      t.string :user_id
-      t.string :feed_id
+      t.integer :user_id
+      t.integer :feed_id
 
       t.timestamps
     end
