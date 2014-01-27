@@ -26,7 +26,7 @@ class FeedsController < ApplicationController
 	  @feed = Feed.find_by(uid: @feed_find)
 
 	  # feed exists and User is following feed
-	  if @feed != nil && UserFeed.following?(@current_user.id, @feed.id).count != 0
+	  if @feed != nil && UserFeed.following?(@current_user.id, @feed.uid).count != 0
 	  	redirect_to root_path, notice: "This feed is already your prey"
 	  # feed url is invalid	
 	  elsif @feed_results == 0

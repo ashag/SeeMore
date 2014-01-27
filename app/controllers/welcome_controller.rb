@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
-  
+  before_action :twitter_client, only: [:index, :results]
   def index
   end
 
@@ -7,5 +7,10 @@ class WelcomeController < ApplicationController
   end
 
   def results
+  end
+
+  private
+  def twitter_client
+    @twitter_client = TwitterFeed.client
   end
 end
