@@ -7,17 +7,38 @@ class FeedsController < ApplicationController
   end
 
   def search
-    @page_num =
-    if params[:page]
-      params[:page].to_i
-    else
-      1
-    end
-      @user_name = params[:search]
-      @search = @twitter_client.user_search(@user_name, page: @page_num).collect
-      tumblr_search(@user_name)
-      render 'welcome/results'
+    @provider = params[:provider]
+    @user_name = params[:search]
+      if @provider == "Twitter"
+        twitter_search
+      elsif @provider == "Tumblr"
+        tumblr_search
+      else
+        twitter_search
+        tumblr_search
+      end
+    render 'welcome/results'
   end
+
+  private
+    def twitter_search
+      @twitter_client = TwitterFeed.client
+      @page_num =
+        if params[:page]
+          params[:page].to_i
+        else
+          1
+        end
+      @search = @twitter_client.user_search(@user_name, page: @page_num).collect
+    end
+
+  def tumblr_search
+    @tumblr_client = TumblrClient.new_client
+    @tumblr_search_term = @user_name.delete(' ')
+    @tumblr_blog_info = @tumblr_client.blog_info(@tumblr_search_term)
+    @tumblr_avatar = @tumblr_client.avatar(@tumblr_search_term)
+  end
+
 
   def rss_feed
     @feed_find = params[:search]

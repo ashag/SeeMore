@@ -1,6 +1,6 @@
 class TumblrClient
 
-  def new_client
+  def self.new_client
     Tumblr.configure do |config|
       config.consumer_key       = ENV["TUMBLR_CLIENT_ID"]
       config.consumer_secret    = ENV["TUMBLR_CLIENT_SECRET"]
