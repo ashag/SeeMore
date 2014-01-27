@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+
   def search
     @provider = params[:provider]
     @user_name = params[:search]
