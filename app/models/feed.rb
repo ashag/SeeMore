@@ -21,6 +21,10 @@ class Feed < ActiveRecord::Base
     nil
   end
 
+  def self.sort_feed
+    
+  end
+
 
   # Not sure what the default will be; this method will be specified in the
   # inherited tables to show an avatar, user pic, etc.
