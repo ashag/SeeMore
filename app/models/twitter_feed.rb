@@ -1,24 +1,29 @@
 class TwitterFeed < Feed
-  def get_user_link(id)
+
+  def self.find_or_create_post(feed_id, post)
+    user_array = TwitterFeed.get_user_link(feed_id)
+    content = "<% image_tag(#{}Feed.get_pic(feed_id) %>
+              <%= link_to #{user_array[0]}, #{user_array[1]} %>
+              <%= #{post.text}"
+    date = post.created_at
+    Post.find_by(content: content) || Post.create(content: content, feed_id: feed_id, date: date)
+  end
+
+  def self.get_user_link(id)
     get_user(id)
     [@user.screen_name, "https://www.twitter.com/#{@user.screen_name}"]
   end
 
-  def get_pic(id)
-    get_user(id)
-    "#{@user.profile_image_url}"
-  end
-
-  def get_user(id)
+  def self.get_user(id)
     @user = TwitterFeed.client.user(id.to_i)
   end
 
-  def get_posts(id)
+  def self.get_posts(id)
     @twitter_client = TwitterFeed.client
-    get_user(id)
+    @user = self.get_user(id)
     posts = []
     @twitter_client.user_timeline(@user).each do |tweet|
-      posts << [tweet.created_at, tweet.text]
+      posts << tweet
     end
     posts
   end

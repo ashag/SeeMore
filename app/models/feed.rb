@@ -21,20 +21,19 @@ class Feed < ActiveRecord::Base
     nil
   end
 
+
   # Not sure what the default will be; this method will be specified in the
   # inherited tables to show an avatar, user pic, etc.
-  def get_pic
+  def self.get_pic(pic)
   end
+
 
   # This will return an array to build a link to the user. It will be used in the feed so you can
   # click on a user to go to their external page. The format should be [name, html_link_info]
-  def get_user_link
+  def self.get_user_link(link)
   end
 
   # This will return the content of a post (so a tweet, a tumblr post, etc.)
-  def get_content
-  end
-
-  def get_posts
+  def self.get_content(content)
   end
 end
