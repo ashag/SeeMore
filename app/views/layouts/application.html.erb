@@ -40,12 +40,11 @@
         </div>
         <button type="submit" class="btn btn-default">Hunt for Prey</button>
       <% end %>
-      <br>
-        <%= form_tag feed_search_path, :class =>"navbar-form navbar-right", :method => 'get' do %>
+      <%= form_tag create_rss_path, :class =>"navbar-form navbar-right", :method => 'post' do %>
         <div class="form-group">
-          <input type="text" name="search" class="form-control" placeholder="Search for feed">
+          <input type="text" name="search" class="form-control" placeholder="Enter RSS URL">
         </div>
-        <button type="submit" class="btn btn-default">Feed Your Prey</button>
+        <button type="Go" class="btn btn-default">Add A Feed</button>
       <% end %>
     <% end %>
 

@@ -12,24 +12,7 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
-  def search
-    @page_num =
-      if params[:page]
-        params[:page].to_i
-      else
-        1
-      end
-
-    @user_name = params[:search]
-    @search = @twitter_client.user_search(@user_name, page: @page_num).collect
-    tumblr_search(@user_name)
-    render 'welcome/results'
-  end
-
-  def rss_feed
-    @feed_search = params[:search]
-    feed = Feedzirra::Feed.fetch_and_parse("#{@feed_search}")
-  end
+ 
 
   private
   def twitter_client

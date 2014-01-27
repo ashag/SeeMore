@@ -1,14 +1,15 @@
 SeeMore::Application.routes.draw do
 
   root 'welcome#index'
-  get '/user/:id' => 'users#show', as: :show_user
+  get '/user/:id'     => 'users#show', as: :show_user
 
-  post '/feeds'      => 'feeds#create',      as: "create_feed"
+  post '/feeds'       => 'feeds#create',      as: "create_feed"
 
-  get 'search' => 'application#search', :as => 'search'
-  get 'feed_search' => 'application#feed_search', :as => 'feed_search'
+  get 'search'        => 'application#search', :as => 'search'
+  post 'feed_search'   => 'feeds#rss_feed', as: 'create_rss'
   # get 'search', to: 'welcome#index'
-  get 'results' => 'welcome#results', as: 'results'
+  get 'results'       => 'welcome#results', as: 'results'
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

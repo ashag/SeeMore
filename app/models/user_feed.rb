@@ -12,5 +12,4 @@ class UserFeed < ActiveRecord::Base
       user_id: user.id,
     )
   end
-
 end
