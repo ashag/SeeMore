@@ -1,0 +1,2 @@
+class RSSFeed < Feed
+end

@@ -10,21 +10,6 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
-  def search
-    @twitter_client = TwitterFeed.client
-    @page_num =
-      if params[:page]
-        params[:page].to_i
-      else
-        1
-      end
-
-    @user_name = params[:search]
-    @search = @twitter_client.user_search(@user_name, page: @page_num).collect
-    tumblr_search(@user_name)
-    render 'welcome/results'
-  end
-
   private
 
   def tumblr_client
