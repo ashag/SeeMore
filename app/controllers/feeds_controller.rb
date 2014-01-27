@@ -4,8 +4,9 @@ class FeedsController < ApplicationController
     @feed = Feed.find_or_create(params)
     UserFeed.create_relationship(@feed, @current_user)
     uid = params[:uid].to_i
+    id = @feed.class.find_by(uid: params[:uid]).id
     @feed.class.get_posts(uid).each do |post|
-      @feed.class.find_or_create_post(params[:id], post)
+      @feed.class.find_or_create_post(id, post)
     end
 
     redirect_to root_path

@@ -21,8 +21,15 @@ class Feed < ActiveRecord::Base
     nil
   end
 
-  def self.sort_feed
-    
+  def self.sort_feed(user_id)
+    feed_posts = []
+    current_user = User.find(user_id)
+    current_user.feeds.each do |feed|
+      Post.where(feed_id: feed.id).each do |post|
+        feed_posts << post
+      end
+    end
+    feed_posts.sort_by {|post| post.date }.reverse
   end
 
 
