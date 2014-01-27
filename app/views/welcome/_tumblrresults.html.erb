@@ -1,0 +1,30 @@
+<h2> Tumblr Search Results </h2>
+<hr>
+<%= @tumblr_blog_info %>
+<hr>
+<% if @tumblr_blog_info["status"] == 404 %>
+  <%= "No tumblr '#{@user_name}' was found." %>
+<% else %>
+  <%= image_tag(@tumblr_avatar) %>
+  <%= link_to @tumblr_blog_info["blog"]["title"], @tumblr_blog_info["blog"]["url"] %>
+
+<% if Feed.exist?(@user_name) %>
+        <% if UserFeed.following?(@current_user.id, @user_name) %>
+          You're already hunting.
+        <% else %>
+          <!-- Follow Button -->
+          <%= form_tag(create_feed_path, method: "post") do %>
+            <%= hidden_field_tag :uid, "#{@user_name}" %>
+            <%= hidden_field_tag :type, "TumblrFeed" %>
+            <%= submit_tag("Follow", :class => "btn btn-default") %>
+          <% end %>
+        <% end %>
+      <% else %>
+        <!-- Follow Button -->
+        <%= form_tag(create_feed_path, method: "post") do %>
+          <%= hidden_field_tag :uid, "#{@user_name}" %>
+          <%= hidden_field_tag :type, "TumblrFeed" %>
+          <%= submit_tag("Follow", :class => "btn btn-default") %>
+        <% end %>
+      <% end %>
+<% end %>

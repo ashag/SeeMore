@@ -11,23 +11,38 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def search
-    @twitter_client = TwitterFeed.client
-    @page_num =
-      if params[:page]
-        params[:page].to_i
-      else
-        1
-      end
-
+    @provider = params[:provider]
     @user_name = params[:search]
-    @search = @twitter_client.user_search(@user_name, page: @page_num).collect
-    tumblr_search(@user_name)
+      if @provider == "Twitter"
+        twitter_search
+      elsif @provider == "Tumblr"
+        tumblr_search
+      else
+        twitter_search
+        tumblr_search
+      end
     render 'welcome/results'
   end
 
   private
+    def twitter_search
+      @twitter_client = TwitterFeed.client
+      @page_num =
+        if params[:page]
+          params[:page].to_i
+        else
+          1
+        end
+      @search = @twitter_client.user_search(@user_name, page: @page_num).collect
+    end
 
-  def tumblr_client
+  def tumblr_search
+    @tumblr_search_term = @user_name.delete(' ')
+    @tumblr_blog_info = @tumblr_client.blog_info(@tumblr_search_term)
+    @tumblr_avatar = @tumblr_client.avatar(@tumblr_search_term)
+  end
+
+def tumblr_client
     Tumblr.configure do |config|
       config.consumer_key       = ENV["TUMBLR_CLIENT_ID"]
       config.consumer_secret    = ENV["TUMBLR_CLIENT_SECRET"]
@@ -37,11 +52,5 @@ class ApplicationController < ActionController::Base
     @tumblr_client = Tumblr::Client.new
   end
 
-
-  def tumblr_search(user_name)
-    @tumblr_search_term = @user_name.delete(' ')
-    @tumblr_blog_info = @tumblr_client.blog_info(@tumblr_search_term)
-    @tumblr_avatar = @tumblr_client.avatar(@tumblr_search_term)
-  end
 end
 
