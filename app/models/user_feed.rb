@@ -5,7 +5,10 @@ class UserFeed < ActiveRecord::Base
   def self.following?(user_id, result_id)
     feed = Feed.find_by(uid: result_id.to_s)
     return false unless feed
-    UserFeed.where("user_id = ? AND feed_id = ?", user_id, feed.id)
+    relationship = UserFeed.where("user_id = ? AND feed_id = ?", user_id, feed.id)
+    if relationship.nil?
+      return false
+    end
   end
 
   def self.create_relationship(feed, user)
