@@ -4,8 +4,7 @@ class FeedsController < ApplicationController
     @feed = Feed.find_or_create(params)
     UserFeed.create_relationship(@feed, @current_user)
 
-    uid = params[:uid]
-    @feed.get_posts(uid).each do |post|
+    @feed.get_posts(params[:uid]).each do |post|
       @feed.find_or_create_post(params[:uid], post)
     end
     redirect_to root_path
@@ -25,26 +24,7 @@ class FeedsController < ApplicationController
     render 'welcome/results'
   end
 
-  private
-    def twitter_search
-      @twitter_client = TwitterFeed.client
-      @page_num =
-        if params[:page]
-          params[:page].to_i
-        else
-          1
-        end
-      @search = @twitter_client.user_search(@user_name, page: @page_num).collect
-    end
-
-  def tumblr_search
-    @tumblr_client = TumblrClient.new_client
-    @tumblr_search_term = @user_name.delete(' ')
-    @tumblr_blog_info = @tumblr_client.blog_info(@tumblr_search_term)
-    @tumblr_avatar = @tumblr_client.avatar(@tumblr_search_term)
-  end
-
-  def rss_feed
+ def rss_feed
     @feed_find = params[:search]
     @feed_results = Feedzirra::Feed.fetch_and_parse(@feed_find)
     @feed = Feed.find_by(uid: @feed_find)
@@ -66,4 +46,24 @@ class FeedsController < ApplicationController
       redirect_to root_path, notice: "Feed is added"
     end
   end
+
+  private
+    def twitter_search
+      @twitter_client = TwitterFeed.client
+      @page_num =
+        if params[:page]
+          params[:page].to_i
+        else
+          1
+        end
+      @search = @twitter_client.user_search(@user_name, page: @page_num).collect
+    end
+
+  def tumblr_search
+    @tumblr_client = TumblrClient.new_client
+    @tumblr_search_term = @user_name.delete(' ')
+    @tumblr_blog_info = @tumblr_client.blog_info(@tumblr_search_term)
+    @tumblr_avatar = @tumblr_client.avatar(@tumblr_search_term)
+  end
+
 end

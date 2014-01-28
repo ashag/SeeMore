@@ -4,7 +4,7 @@ class Feed < ActiveRecord::Base
   validates :uid, uniqueness: true
 
   def self.exist?(uid)
-    Feed.find_by(uid: uid)
+    Feed.find_by(uid: uid.to_s)
   end
 
 

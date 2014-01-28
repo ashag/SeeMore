@@ -1,32 +1,33 @@
 class TwitterFeed < Feed
 
-  def find_or_create_post(feed_id, post)
-    user_array = get_user_link(feed_id)
-    content = "<% image_tag(#{}Feed.get_pic(feed_id) %>
-              <%= link_to #{user_array[0]}, #{user_array[1]} %>
+  def find_or_create_post(feed_uid, post)
+    tweet_link = get_user_link(feed_uid)
+    # Write as HTML
+    content = "<% image_tag(#{}Feed.get_pic(feed_uid) %>
+              <%= link_to #{tweet_link[0]}, #{tweet_link[1]} %>
               <%= #{post.text}%>"
     date = post.created_at
-    uid = Feed.find_by(feed_id).uid
+    @feed = Feed.find_by(uid: feed_uid)
     Post.find_by(content: content) || Post.create(
       content: content,
-      feed_id: feed_id,
+      feed_id: @feed.id,
       date: date,
-      feed_uid: uid)
+      feed_uid: feed_uid)
   end
 
   def get_user_link(id)
-    get_user(id)
-    [@user.screen_name, "https://www.twitter.com/#{@user.screen_name}"]
+    get_tweeter(id.to_i)
+    [@tweeter.screen_name, "https://www.twitter.com/#{@tweeter.screen_name}"]
   end
 
-  def get_user(id)
-    @user = TwitterFeed.client.user(id.to_i)
+  def get_tweeter(id)
+    @tweeter = TwitterFeed.client.user(id.to_i)
   end
 
   def get_posts(id)
-    @user = self.get_user(id.to_i)
+    get_tweeter(id.to_i)
     posts = []
-    TwitterFeed.client.user_timeline(@user).each do |tweet|
+    TwitterFeed.client.user_timeline(@tweeter).each do |tweet|
       posts << tweet
     end
     posts
