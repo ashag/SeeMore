@@ -3,7 +3,7 @@ class UserFeed < ActiveRecord::Base
   belongs_to :user
 
   def self.following?(user_id, result_id)
-    feed = Feed.find_by(uid: result_id)
+    feed = Feed.find_by(uid: result_id.to_s)
     return false unless feed
     UserFeed.where("user_id = ? AND feed_id = ?", user_id, feed.id)
   end
