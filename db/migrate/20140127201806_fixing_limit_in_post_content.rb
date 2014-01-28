@@ -1,5 +1,5 @@
 class FixingLimitInPostContent < ActiveRecord::Migration
   def change
-    change_column :posts, :content, :text, limit: 4294967296
+    change_column :posts, :content, :text, limit: 100.megabytes
   end
 end
