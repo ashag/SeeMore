@@ -66,5 +66,4 @@ class FeedsController < ApplicationController
     @tumblr_avatar = @tumblr_client.avatar(@tumblr_search_term)
   end
 
-
 end
