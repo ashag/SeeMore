@@ -3,8 +3,8 @@ class TwitterFeed < Feed
   def find_or_create_post(feed_uid, post)
     @feed = Feed.find_by(uid: feed_uid)
     tweet_link = get_user_link(feed_uid)
-    content = "< img src='#{@feed.get_pic(feed_uid)} alt='avatar for #{tweet_link[0]}' >
-              < a href='#{tweet_link[1]}' > #{tweet_link[0]} </a>
+    content = "<img src='#{@feed.get_pic(feed_uid)}' alt='avatar for #{tweet_link[0]}'>
+              <a href='#{tweet_link[1]}'> #{tweet_link[0]} </a>
               #{post.text}"
     date = post.created_at
     Post.find_by(content: content) || Post.create(
