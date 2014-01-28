@@ -3,8 +3,8 @@
 <% end %>
 <br>
 <% if @current_user && @current_user.feeds.length > 0 %>
-  <% Post.all.each do |post| %>
-    <%= post.inspect %> <br>
+  <% @feed.each do |post| %>
+    <%= post.content %> <br>
   <% end %>
 <% elsif @current_user %>
   Search for users to grow your feed!
