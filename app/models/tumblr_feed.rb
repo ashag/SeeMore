@@ -69,7 +69,7 @@ class TumblrFeed < Feed
     body = post["body"]
     post_url = post["short_url"]
     title = post["title"]
-    content = "<hr><img src=\"#{@avatar}\"/><a href=\"#{blog_link[1]}>#{blog_link[0]}</a>
+    content = "<hr><img src=\"#{@avatar}\"/><a href=\"#{blog_link[1]}\">#{blog_link[0]}</a>
                     <h4><a href=\"#{post_url}\">#{title}</a></h4><p>#{body}</p><hr>"
       return content
   end
@@ -81,8 +81,8 @@ class TumblrFeed < Feed
     post_url = post["short_url"]
     photo = post["photos"][0]["alt_sizes"][1]["url"]
     caption = post["caption"]
-    content = "<hr><img src=\"#{@avatar}\"/><a href=\"#{blog_link[1]}>#{blog_link[0]}</a>
-                      #{photo}
+    content = "<hr><img src=\"#{@avatar}\"/><a href=\"#{blog_link[1]}\">#{blog_link[0]}</a><br>
+                      <img src=\"#{photo}\"/>
                     <h4><a href=\"#{post_url}\">#{caption}</a></h4><hr>"
       return content
   end
@@ -94,7 +94,7 @@ class TumblrFeed < Feed
     post_url = post["short_url"]
     quote = post["text"]
     source = post["source"]
-    content = "<hr><img src=\"#{@avatar}\"/><a href=\"#{blog_link[1]}>#{blog_link[0]}</a>
+    content = "<hr><img src=\"#{@avatar}\"/><a href=\"#{blog_link[1]}\">#{blog_link[0]}</a><br>
                       <h4><a href=\"#{post_url}\">#{quote}</a></h4>#{source}<hr>"
       return content
   end
@@ -107,8 +107,8 @@ class TumblrFeed < Feed
     title = post["title"]
     url = post["url"]
     description = post["description"]
-    content = "<hr><img src=\"#{@avatar}\"/><a href=\"#{blog_link[1]}>#{blog_link[0]}</a>
-                    <h4><a href=\"#{post_url}\">#{title}</a></h4><a href=#{url}>Link</a><p>#{description}</p><hr>"
+    content = "<hr><img src=\"#{@avatar}\"/><a href=\"#{blog_link[1]}\">#{blog_link[0]}</a><br>
+                    <h4><a href=\"#{post_url}\">#{title}</a></h4><p>#{description}</p><hr>"
       return content
   end
 
@@ -122,7 +122,7 @@ class TumblrFeed < Feed
     source_url = post["source_url"]
     caption = post["caption"]
     player = post["player"][1]["embed_code"]
-    content = "<hr><img src=\"#{@avatar}\"/><a href=\"#{blog_link[1]}>#{blog_link[0]}</a>
+    content = "<hr><img src=\"#{@avatar}\"/><a href=\"#{blog_link[1]}\">#{blog_link[0]}</a><br>
                     <h4><a href=\"#{post_url}\">#{source_title}</a></h4>#{caption} #{player}<hr>"
       return content
   end
@@ -135,7 +135,7 @@ class TumblrFeed < Feed
     source_title = post["source_title"]
     caption = post["caption"]
     player = post["player"]
-    content = "<hr><img src=\"#{@avatar}\"/><a href=\"#{blog_link[1]}>#{blog_link[0]}</a>
+    content = "<hr><img src=\"#{@avatar}\"/><a href=\"#{blog_link[1]}\">#{blog_link[0]}</a><br>
                     <a href=\"#{post_url}\">#{source_title}</a></h4>#{caption} #{player}<hr>"
       return content
   end
@@ -147,7 +147,7 @@ class TumblrFeed < Feed
     answer = post["answer"]
     post_url = post["short_url"]
     title = post["title"]
-    content = "<hr><img src=\"#{@avatar}\"/><a href=\"#{blog_link[1]}>#{blog_link[0]}</a>
+    content = "<hr><img src=\"#{@avatar}\"/><a href=\"#{blog_link[1]}\">#{blog_link[0]}</a><br>
                     <h4><a href=\"#{post_url}\">#{question}</a></h4>#{answer}<hr>"
     return content
   end
@@ -158,7 +158,7 @@ class TumblrFeed < Feed
     body = post["body"]
     post_url = post["short_url"]
     title = post["title"]
-    content = "<hr><img src=\"#{@avatar}\"/><a href=\"#{blog_link[1]}>#{blog_link[0]}</a>
+    content = "<hr><img src=\"#{@avatar}\"/><a href=\"#{blog_link[1]}\">#{blog_link[0]}</a><br>
                     <h4><a href=\"#{post_url}\">#{title}</a></h4><p>#{body}</p><hr>"
    return content
   end
