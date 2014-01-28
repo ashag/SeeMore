@@ -43,6 +43,7 @@ group :doc do
 end
 
 gem "omniauth"
+gem 'omniauth-twitter'
 
 group :development do
   gem "better_errors" # These two are just for debugging
@@ -60,8 +61,6 @@ group :test do
 end
 
 gem 'figaro'
-
-gem 'omniauth-tumblr'
 
 gem 'tumblr_client', '= 0.8.2'
 
