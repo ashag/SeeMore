@@ -4,7 +4,7 @@ class TwitterFeed < Feed
     tweet_link = get_user_link(feed_uid)
     # Write as HTML
     content = "<% image_tag(#{}Feed.get_pic(feed_uid) %>
-              <%= link_to #{user_array[0]}, #{user_array[1]} %>
+              <%= link_to #{tweet_link[0]}, #{tweet_link[1]} %>
               <%= #{post.text}%>"
     date = post.created_at
     @feed = Feed.find_by(uid: feed_uid)
