@@ -19,23 +19,17 @@ class TumblrFeed < Feed
   def get_posts(name)
     @tumblr_client = TumblrClient.new_client
     get_blog(name)
-
     posts = []
-
     @tumblr_client.posts(@blog["blog"]["name"])["posts"].each do |post|
-      posts << [post["date"], post["post_url"]]
+     posts << post
     end
     posts
   end
 
     def find_or_create_post(feed_uid, post)
-    blog_link = get_user_link(feed_uid)
-    content = "<h2> hello, this is a tumblr post</h2>"
-    # content = "<%= image_tag(TumblrFeed.find_by_feed_uid(feed_uid).get_pic(feed_uid)) %>
-    #           <%= link_to #{blog_link[0]}, #{blog_link[1]} %>
-    #           <%= link_to #{post[1]}"
-    date = post[0]
-    @feed= Feed.find_by(uid: feed_uid)
+    content = find_post_type(feed_uid, post)
+    date = post["date"]
+    @feed = Feed.find_by(uid: feed_uid)
     Post.find_by(content: content) || Post.create(
       content: content,
       feed_id: @feed.id,
@@ -47,46 +41,131 @@ class TumblrFeed < Feed
 
   private
 
-  def find_post_type
+  def find_post_type(feed_uid, post)
+    type = post["type"]
+
+    if type == "text"
+      format_text_post(feed_uid, post)
+    elsif type == "photo"
+      format_photo_post(feed_uid, post)
+    elsif type == "link"
+      format_link_post(feed_uid, post)
+    elsif type == "quote"
+      format_quote_post(feed_uid, post)
+    elsif type == "chat"
+      format_chat_post(feed_uid, post)
+    elsif type == "answer"
+      format_answer_post(feed_uid, post)
+    elsif type == "audio"
+      format_audio_post(feed_uid, post)
+    else
+      format_video_post(feed_uid, post)
+    end
   end
 
-  def format_text_posts
+  def format_text_post(feed_uid, post)
+    blog_link = get_user_link(feed_uid)
+    get_pic(uid)
+    body = post["body"]
+    post_url = post["short_url"]
+    title = post["title"]
+    content = "<hr><img src=\"#{@avatar}\"/><a href=\"#{blog_link[1]}>#{blog_link[0]}</a>
+                    <h4><a href=\"#{post_url}\">#{title}</a></h4><p>#{body}</p><hr>"
+      return content
   end
 
-  def format_photo_posts
+  def format_photo_post(feed_uid, post)
+    blog_link = get_user_link(feed_uid)
+    get_pic(uid)
+    body = post["body"]
+    post_url = post["short_url"]
+    photo_array = post["photos"]["alt_sizes"]
+    photos = ""
+    photo_array.each do |photo|
+      photos + "<img src=#{photo["url"]}/>"
+    end
+
+    caption = post["caption"]
+    content = "<hr><img src=\"@avatar\"/><a href=\"#{blog_link[1]}>#{blog_link[0]}</a>
+                      #{photos}
+                    <h4><a href=\"#{post_url}\">#{caption}</a></h4><hr>"
+
+
   end
 
-  def format_quote_posts
+  def format_quote_post(feed_uid, post)
+    blog_link = get_user_link(feed_uid)
+    get_pic(uid)
+    body = post["body"]
+    post_url = post["short_url"]
+    quote = post["text"]
+    source = post["source"]
+    content = "<hr><img src=\"@avatar\"/><a href=\"#{blog_link[1]}>#{blog_link[0]}</a>
+                      <h4><a href=\"#{post_url}\">#{quote}</a></h4>#{source}<hr>"
+      return content
   end
 
-  def format_link_posts
+  def format_link_post(feed_uid, post)
+    blog_link = get_user_link(feed_uid)
+    get_pic(uid)
+    body = post["body"]
+    post_url = post["short_url"]
+    title = post["title"]
+    url = post["url"]
+    description = post["description"]
+    content = "<hr><img src=\"@avatar\"/><a href=\"#{blog_link[1]}>#{blog_link[0]}</a>
+                    <h4><a href=\"#{post_url}\">#{title}</a></h4><a href=#{url}>Link</a><p>#{description}</p><hr>"
+      return content
   end
 
-  def format_video_posts
+  def format_video_post(feed_uid, post)
+    blog_link = get_user_link(feed_uid)
+    get_pic(uid)
+    body = post["body"]
+    post_url = post["short_url"]
+    title = post["title"]
+    source_title = post["source_title"]
+    source_url = post["source_url"]
+    caption = post["caption"]
+    player = post["player"][1]["embed_code"]
+    content = "<hr><img src=\"@avatar\"/><a href=\"#{blog_link[1]}>#{blog_link[0]}</a>
+                    <h4><a href=\"#{post_url}\">#{source_title}</a></h4>#{caption} #{player}<hr>"
+      return content
   end
 
-  def format_ask_posts
+  def format_audio_post(feed_uid, post)
+    blog_link = get_user_link(feed_uid)
+    get_pic(uid)
+    body = post["body"]
+    post_url = post["short_url"]
+    source_title = post["source_title"]
+    caption = post["caption"]
+    player = post["player"]
+    content = "<hr><img src=\"@avatar\"/><a href=\"#{blog_link[1]}>#{blog_link[0]}</a>
+                    <a href=\"#{post_url}\">#{source_title}</a></h4>#{caption} #{player}<hr>"
+      return content
   end
 
+  def format_answer_post(feed_uid, post)
+    blog_link = get_user_link(feed_uid)
+    get_pic(uid)
+    question = post["question"]
+    answer = post["answer"]
+    post_url = post["short_url"]
+    title = post["title"]
+    content = "<hr><img src=\"@avatar\"/><a href=\"#{blog_link[1]}>#{blog_link[0]}</a>
+                    <h4><a href=\"#{post_url}\">#{question}</a></h4>#{answer}<hr>"
+    return content
+  end
+
+  def format_chat_post(feed_uid, post)
+    blog_link = get_user_link(feed_uid)
+    get_pic(uid)
+    body = post["body"]
+    post_url = post["short_url"]
+    title = post["title"]
+    content = "<hr><img src=\"@avatar\"/><a href=\"#{blog_link[1]}>#{blog_link[0]}</a>
+                    <h4><a href=\"#{post_url}\">#{title}</a></h4><p>#{body}</p><hr>"
+   return content
+  end
 end
-
-
-# "posts"=>[
-#   {"blog_name"=>"hello",
-#   "id"=>74167153131,
-#   "post_url"=>"http://hello.tumblr.com/post/74167153131/you-said-you-would-soon-do-a-raffle-for-your-url-are",
-#   "slug"=>"you-said-you-would-soon-do-a-raffle-for-your-url-are",
-#   "type"=>"answer",
-#   "date"=>"2014-01-22 13:29:23 GMT",
-#   "timestamp"=>1390397363,
-#   "state"=>"published",
-#   "format"=>"html",
-#   "reblog_key"=>"qWVDwKOX",
-#   "tags"=>[],
-#    "short_url"=>"http://tmblr.co/ZSgZ0y154jF7h",
-#     "highlighted"=>[],
-#     "note_count"=>0,
-#     "asking_name"=>"gosamer",
-#     "asking_url"=>"http://gosamer.tumblr.com/",
-#     "question"=>"You said you would soon do a raffle for your url. Are you still doing it?",
-#      "answer"=>"<p>Is there a good way to do it? </p>"}
