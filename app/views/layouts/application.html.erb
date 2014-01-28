@@ -18,7 +18,7 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    
+
   </div>
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav">
@@ -29,7 +29,7 @@
       <% else %>
         <li class="active"><%= link_to 'Sign Up', signin_path %></li>
         <li><%= link_to 'Sign In', signin_path %></li>
-      <% end %> 
+      <% end %>
     </ul>
 
 <!-- SEARCH BAR -->
@@ -38,8 +38,14 @@
         <div class="form-group">
           <input type="text" name="search" class="form-control" placeholder="Search">
         </div>
+        <select name="provider">
+          <option>Search All</option>
+          <option>Twitter</option>
+          <option>Tumblr</option>
+        </select>
         <button type="submit" class="btn btn-default">Hunt for Prey</button>
       <% end %>
+
       <%= form_tag create_rss_path, :class =>"navbar-form navbar-right", :method => 'post' do %>
         <div class="form-group">
           <input type="text" name="search" class="form-control" placeholder="Add A Feed">
