@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
 
 
   def tumblr_search(user_name)
-    @tumblr_search_term = @user_name.delete(' ')
+    @tumblr_search_term = user_name.delete(' ')
     @tumblr_blog_info = @tumblr_client.blog_info(@tumblr_search_term)
     @tumblr_avatar = @tumblr_client.avatar(@tumblr_search_term)
     @tumblr_blog_info

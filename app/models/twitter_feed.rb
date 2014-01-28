@@ -4,9 +4,14 @@ class TwitterFeed < Feed
     user_array = TwitterFeed.get_user_link(feed_id)
     content = "<% image_tag(#{}Feed.get_pic(feed_id) %>
               <%= link_to #{user_array[0]}, #{user_array[1]} %>
-              <%= #{post.text}"
+              <%= #{post.text}%>"
     date = post.created_at
-    Post.find_by(content: content) || Post.create(content: content, feed_id: feed_id, date: date)
+    uid = Feed.find_by(feed_id).uid
+    Post.find_by(content: content) || Post.create(
+      content: content, 
+      feed_id: feed_id, 
+      date: date, 
+      feed_uid: uid)
   end
 
   def self.get_user_link(id)

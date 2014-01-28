@@ -21,6 +21,17 @@ class Feed < ActiveRecord::Base
     nil
   end
 
+  def self.sort_feed(user_id)
+    feed_posts = []
+    current_user = User.find(user_id)
+    current_user.feeds.each do |feed|
+      Post.where(feed_id: feed.id).each do |post|
+        feed_posts << post
+      end
+    end
+    feed_posts.sort_by {|post| post.date }.reverse
+  end
+
 
   # Not sure what the default will be; this method will be specified in the
   # inherited tables to show an avatar, user pic, etc.

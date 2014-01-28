@@ -5,7 +5,7 @@ SeeMore::Application.routes.draw do
 
   post '/feeds'       => 'feeds#create',      as: "create_feed"
 
-  get 'search'        => 'application#search', :as => 'search'
+  get 'search'        => 'feeds#search', :as => 'search'
   post 'feed_search'   => 'feeds#rss_feed', as: 'create_rss'
   # get 'search', to: 'welcome#index'
   get 'results'       => 'welcome#results', as: 'results'

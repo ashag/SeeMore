@@ -4,8 +4,9 @@ class FeedsController < ApplicationController
     @feed = Feed.find_or_create(params)
     UserFeed.create_relationship(@feed, @current_user)
     uid = params[:uid].to_i
+    id = @feed.class.find_by(uid: params[:uid]).id
     @feed.class.get_posts(uid).each do |post|
-      @feed.class.find_or_create_post(params[:uid], post)
+      @feed.class.find_or_create_post(id, post)
     end
 
     redirect_to root_path
@@ -13,12 +14,12 @@ class FeedsController < ApplicationController
 
 	def search
 		@page_num =
-	if params[:page]
-		params[:page].to_i
-	else
-		1
-	end
-
+    	if params[:page]
+    		params[:page].to_i
+    	else
+    		1
+    	end
+    @twitter_client = TwitterFeed.client
 		@user_name = params[:search]
 		@search = @twitter_client.user_search(@user_name, page: @page_num).collect
 		tumblr_search(@user_name)
