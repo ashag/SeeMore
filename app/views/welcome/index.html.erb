@@ -5,7 +5,7 @@ Welcome, predator.
 <br>
 <% if @current_user && @current_user.feeds.length > 0 %>
   <% @feed.each do |post| %>
-    <%= post.content %> <br>
+    <%= post.content.split(',').to_a %> <br>
   <% end %>
 <% elsif @current_user %>
   Search for users to grow your feed!

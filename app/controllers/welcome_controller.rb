@@ -1,7 +1,9 @@
 class WelcomeController < ApplicationController
   before_action :twitter_client, only: [:index, :results]
   def index
-    @feed = Feed.sort_feed(@current_user.id)
+    if @current_user
+      @feed = Feed.sort_feed(@current_user.id)
+    end
   end
 
   def signin
