@@ -29,7 +29,7 @@ class TumblrFeed < Feed
   end
 
     def find_or_create_post(feed_uid, post)
-    blog _link = get_user_link(feed_uid)
+    blog_link = get_user_link(feed_uid)
     content = "<% image_tag(TumblrFeed.find_by_feed_uid(feed_uid).get_pic(feed_uid)) %>
               <%= link_to #{blog_link[0]}, #{blog_link[1]} %>
               <%= #{post[1]}"
