@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20140127201806) do
 
   create_table "posts", force: true do |t|
     t.integer  "feed_id"
-    t.text     "content",    limit: 4294967296
+    t.text     "content",    limit: 104857600
     t.date     "date"
     t.datetime "created_at"
     t.datetime "updated_at"
