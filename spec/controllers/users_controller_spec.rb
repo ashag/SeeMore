@@ -6,8 +6,7 @@ describe UsersController  do
     it "redirects on creation" do 
       # new_user = User.create(username: "newuser", email: "123@123.com", provider: "a thing", uid: "uid sample" )
       post :create, user: {username: "newuser", email: "123@123.com", provider: "a thing", uid: "uid sample" }
-      expect(response.code).to redirect_to user_path(assigns(:user).id)
-      
+      expect(response.code).to redirect_to root_path
     end 
   end
 

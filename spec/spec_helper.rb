@@ -3,6 +3,8 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
+require 'simplecov'
+SimpleCov.start
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -18,6 +20,8 @@ RSpec.configure do |config|
 
     OmniAuth.config.mock_auth[:developer] = OmniAuth::AuthHash.new({:provider => 'developer', :uid => '123545', info: {email: "a@b.com", nickname: "FeedHunter"}})
   end
+
+  config.include FactoryGirl::Syntax::Methods
   # ## Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
