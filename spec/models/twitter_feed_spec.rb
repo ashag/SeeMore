@@ -14,11 +14,18 @@ describe TwitterFeed do
     end
   end
 
+  describe 'twitter feed' do 
+    it 'creates a new twitter feed' do 
+      expect(create(:twitter_feed)).to be_valid
+    end
+  end
+
   describe 'helper methods' do
     describe 'get_user_link' do
       it 'returns a valid array' do 
         twitter_feed = create(:twitter_feed)
-        expect(twitter_feed.get_user_link(2305620871)).to eq()
+        expect(twitter_feed.get_user_link(2305620871)[1]).to eq("https://twitter.com/feed_hunter")
+      end
     end
   end
 end

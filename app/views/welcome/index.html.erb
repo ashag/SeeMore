@@ -1,7 +1,6 @@
 <% unless @current_user %>
   Sign in to FeedHunter to find your prey.
 <% end %>
-<% raise %>
 <br>
 <% if @current_user && @current_user.feeds.length > 0 %>
   <% @feed.each do |post| %>
