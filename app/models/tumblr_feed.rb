@@ -38,28 +38,27 @@ class TumblrFeed < Feed
   end
 
 
-
   private
 
   def find_post_type(feed_uid, post)
     type = post["type"]
-
-    if type == "text"
-      format_text_post(feed_uid, post)
-    elsif type == "photo"
-      format_photo_post(feed_uid, post)
-    elsif type == "link"
-      format_link_post(feed_uid, post)
-    elsif type == "quote"
-      format_quote_post(feed_uid, post)
-    elsif type == "chat"
-      format_chat_post(feed_uid, post)
-    elsif type == "answer"
-      format_answer_post(feed_uid, post)
-    elsif type == "audio"
-      format_audio_post(feed_uid, post)
-    else
-      format_video_post(feed_uid, post)
+    case type
+      when "text"
+        format_text_post(feed_uid, post)
+      when "photo"
+        format_photo_post(feed_uid, post)
+      when "link"
+        format_link_post(feed_uid, post)
+      when "quote"
+        format_quote_post(feed_uid, post)
+      when "chat"
+        format_chat_post(feed_uid, post)
+      when "answer"
+        format_answer_post(feed_uid, post)
+      when "audio"
+        format_audio_post(feed_uid, post)
+      else
+        format_video_post(feed_uid, post)
     end
   end
 
@@ -69,9 +68,9 @@ class TumblrFeed < Feed
     body = post["body"]
     post_url = post["short_url"]
     title = post["title"]
-    content = "<hr><img src=\"#{@avatar}\"/><a href=\"#{blog_link[1]}\">#{blog_link[0]}</a>
-                    <h4><a href=\"#{post_url}\">#{title}</a></h4><p>#{body}</p><hr>"
-      return content
+    content = "<img src=\"#{@avatar}\"/><a href=\"#{blog_link[1]}\">#{blog_link[0]}</a>
+                    <h4><a href=\"#{post_url}\">#{title}</a></h4><p>#{body}</p>"
+    return content
   end
 
   def format_photo_post(feed_uid, post)
@@ -79,12 +78,12 @@ class TumblrFeed < Feed
     get_pic(uid)
     body = post["body"]
     post_url = post["short_url"]
-    photo = post["photos"][0]["alt_sizes"][1]["url"]
+    photo = post["photos"].map {|photo| "<img src= #{photo["alt_sizes"][1]["url"]}>"}.join
     caption = post["caption"]
-    content = "<hr><img src=\"#{@avatar}\"/><a href=\"#{blog_link[1]}\">#{blog_link[0]}</a><br>
-                      <img src=\"#{photo}\"/>
-                    <h4><a href=\"#{post_url}\">#{caption}</a></h4><hr>"
-      return content
+    content = "<img src=\"#{@avatar}\"/><a href=\"#{blog_link[1]}\">#{blog_link[0]}</a><br><br>
+                      #{photo}<br>
+                    <h4><a href=\"#{post_url}\">#{caption}</a></h4>"
+    return content
   end
 
   def format_quote_post(feed_uid, post)
@@ -94,9 +93,9 @@ class TumblrFeed < Feed
     post_url = post["short_url"]
     quote = post["text"]
     source = post["source"]
-    content = "<hr><img src=\"#{@avatar}\"/><a href=\"#{blog_link[1]}\">#{blog_link[0]}</a><br>
-                      <h4><a href=\"#{post_url}\">#{quote}</a></h4>#{source}<hr>"
-      return content
+    content = "<img src=\"#{@avatar}\"/><a href=\"#{blog_link[1]}\">#{blog_link[0]}</a><br><br>
+                      <h4><a href=\"#{post_url}\">#{quote}</a></h4>#{source}"
+    return content
   end
 
   def format_link_post(feed_uid, post)
@@ -107,9 +106,9 @@ class TumblrFeed < Feed
     title = post["title"]
     url = post["url"]
     description = post["description"]
-    content = "<hr><img src=\"#{@avatar}\"/><a href=\"#{blog_link[1]}\">#{blog_link[0]}</a><br>
-                    <h4><a href=\"#{post_url}\">#{title}</a></h4><p>#{description}</p><hr>"
-      return content
+    content = "<img src=\"#{@avatar}\"/><a href=\"#{blog_link[1]}\">#{blog_link[0]}</a><br><br>
+                    <h4><a href=\"#{post_url}\">#{title}</a></h4><p>#{description}</p>"
+    return content
   end
 
   def format_video_post(feed_uid, post)
@@ -122,9 +121,9 @@ class TumblrFeed < Feed
     source_url = post["source_url"]
     caption = post["caption"]
     player = post["player"][1]["embed_code"]
-    content = "<hr><img src=\"#{@avatar}\"/><a href=\"#{blog_link[1]}\">#{blog_link[0]}</a><br>
-                    <h4><a href=\"#{post_url}\">#{source_title}</a></h4>#{caption} #{player}<hr>"
-      return content
+    content = "<img src=\"#{@avatar}\"/><a href=\"#{blog_link[1]}\">#{blog_link[0]}</a><br><br>
+                    <h4><a href=\"#{post_url}\">#{source_title}</a></h4>#{caption} #{player}"
+    return content
   end
 
   def format_audio_post(feed_uid, post)
@@ -135,9 +134,9 @@ class TumblrFeed < Feed
     source_title = post["source_title"]
     caption = post["caption"]
     player = post["player"]
-    content = "<hr><img src=\"#{@avatar}\"/><a href=\"#{blog_link[1]}\">#{blog_link[0]}</a><br>
-                    <a href=\"#{post_url}\">#{source_title}</a></h4>#{caption} #{player}<hr>"
-      return content
+    content = "<img src=\"#{@avatar}\"/><a href=\"#{blog_link[1]}\">#{blog_link[0]}</a><br><br>
+                    <a href=\"#{post_url}\">#{source_title}</a></h4>#{caption} #{player}"
+    return content
   end
 
   def format_answer_post(feed_uid, post)
@@ -147,8 +146,8 @@ class TumblrFeed < Feed
     answer = post["answer"]
     post_url = post["short_url"]
     title = post["title"]
-    content = "<hr><img src=\"#{@avatar}\"/><a href=\"#{blog_link[1]}\">#{blog_link[0]}</a><br>
-                    <h4><a href=\"#{post_url}\">#{question}</a></h4>#{answer}<hr>"
+    content = "<img src=\"#{@avatar}\"/><a href=\"#{blog_link[1]}\">#{blog_link[0]}</a><br><br>
+                    <h4><a href=\"#{post_url}\">#{question}</a></h4>#{answer}"
     return content
   end
 
@@ -158,8 +157,8 @@ class TumblrFeed < Feed
     body = post["body"]
     post_url = post["short_url"]
     title = post["title"]
-    content = "<hr><img src=\"#{@avatar}\"/><a href=\"#{blog_link[1]}\">#{blog_link[0]}</a><br>
-                    <h4><a href=\"#{post_url}\">#{title}</a></h4><p>#{body}</p><hr>"
-   return content
+    content = "<img src=\"#{@avatar}\"/><a href=\"#{blog_link[1]}\">#{blog_link[0]}</a><br><br>
+                    <h4><a href=\"#{post_url}\">#{title}</a></h4><p>#{body}</p>"
+    return content
   end
 end
