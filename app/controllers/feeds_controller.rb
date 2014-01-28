@@ -4,8 +4,7 @@ class FeedsController < ApplicationController
     @feed = Feed.find_or_create(params)
     UserFeed.create_relationship(@feed, @current_user)
 
-    uid = params[:uid]
-    @feed.get_posts(uid).each do |post|
+    @feed.get_posts(params[:uid]).each do |post|
       @feed.find_or_create_post(params[:uid], post)
     end
     redirect_to root_path
@@ -66,6 +65,5 @@ class FeedsController < ApplicationController
     @tumblr_blog_info = @tumblr_client.blog_info(@tumblr_search_term)
     @tumblr_avatar = @tumblr_client.avatar(@tumblr_search_term)
   end
-
 
 end

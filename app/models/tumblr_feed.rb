@@ -1,8 +1,8 @@
 class TumblrFeed < Feed
 
-  def get_user_link(id)
+  def get_user_link(name)
     @tumblr_client = TumblrClient.new_client
-    get_blog(id)
+    get_blog(name)
     [@blog["blog"]["name"], @blog["blog"]["url"]]
   end
 
@@ -16,9 +16,9 @@ class TumblrFeed < Feed
     @blog = @tumblr_client.blog_info(name)
   end
 
-  def get_posts(id)
+  def get_posts(name)
     @tumblr_client = TumblrClient.new_client
-    get_blog(id)
+    get_blog(name)
 
     posts = []
 
@@ -29,17 +29,44 @@ class TumblrFeed < Feed
   end
 
     def find_or_create_post(feed_uid, post)
-    blog _link = get_user_link(feed_uid)
-    content = "<% image_tag(TumblrFeed.find_by_feed_uid(feed_uid).get_pic(feed_uid)) %>
-              <%= link_to #{blog_link[0]}, #{blog_link[1]} %>
-              <%= #{post[1]}"
+    blog_link = get_user_link(feed_uid)
+
+    content = "<h2> hello, this is a tumblr post</h2>"
+    # content = "<%= image_tag(TumblrFeed.find_by_feed_uid(feed_uid).get_pic(feed_uid)) %>
+    #           <%= link_to #{blog_link[0]}, #{blog_link[1]} %>
+    #           <%= link_to #{post[1]}"
     date = post[0]
-    uid = Feed.find_by(feed_id).uid
+    @feed= Feed.find_by(uid: feed_uid)
     Post.find_by(content: content) || Post.create(
       content: content,
-      feed_id: feed_id,
+      feed_id: @feed.id,
       date: date,
-      feed_uid: uid)
+      feed_uid: feed_uid)
+  end
+
+
+
+  private
+
+  def find_post_type
+  end
+
+  def format_text_posts
+  end
+
+  def format_photo_posts
+  end
+
+  def format_quote_posts
+  end
+
+  def format_link_posts
+  end
+
+  def format_video_posts
+  end
+
+  def format_ask_posts
   end
 
 end
