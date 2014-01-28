@@ -2,6 +2,7 @@ class Feed < ActiveRecord::Base
   has_many :user_feeds
   has_many :users, through: :user_feeds
   validates :uid, uniqueness: true
+  validates :uid, :type, presence: :true
 
   def self.exist?(uid)
     Feed.find_by(uid: uid.to_s)

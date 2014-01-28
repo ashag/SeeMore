@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/Ellen/Documents/ada_homework/in_progress/FeedHunter/app/controllers/sessions_controller.rb": [
+      "/Users/Audrey/ada-class/Week11/SeeMore/app/controllers/sessions_controller.rb": [
         1,
         null,
         1,
@@ -26,7 +26,7 @@
         null,
         null
       ],
-      "/Users/Ellen/Documents/ada_homework/in_progress/FeedHunter/app/controllers/application_controller.rb": [
+      "/Users/Audrey/ada-class/Week11/SeeMore/app/controllers/application_controller.rb": [
         1,
         null,
         null,
@@ -41,7 +41,7 @@
         null,
         null
       ],
-      "/Users/Ellen/Documents/ada_homework/in_progress/FeedHunter/spec/controllers/users_controller_spec.rb": [
+      "/Users/Audrey/ada-class/Week11/SeeMore/spec/controllers/users_controller_spec.rb": [
         1,
         null,
         1,
@@ -70,7 +70,7 @@
         null,
         null
       ],
-      "/Users/Ellen/Documents/ada_homework/in_progress/FeedHunter/app/controllers/users_controller.rb": [
+      "/Users/Audrey/ada-class/Week11/SeeMore/app/controllers/users_controller.rb": [
         1,
         null,
         1,
@@ -87,7 +87,7 @@
         null,
         null
       ],
-      "/Users/Ellen/Documents/ada_homework/in_progress/FeedHunter/spec/helpers/users_helper_spec.rb": [
+      "/Users/Audrey/ada-class/Week11/SeeMore/spec/helpers/users_helper_spec.rb": [
         1,
         null,
         null,
@@ -104,14 +104,14 @@
         1,
         null
       ],
-      "/Users/Ellen/Documents/ada_homework/in_progress/FeedHunter/spec/models/feed_spec.rb": [
+      "/Users/Audrey/ada-class/Week11/SeeMore/spec/models/feed_spec.rb": [
         1,
         null,
         1,
         1,
         null
       ],
-      "/Users/Ellen/Documents/ada_homework/in_progress/FeedHunter/app/models/feed.rb": [
+      "/Users/Audrey/ada-class/Week11/SeeMore/app/models/feed.rb": [
         1,
         1,
         1,
@@ -148,18 +148,18 @@
         null,
         null
       ],
-      "/Users/Ellen/Documents/ada_homework/in_progress/FeedHunter/spec/models/post_spec.rb": [
+      "/Users/Audrey/ada-class/Week11/SeeMore/spec/models/post_spec.rb": [
         1,
         null,
         1,
         1,
         null
       ],
-      "/Users/Ellen/Documents/ada_homework/in_progress/FeedHunter/app/models/post.rb": [
+      "/Users/Audrey/ada-class/Week11/SeeMore/app/models/post.rb": [
         1,
         null
       ],
-      "/Users/Ellen/Documents/ada_homework/in_progress/FeedHunter/spec/models/twitter_feed_spec.rb": [
+      "/Users/Audrey/ada-class/Week11/SeeMore/spec/models/twitter_feed_spec.rb": [
         1,
         null,
         1,
@@ -192,7 +192,7 @@
         null,
         null
       ],
-      "/Users/Ellen/Documents/ada_homework/in_progress/FeedHunter/app/models/twitter_feed.rb": [
+      "/Users/Audrey/ada-class/Week11/SeeMore/app/models/twitter_feed.rb": [
         1,
         null,
         1,
@@ -242,7 +242,7 @@
         null,
         null
       ],
-      "/Users/Ellen/Documents/ada_homework/in_progress/FeedHunter/spec/models/user_spec.rb": [
+      "/Users/Audrey/ada-class/Week11/SeeMore/spec/models/user_spec.rb": [
         1,
         null,
         1,
@@ -274,7 +274,7 @@
         null,
         null
       ],
-      "/Users/Ellen/Documents/ada_homework/in_progress/FeedHunter/app/models/user.rb": [
+      "/Users/Audrey/ada-class/Week11/SeeMore/app/models/user.rb": [
         1,
         null,
         1,
@@ -298,10 +298,10 @@
         null,
         null
       ],
-      "/Users/Ellen/Documents/ada_homework/in_progress/FeedHunter/spec/models/userfeed_spec.rb": [
+      "/Users/Audrey/ada-class/Week11/SeeMore/spec/models/userfeed_spec.rb": [
 
       ]
     },
-    "timestamp": 1390946463
+    "timestamp": 1390947296
   }
 }
