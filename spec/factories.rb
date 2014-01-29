@@ -10,4 +10,8 @@ FactoryGirl.define do
     date "2014-1-26"
     feed_uid "2305620871"
   end
+  factory :feed do
+    uid '12345'
+    type 'TwitterFeed'
+  end
 end
