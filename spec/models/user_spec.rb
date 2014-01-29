@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'support/omniauth_macros.rb'
 
 describe User do
 	let!(:user) {User.new(username: 'firstuser', uid: '12345', provider: 'twitter', email: 'a@g.com')}
@@ -8,9 +7,9 @@ describe User do
   		expect(user).to be_valid
   	end
 
-  	it 'requires an email' do
+  	it ' does not require an email' do
   		user.email = nil
-  		expect(user).to be_invalid
+  		expect(user).to be_valid
   	end
 
   	it 'requires a username' do
@@ -27,5 +26,5 @@ describe User do
   		user.provider = nil
   		expect(user).to be_invalid
   	end
-
+end
 end
