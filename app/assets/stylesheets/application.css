@@ -18,3 +18,12 @@
 	height: 100%;
   padding: 10px;
 }
+
+.rss-content {
+  display: inline-block;
+}
+
+.notice {
+  font-size: 30px;
+}
+
