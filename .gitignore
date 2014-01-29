@@ -20,3 +20,5 @@
 
 # ignore simple cov results
 /coverage
+
+/.DS_Store
