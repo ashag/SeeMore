@@ -7,7 +7,6 @@ class UserFeed < ActiveRecord::Base
     return false unless feed
 
     relationship = UserFeed.where("user_id = ? AND feed_id = ?", user_id, feed.id)
-
     return false if relationship.nil?
 
     return true
