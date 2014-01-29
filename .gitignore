@@ -18,4 +18,5 @@
 # Ignore application configuration
 /config/application.yml
 
+# ignore simple cov results
 /coverage
