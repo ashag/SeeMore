@@ -8,7 +8,8 @@ describe Feed do
     end
 
     it 'requires a uid' do
-      
+      feed.username = nil
+      expect(feed).to be_invalid
     end
 
     it 'requires a type' do
