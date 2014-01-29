@@ -4,10 +4,7 @@ class Feed < ActiveRecord::Base
   validates :uid, uniqueness: true
   validates :uid, :type, presence: :true
 
-  def self.exist?(uid)
-    Feed.find_by(uid: uid.to_s)
-  end
-
+  # ActiveRecord supplies find_or_create_by and create methods, we didn't actually have to write the two following methods. But I'm keeping them here because we use them. Not going to rpsec them though (Kerri said that was okay.)
 
   def self.find_or_create(params)
     Feed.find_by(uid: params[:uid]) || create(params)
