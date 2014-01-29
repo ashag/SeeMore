@@ -117,7 +117,8 @@ private
     caption = post["caption"]
     player = post["player"][1]["embed_code"]
     content = "<img src=\"#{@avatar}\"/><a href=\"#{blog_link[1]}\">#{blog_link[0]}</a><br><br>
-                    <h4><a href=\"#{post_url}\">#{source_title}</a></h4>#{caption} #{player}"
+                    #{player}<br>
+                    <h4><a href=\"#{post_url}\">#{source_title}</a></h4>#{caption} "
     return content
   end
 
@@ -129,7 +130,8 @@ private
     caption = post["caption"]
     player = post["player"]
     content = "<img src=\"#{@avatar}\"/><a href=\"#{blog_link[1]}\">#{blog_link[0]}</a><br><br>
-                    <a href=\"#{post_url}\">#{source_title}</a></h4>#{caption} #{player}"
+                    #{player}<br>
+                    <a href=\"#{post_url}\">#{source_title}</a></h4>#{caption}"
     return content
   end
 
