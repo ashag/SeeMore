@@ -26,7 +26,7 @@ class TumblrFeed < Feed
     posts
   end
 
-    def find_or_create_post(feed_uid, post)
+  def find_or_create_post(feed_uid, post)
     content = find_post_type(feed_uid, post)
     date = post["date"]
     @feed = Feed.find_by(uid: feed_uid)
