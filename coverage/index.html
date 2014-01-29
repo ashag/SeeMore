@@ -14,27 +14,27 @@
       <img src="./assets/0.8.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2014-01-28T14:14:57-08:00">2014-01-28T14:14:57-08:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2014-01-29T09:53:51-08:00">2014-01-29T09:53:51-08:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="red">78.79%</span></span>
+    (<span class="covered_percent"><span class="red">78.26%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         1.33
+         3.64
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
-    <b>14</b> files in total.
-    <b>132</b> relevant lines. 
-    <span class="green"><b>104</b> lines covered</span> and
-    <span class="red"><b>28</b> lines missed </span>
+    <b>3</b> files in total.
+    <b>46</b> relevant lines. 
+    <span class="green"><b>36</b> lines covered</span> and
+    <span class="red"><b>10</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -51,6 +51,7 @@
     <tbody>
       
       <tr>
+<<<<<<< HEAD
         <td class="strong"><a href="#7cc4c99a7dc282f12162c976650a28a5c545118e" class="src_link" title="app/controllers/application_controller.rb">app/controllers/application_controller.rb</a></td>
         <td class="green strong">100.0 %</td>
         <td>13</td>
@@ -82,6 +83,9 @@
       
       <tr>
         <td class="strong"><a href="#433fe85350c957f495954dba1fbf4f286d9df62b" class="src_link" title="app/models/feed.rb">app/models/feed.rb</a></td>
+=======
+        <td class="strong"><a href="#6144267c918dea2671feff91a69d13ba726e49d1" class="src_link" title="app/models/feed.rb">app/models/feed.rb</a></td>
+>>>>>>> d8b10027491b6e603d10826e3f639c1086a8cd40
         <td class="red strong">44.44 %</td>
         <td>35</td>
         <td>18</td>
@@ -101,6 +105,7 @@
       </tr>
       
       <tr>
+<<<<<<< HEAD
         <td class="strong"><a href="#0ebcb4a50225551ab91f8a9ba3f2ae159715bf93" class="src_link" title="app/models/twitter_feed.rb">app/models/twitter_feed.rb</a></td>
         <td class="red strong">55.56 %</td>
         <td>48</td>
@@ -187,7 +192,15 @@
         <td>0</td>
         <td>0</td>
         <td>0</td>
+=======
+        <td class="strong"><a href="#9f710755232f9add72c4c0cd13ad3278657a7a52" class="src_link" title="app/models/twitter_feed.rb">app/models/twitter_feed.rb</a></td>
+        <td class="green strong">100.0 %</td>
+        <td>48</td>
+        <td>27</td>
+        <td>27</td>
+>>>>>>> d8b10027491b6e603d10826e3f639c1086a8cd40
         <td>0</td>
+        <td>5.9</td>
       </tr>
       
     </tbody>
@@ -206,14 +219,18 @@
     
       <div class="source_files">
       
+<<<<<<< HEAD
         <div class="source_table" id="7cc4c99a7dc282f12162c976650a28a5c545118e">
+=======
+        <div class="source_table" id="6144267c918dea2671feff91a69d13ba726e49d1">
+>>>>>>> d8b10027491b6e603d10826e3f639c1086a8cd40
   <div class="header">
-    <h3>app/controllers/application_controller.rb</h3>
-    <h4><span class="green">100.0 %</span> covered</h4>
+    <h3>app/models/feed.rb</h3>
+    <h4><span class="red">44.44 %</span> covered</h4>
     <div>
-      <b>6</b> relevant lines. 
-      <span class="green"><b>6</b> lines covered</span> and
-      <span class="red"><b>0</b> lines missed.</span>
+      <b>18</b> relevant lines. 
+      <span class="green"><b>8</b> lines covered</span> and
+      <span class="red"><b>10</b> lines missed.</span>
     </div>
   </div>
   
@@ -223,81 +240,76 @@
         <li class="covered" data-hits="1" data-linenumber="1">
           <span class="hits">1</span>
           
-          <code class="ruby">class ApplicationController &lt; ActionController::Base</code>
+          <code class="ruby">class Feed &lt; ActiveRecord::Base</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="2">
+        <li class="covered" data-hits="1" data-linenumber="2">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">  # Prevent CSRF attacks by raising an exception.</code>
+          <code class="ruby">  has_many :user_feeds</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="3">
+        <li class="covered" data-hits="1" data-linenumber="3">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">  # For APIs, you may want to use :null_session instead.</code>
+          <code class="ruby">  has_many :users, through: :user_feeds</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="4">
           <span class="hits">1</span>
           
-          <code class="ruby">  protect_from_forgery with: :exception</code>
+          <code class="ruby">  validates :uid, uniqueness: true</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="5">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  before_action :current_user</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="6">
+        <li class="never" data-hits="" data-linenumber="5">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="7">
+        <li class="covered" data-hits="1" data-linenumber="6">
           <span class="hits">1</span>
           
-          <code class="ruby">  def current_user</code>
+          <code class="ruby">  def self.exist?(uid)</code>
         </li>
       
-        <li class="covered" data-hits="6" data-linenumber="8">
-          <span class="hits">6</span>
+        <li class="missed" data-hits="0" data-linenumber="7">
           
-          <code class="ruby">    @current_user ||= User.find(session[:user_id]) if session[:user_id]</code>
+          
+          <code class="ruby">    Feed.find_by(uid: uid.to_s)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="9">
+        <li class="never" data-hits="" data-linenumber="8">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="10">
+        <li class="never" data-hits="" data-linenumber="9">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="10">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="11">
           <span class="hits">1</span>
           
-          <code class="ruby">  helper_method :current_user</code>
+          <code class="ruby">  def self.find_or_create(params)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="11">
+        <li class="missed" data-hits="0" data-linenumber="12">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">    Feed.find_by(uid: params[:uid]) || create(params)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="12">
-          
-          
-          <code class="ruby">end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="13">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
+<<<<<<< HEAD
     </ol>
   </pre>
 </div>
@@ -318,128 +330,60 @@
       
         <li class="covered" data-hits="1" data-linenumber="1">
           <span class="hits">1</span>
-          
-          <code class="ruby">class SessionsController &lt; ApplicationController</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="2">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="3">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def create</code>
-        </li>
-      
-        <li class="covered" data-hits="6" data-linenumber="4">
-          <span class="hits">6</span>
-          
-          <code class="ruby">    auth_hash = request.env[&#39;omniauth.auth&#39;]</code>
-        </li>
-      
-        <li class="covered" data-hits="6" data-linenumber="5">
-          <span class="hits">6</span>
-          
-          <code class="ruby">    if auth_hash[&quot;uid&quot;]</code>
-        </li>
-      
-        <li class="covered" data-hits="6" data-linenumber="6">
-          <span class="hits">6</span>
-          
-          <code class="ruby">      @user = User.find_or_create_from_omniauth(auth_hash)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="7">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="6" data-linenumber="8">
-          <span class="hits">6</span>
-          
-          <code class="ruby">      if @user</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="9">
-          
-          
-          <code class="ruby">        session[:user_id] = @user.id</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="10">
-          
-          
-          <code class="ruby">        redirect_to root_path, notice: &quot;You have successfully been signed in.&quot;</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="11">
-          
-          
-          <code class="ruby">      else</code>
-        </li>
-      
-        <li class="covered" data-hits="6" data-linenumber="12">
-          <span class="hits">6</span>
-          
-          <code class="ruby">        redirect_to root_path, notice: &quot;Failed to save the user&quot;</code>
-        </li>
-      
+=======
         <li class="never" data-hits="" data-linenumber="13">
-          
-          
-          <code class="ruby">      end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="14">
-          
-          
-          <code class="ruby">    else</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="15">
-          
-          
-          <code class="ruby">      redirect_to root_path, notice: &quot;Failed to authenticate&quot;</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="16">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="17">
+>>>>>>> d8b10027491b6e603d10826e3f639c1086a8cd40
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="18">
+        <li class="never" data-hits="" data-linenumber="14">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="19">
+        <li class="covered" data-hits="1" data-linenumber="15">
           <span class="hits">1</span>
           
-          <code class="ruby">  def destroy</code>
+          <code class="ruby">  def self.create(params)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="20">
+        <li class="missed" data-hits="0" data-linenumber="16">
           
           
-          <code class="ruby">    reset_session</code>
+          <code class="ruby">    self.create!(</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="17">
+          
+          
+          <code class="ruby">      uid:  params[:uid],</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="18">
+          
+          
+          <code class="ruby">      type: params[:type]</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="19">
+          
+          
+          <code class="ruby">    )</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="20">
+          
+          
+          <code class="ruby">  rescue ActiveRecord::RecordInvalid</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="21">
           
           
-          <code class="ruby">    redirect_to root_path, :notice =&gt; &quot;You have been successfully signed out.&quot;</code>
+          <code class="ruby">    nil</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="22">
@@ -451,6 +395,78 @@
         <li class="never" data-hits="" data-linenumber="23">
           
           
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="24">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def self.sort_feed(user_id)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="25">
+          
+          
+          <code class="ruby">    feed_posts = []</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="26">
+          
+          
+          <code class="ruby">    current_user = User.find(user_id)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="27">
+          
+          
+          <code class="ruby">    current_user.feeds.each do |feed|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="28">
+          
+          
+          <code class="ruby">      Post.where(feed_id: feed.id).each do |post|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="29">
+          
+          
+          <code class="ruby">        feed_posts &lt;&lt; post</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="30">
+          
+          
+          <code class="ruby">      end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="31">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="32">
+          
+          
+          <code class="ruby">    feed_posts.sort_by {|post| post.date }.reverse</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="33">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="34">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="35">
+          
+          
           <code class="ruby">end</code>
         </li>
       
@@ -458,13 +474,17 @@
   </pre>
 </div>
       
+<<<<<<< HEAD
         <div class="source_table" id="ff942308314a30a9ab0296af59eb705edc5d982c">
+=======
+        <div class="source_table" id="5ee499e550c042a3d8377b8f5779b44fcd85ebef">
+>>>>>>> d8b10027491b6e603d10826e3f639c1086a8cd40
   <div class="header">
-    <h3>app/controllers/users_controller.rb</h3>
+    <h3>app/models/post.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>2</b> relevant lines. 
-      <span class="green"><b>2</b> lines covered</span> and
+      <b>1</b> relevant lines. 
+      <span class="green"><b>1</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -475,7 +495,37 @@
         <li class="covered" data-hits="1" data-linenumber="1">
           <span class="hits">1</span>
           
-          <code class="ruby">class UsersController &lt; ApplicationController</code>
+          <code class="ruby">class Post &lt; ActiveRecord::Base</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="2">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+      
+        <div class="source_table" id="9f710755232f9add72c4c0cd13ad3278657a7a52">
+  <div class="header">
+    <h3>app/models/twitter_feed.rb</h3>
+    <h4><span class="green">100.0 %</span> covered</h4>
+    <div>
+      <b>27</b> relevant lines. 
+      <span class="green"><b>27</b> lines covered</span> and
+      <span class="red"><b>0</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="1" data-linenumber="1">
+          <span class="hits">1</span>
+          
+          <code class="ruby">class TwitterFeed &lt; Feed</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="2">
@@ -487,72 +537,73 @@
         <li class="covered" data-hits="1" data-linenumber="3">
           <span class="hits">1</span>
           
-          <code class="ruby">	def show</code>
+          <code class="ruby">  def find_or_create_post(feed_uid, post)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="4">
+        <li class="covered" data-hits="3" data-linenumber="4">
+          <span class="hits">3</span>
           
-          
-          <code class="ruby"></code>
+          <code class="ruby">    @feed = Feed.find_by(uid: feed_uid)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="5">
+        <li class="covered" data-hits="3" data-linenumber="5">
+          <span class="hits">3</span>
           
-          
-          <code class="ruby">	end</code>
+          <code class="ruby">    tweet_link = get_user_link(feed_uid)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="6">
+        <li class="covered" data-hits="3" data-linenumber="6">
+          <span class="hits">3</span>
           
-          
-          <code class="ruby"></code>
+          <code class="ruby">    content = &quot;&lt;img src=&#39;#{@feed.get_pic(feed_uid)}&#39; alt=&#39;avatar for #{tweet_link[0]}&#39;&gt;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="7">
           
           
-          <code class="ruby"># for potential future use in order to delete a user&#39;s profile</code>
+          <code class="ruby">              &lt;a href=&#39;#{tweet_link[1]}&#39;&gt; #{tweet_link[0]} &lt;/a&gt;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="8">
           
           
-          <code class="ruby">  # def destroy</code>
+          <code class="ruby">              #{post.text}&quot;</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="9">
+        <li class="covered" data-hits="3" data-linenumber="9">
+          <span class="hits">3</span>
           
-          
-          <code class="ruby">  #   redirect_to :goodbye</code>
+          <code class="ruby">    date = post.created_at</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="10">
           
           
-          <code class="ruby">  # end</code>
+          <code class="ruby">    Post.find_by(content: content) || Post.create(</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="11">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">      content: content,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="12">
           
           
-          <code class="ruby">  # def goodbye</code>
+          <code class="ruby">      feed_id: @feed.id,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="13">
           
           
-          <code class="ruby">  # end</code>
+          <code class="ruby">      date: date,</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="14">
+        <li class="covered" data-hits="3" data-linenumber="14">
+          <span class="hits">3</span>
           
-          
+<<<<<<< HEAD
           <code class="ruby"></code>
         </li>
       
@@ -1760,6 +1811,9 @@
           
           
           <code class="ruby">    end</code>
+=======
+          <code class="ruby">      feed_uid: feed_uid)</code>
+>>>>>>> d8b10027491b6e603d10826e3f639c1086a8cd40
         </li>
       
         <li class="never" data-hits="" data-linenumber="15">
@@ -1777,87 +1831,58 @@
         <li class="covered" data-hits="1" data-linenumber="17">
           <span class="hits">1</span>
           
-          <code class="ruby">  describe &#39;twitter feed&#39; do </code>
+          <code class="ruby">  def get_user_link(uid)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="18">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="4" data-linenumber="18">
+          <span class="hits">4</span>
           
-          <code class="ruby">    it &#39;creates a new twitter feed&#39; do </code>
+          <code class="ruby">    get_tweeter(uid.to_i)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="19">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="4" data-linenumber="19">
+          <span class="hits">4</span>
           
-          <code class="ruby">      expect(create(:twitter_feed)).to be_valid</code>
+          <code class="ruby">    [@tweeter.screen_name, &quot;https://www.twitter.com/#{@tweeter.screen_name}&quot;]</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="20">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="21">
           
           
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="22">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="23">
+        <li class="covered" data-hits="1" data-linenumber="22">
           <span class="hits">1</span>
           
-          <code class="ruby">  describe &#39;helper methods&#39; do</code>
+          <code class="ruby">  def get_pic(uid)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="24">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="4" data-linenumber="23">
+          <span class="hits">4</span>
           
-          <code class="ruby">    describe &#39;get_user_link&#39; do</code>
+          <code class="ruby">    get_tweeter(uid.to_i)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="25">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="4" data-linenumber="24">
+          <span class="hits">4</span>
           
-          <code class="ruby">      it &#39;returns a valid array&#39; do </code>
+          <code class="ruby">    @tweeter.profile_image_url</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="26">
-          <span class="hits">1</span>
-          
-          <code class="ruby">        twitter_feed = create(:twitter_feed)</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="27">
-          <span class="hits">1</span>
-          
-          <code class="ruby">        expect(twitter_feed.get_user_link(2305620871)[1]).to eq(&quot;https://twitter.com/feed_hunter&quot;)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="28">
-          
-          
-          <code class="ruby">      end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="29">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="30">
+        <li class="never" data-hits="" data-linenumber="25">
           
           
           <code class="ruby">  end</code>
         </li>
       
+<<<<<<< HEAD
         <li class="never" data-hits="" data-linenumber="31">
           
           
@@ -1889,165 +1914,24 @@
         </li>
       
         <li class="never" data-hits="" data-linenumber="2">
+=======
+        <li class="never" data-hits="" data-linenumber="26">
+>>>>>>> d8b10027491b6e603d10826e3f639c1086a8cd40
           
           
           <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="3">
-          <span class="hits">1</span>
-          
-          <code class="ruby">describe User do</code>
-        </li>
-      
-        <li class="covered" data-hits="6" data-linenumber="4">
-          <span class="hits">6</span>
-          
-          <code class="ruby">	let!(:user) {User.new(username: &#39;firstuser&#39;, uid: &#39;12345&#39;, provider: &#39;developer&#39;, email: &#39;a@g.com&#39;)}</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="5">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  describe &#39;validations&#39; do </code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="6">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  	it &#39;is valid&#39; do </code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="7">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  		expect(user).to be_valid</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="8">
-          
-          
-          <code class="ruby">  	end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="9">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="10">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  	it &#39;requires an email&#39; do</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="11">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  		user.email = nil</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="12">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  		expect(user).to be_invalid</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="13">
-          
-          
-          <code class="ruby">  	end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="14">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="15">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  	it &#39;requires a username&#39; do </code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="16">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  		user.username = nil</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="17">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  		expect(user).to be_invalid</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="18">
-          
-          
-          <code class="ruby">  	end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="19">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="20">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  	it &#39;requires a uid&#39; do </code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="21">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  		user.uid = nil</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="22">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  		expect(user).to be_invalid</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="23">
-          
-          
-          <code class="ruby">  	end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="24">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="25">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  	it &#39;requires a provider&#39; do </code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="26">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  		user.provider = nil</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="27">
           <span class="hits">1</span>
           
-          <code class="ruby">  		expect(user).to be_invalid</code>
+          <code class="ruby">  def get_tweeter(uid)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="28">
+        <li class="covered" data-hits="12" data-linenumber="28">
+          <span class="hits">12</span>
           
-          
-          <code class="ruby">  	end</code>
+          <code class="ruby">    @tweeter = TwitterFeed.client.user(uid.to_i)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="29">
@@ -2059,6 +1943,114 @@
         <li class="never" data-hits="" data-linenumber="30">
           
           
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="31">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def get_posts(uid)</code>
+        </li>
+      
+        <li class="covered" data-hits="4" data-linenumber="32">
+          <span class="hits">4</span>
+          
+          <code class="ruby">    get_tweeter(uid.to_i)</code>
+        </li>
+      
+        <li class="covered" data-hits="4" data-linenumber="33">
+          <span class="hits">4</span>
+          
+          <code class="ruby">    posts = []</code>
+        </li>
+      
+        <li class="covered" data-hits="4" data-linenumber="34">
+          <span class="hits">4</span>
+          
+          <code class="ruby">    TwitterFeed.client.user_timeline(@tweeter).each do |tweet|</code>
+        </li>
+      
+        <li class="covered" data-hits="4" data-linenumber="35">
+          <span class="hits">4</span>
+          
+          <code class="ruby">      posts &lt;&lt; tweet</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="36">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="covered" data-hits="4" data-linenumber="37">
+          <span class="hits">4</span>
+          
+          <code class="ruby">    posts</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="38">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="39">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="40">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def self.client</code>
+        </li>
+      
+        <li class="covered" data-hits="18" data-linenumber="41">
+          <span class="hits">18</span>
+          
+          <code class="ruby">    @twitter_client = Twitter::REST::Client.new do |config|</code>
+        </li>
+      
+        <li class="covered" data-hits="18" data-linenumber="42">
+          <span class="hits">18</span>
+          
+          <code class="ruby">      config.consumer_key        = ENV[&quot;TWITTER_CONSUMER_KEY&quot;]</code>
+        </li>
+      
+        <li class="covered" data-hits="18" data-linenumber="43">
+          <span class="hits">18</span>
+          
+          <code class="ruby">      config.consumer_secret     = ENV[&quot;TWITTER_CONSUMER_SECRET&quot;]</code>
+        </li>
+      
+        <li class="covered" data-hits="18" data-linenumber="44">
+          <span class="hits">18</span>
+          
+          <code class="ruby">      config.access_token        = ENV[&quot;TWITTER_ACCESS_TOKEN&quot;]</code>
+        </li>
+      
+        <li class="covered" data-hits="18" data-linenumber="45">
+          <span class="hits">18</span>
+          
+          <code class="ruby">      config.access_token_secret = ENV[&quot;TWITTER_ACCESS_TOKEN_SECRET&quot;]</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="46">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="47">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="48">
+          
+          
           <code class="ruby">end</code>
         </li>
       
@@ -2066,6 +2058,7 @@
   </pre>
 </div>
       
+<<<<<<< HEAD
         <div class="source_table" id="3f8d4311cca292a0a368e833396ff45fa0b7d784">
   <div class="header">
     <h3>spec/models/userfeed_spec.rb</h3>
@@ -2084,6 +2077,8 @@
   </pre>
 </div>
       
+=======
+>>>>>>> d8b10027491b6e603d10826e3f639c1086a8cd40
       </div>
     </div>
   </body>
