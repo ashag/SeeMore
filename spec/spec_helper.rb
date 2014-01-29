@@ -17,8 +17,22 @@ ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 RSpec.configure do |config|
   config.before(:suite) do
     OmniAuth.config.test_mode = true
-    OmniAuth.config.mock_auth[:developer] = OmniAuth::AuthHash.new({:provider => 'developer', :uid => '123545', info: {email: "a@b.com", nickname: "FeedHunter"}})
-   OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new({:provider => 'twitter', :uid => '543211', info: {email: "twitter@mock.com", nickname: "twittermock"}})
+    omniauth_hash = { 'provider' => 'twitter',
+                      'uid' => '12345',
+                      'info' => {
+                          'name' => 'natasha',
+                          'email' => 'liz@abcdef.com',
+                          'nickname' => 'lizrush'
+                      },
+                      'extra' => {'raw_info' =>
+                                      { 'location' => 'San Francisco',
+                                        'gravatar_id' => '123456789'
+                                      }
+                      }
+    }
+
+OmniAuth.config.add_mock(:twitter, omniauth_hash)
+
     end
 
   # ## Mock Framework
