@@ -32,9 +32,6 @@ RSpec.configure do |config|
     }
 
   OmniAuth.config.add_mock(:twitter, omniauth_hash)
-  
-
-  OmniAuth.config.mock_auth[:developer] = OmniAuth::AuthHash.new({:provider => 'developer', :uid => '123545', info: {email: "a@b.com", nickname: "FeedHunter"}})
   end
 
   config.include FactoryGirl::Syntax::Methods
