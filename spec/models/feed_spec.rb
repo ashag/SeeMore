@@ -22,11 +22,11 @@ describe Feed do
   end
 
   describe 'sort_feed' do
-    let!(:twitter_feed) { create(twitter_feed) }
-    let!(:user) { create(user) }
-    let!(:user_feed) { create(user_feed) }
-    let!(:post1) { create(post1) }
-    let!(:post2) { create(post2) }
+    let!(:twitter_feed) { create(:twitter_feed) }
+    let!(:user) { create(:user) }
+    let!(:user_feed) { create(:user_feed) }
+    let!(:post1) { create(:post1) }
+    let!(:post2) { create(:post2) }
 
     it 'returns an array' do
       expect(Feed.sort_feed(1).class).to eq(Array)
@@ -36,8 +36,9 @@ describe Feed do
       expect(Feed.sort_feed(1)[0].class).to eq(Post)
     end
 
-    it 'posts to be in chronological order' do
-
+    it 'posts are in chronological order' do
+      expect(Feed.sort_feed(1)[0].date).to eq(Date.parse('2014-01-24'))
+      expect(Feed.sort_feed(1)[1].date).to eq(Date.parse('2014-01-23'))
     end
   end
 end

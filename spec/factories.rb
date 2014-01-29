@@ -12,21 +12,21 @@ FactoryGirl.define do
     feed_uid "2305620871"
   end
 
-  factor :user_feed do
+  factory :user_feed, class: UserFeed do
     user_id 1
     feed_id 1
   end
-  factory :user do
+  factory :user, class: User do
     id 1
     username 'Audrey Carlsen'
     uid '478104543'
     provider 'twitter'
   end
-  factory :post1 do
+  factory :post1, class: Post do
     feed_id 1
     date '2014-01-23'
   end
-  factory :post2 do
+  factory :post2, class: Post do
     feed_id 1
     date '2014-01-24'
   end
