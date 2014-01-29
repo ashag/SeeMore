@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe User do
+
 	let!(:user) {User.new(username: 'firstuser', uid: '12345', provider: 'twitter', email: 'a@g.com')}
   describe 'validations' do
   	it 'is valid' do

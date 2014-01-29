@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe UsersController  do
 
-
   describe "initialize_from_omniauth" do
     let(:user) { User.find_or_create_from_omniauth(OmniAuth.config.mock_auth[:twitter]) }
 
