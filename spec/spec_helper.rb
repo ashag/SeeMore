@@ -1,3 +1,5 @@
+require 'simplecov'
+SimpleCov.start
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
@@ -15,19 +17,33 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
 RSpec.configure do |config|
-  config.before(:suite) do 
+  config.before(:suite) do
     OmniAuth.config.test_mode = true
+    omniauth_hash = { 'provider' => 'twitter',
+                      'uid' => '12345',
+                      'info' => {
+                          'name' => 'natasha',
+                          'email' => 'liz@abcdef.com',
+                          'nickname' => 'lizrush'
+                      },
+                      'extra' => {'raw_info' =>
+                                      { 'location' => 'San Francisco',
+                                        'gravatar_id' => '123456789'
+                                      }
+                      }
+    }
 
-    OmniAuth.config.mock_auth[:developer] = OmniAuth::AuthHash.new({:provider => 'developer', :uid => '123545', info: {email: "a@b.com", nickname: "FeedHunter"}})
+  OmniAuth.config.add_mock(:twitter, omniauth_hash)
   end
+
+  config.include FactoryGirl::Syntax::Methods
+
   # ## Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
-  #
   # config.mock_with :mocha
   # config.mock_with :flexmock
   # config.mock_with :rr
-
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 

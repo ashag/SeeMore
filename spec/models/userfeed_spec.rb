@@ -4,16 +4,16 @@ describe UserFeed do
   let!(:asha) { User.create(username: 'asha', email: 'blah@gmail.com') }
   let!(:feed) { Feed.create(uid: 'blah', type: 'RSSFeed') }
 
-  describe 'create_relationship method' do  
+  describe 'create relationship method' do 
     it 'will create relationship between user and feed' do 
-      ashafeed = UserFeed.create_relationship(feed, asha) 
+      ashafeed = UserFeed.create_relationship(asha, feed) 
       expect(ashafeed).to be_valid
     end
   end
 
   describe 'following method' do
     let!(:ashafeed) { UserFeed.create_relationship(feed, asha) }
-    let!(:new_user) { User.create(username: 'person', email: 'person@gmail.com') }
+    # let!(:new_user) { User.create(username: 'person', email: 'person@gmail.com') }
 
     it 'will return true' do 
       find = UserFeed.following?(asha.id, feed.uid)
