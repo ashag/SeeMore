@@ -2,17 +2,8 @@ require 'spec_helper'
 
 describe UsersController  do
 
-  describe "POSTcreate" do
-    it "redirects on creation" do 
-      # new_user = User.create(username: "newuser", email: "123@123.com", provider: "a thing", uid: "uid sample" )
-      post :create, user: {username: "newuser", email: "123@123.com", provider: "a thing", uid: "uid sample" }
-      expect(response.code).to redirect_to user_path(assigns(:user).id)
-      
-    end 
-  end
-
-  describe ".initialize_from_omniauth" do
-    let(:user) { User.find_or_create_from_omniauth(OmniAuth.config.mock_auth[:developer]) }
+  describe "initialize_from_omniauth" do
+    let(:user) { User.find_or_create_from_omniauth(OmniAuth.config.mock_auth[:twitter]) }
 
     it "creates a valid user" do
       expect(user).to be_valid

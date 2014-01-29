@@ -55,6 +55,11 @@ group :development do
   gem "guard-rspec"
 end
 
+group :test do
+  gem 'simplecov', require: false
+  gem 'factory_girl_rails'
+end
+
 gem 'figaro'
 
 gem 'tumblr_client', '= 0.8.2'
