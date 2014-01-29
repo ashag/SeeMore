@@ -1,46 +1,47 @@
 require 'spec_helper'
 
 describe SessionsController do
-  describe "GET 'create'" do
-    context "when using developer authorization" do
-      context "is successful" do
-        before { request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:developer] }
 
-        it "redirects to home page" do
-          get :create, provider: :developer
-          expect(response).to redirect_to root_path
-        end
+  before do
+    request.env['omniauth.auth'] = OmniAuth.config.mock_auth[:twitter]
+  end
 
-        it "creates a user" do
-          expect { get :create, provider: :developer }.to change(User, :count).by(1)
-        end
+  describe "#create" do
 
-        it "assigns the @user var" do
-          get :create, provider: :developer
-          expect(assigns(:user)).to be_an_instance_of User
-        end
+    it "should successfully create a user" do
+      expect {
+        post :create, provider: :twitter
+      }.to change{ User.count }.by(1)
+    end
 
-        it "assigns the session[:user_id]" do
-          get :create, provider: :developer
-          expect(session[:user_id]).to eq assigns(:user).id
-        end
+    it "should successfully create a session" do
+      session[:user_id].should be_nil
+      post :create, provider: :twitter
+      session[:user_id].should_not be_nil
+    end
 
-      end
+    it "should redirect the user to the root url" do
+      post :create, provider: :twitter
+      response.should redirect_to root_url
+    end
 
-      context "when the user has already signed up" do
-        before { request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:developer] }
-        let!(:user) { User.find_or_create_from_omniauth(OmniAuth.config.mock_auth[:developer]) }
+  end
 
-        it "doesn't create another user" do
-          expect { get :create, provider: :developer }.to_not change(User, :count).by(1)
-        end
+  describe "#destroy" do
+    before do
+      post :create, provider: :twitter
+    end
 
-        it "assigns the session[:user_id]" do
-          get :create, provider: :developer
-          expect(session[:user_id]).to eq user.id
-        end
-      end
+    it "should clear the session" do
+      session[:user_id].should_not be_nil
+      delete :destroy
+      session[:user_id].should be_nil
+    end
 
+    it "should redirect to the home page" do
+      delete :destroy
+      response.should redirect_to root_url
     end
   end
+
 end

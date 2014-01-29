@@ -7,7 +7,7 @@ describe User do
   		expect(user).to be_valid
   	end
 
-  	it ' does not require an email' do
+  	it 'does not require an email' do
   		user.email = nil
   		expect(user).to be_valid
   	end
@@ -26,5 +26,6 @@ describe User do
   		user.provider = nil
   		expect(user).to be_invalid
   	end
-end
+  end
+
 end
