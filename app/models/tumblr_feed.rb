@@ -26,39 +26,39 @@ class TumblrFeed < Feed
     posts
   end
 
-    def find_or_create_post(feed_uid, post)
+  def find_or_create_post(feed_uid, post)
     content = find_post_type(feed_uid, post)
     date = post["date"]
-    @feed = Feed.find_by(uid: feed_uid)
+    feed = Feed.find_by(uid: feed_uid)
     Post.find_by(content: content) || Post.create(
       content: content,
-      feed_id: @feed.id,
+      feed_id: feed.id,
       date: date,
       feed_uid: feed_uid)
   end
 
 
-  private
+private
 
   def find_post_type(feed_uid, post)
     type = post["type"]
     case type
-      when "text"
-        format_text_post(feed_uid, post)
-      when "photo"
-        format_photo_post(feed_uid, post)
-      when "link"
-        format_link_post(feed_uid, post)
-      when "quote"
-        format_quote_post(feed_uid, post)
-      when "chat"
-        format_chat_post(feed_uid, post)
-      when "answer"
-        format_answer_post(feed_uid, post)
-      when "audio"
-        format_audio_post(feed_uid, post)
-      else
-        format_video_post(feed_uid, post)
+    when "text"
+      format_text_post(feed_uid, post)
+    when "photo"
+      format_photo_post(feed_uid, post)
+    when "link"
+      format_link_post(feed_uid, post)
+    when "quote"
+      format_quote_post(feed_uid, post)
+    when "chat"
+      format_chat_post(feed_uid, post)
+    when "answer"
+      format_answer_post(feed_uid, post)
+    when "audio"
+      format_audio_post(feed_uid, post)
+    else
+      format_video_post(feed_uid, post)
     end
   end
 
@@ -76,7 +76,6 @@ class TumblrFeed < Feed
   def format_photo_post(feed_uid, post)
     blog_link = get_user_link(feed_uid)
     get_pic(uid)
-    body = post["body"]
     post_url = post["short_url"]
     photo = post["photos"].map {|photo| "<img src= #{photo["alt_sizes"][1]["url"]}>"}.join
     caption = post["caption"]
@@ -89,7 +88,6 @@ class TumblrFeed < Feed
   def format_quote_post(feed_uid, post)
     blog_link = get_user_link(feed_uid)
     get_pic(uid)
-    body = post["body"]
     post_url = post["short_url"]
     quote = post["text"]
     source = post["source"]
@@ -101,7 +99,6 @@ class TumblrFeed < Feed
   def format_link_post(feed_uid, post)
     blog_link = get_user_link(feed_uid)
     get_pic(uid)
-    body = post["body"]
     post_url = post["short_url"]
     title = post["title"]
     url = post["url"]
@@ -114,11 +111,9 @@ class TumblrFeed < Feed
   def format_video_post(feed_uid, post)
     blog_link = get_user_link(feed_uid)
     get_pic(uid)
-    body = post["body"]
     post_url = post["short_url"]
     title = post["title"]
     source_title = post["source_title"]
-    source_url = post["source_url"]
     caption = post["caption"]
     player = post["player"][1]["embed_code"]
     content = "<img src=\"#{@avatar}\"/><a href=\"#{blog_link[1]}\">#{blog_link[0]}</a><br><br>
@@ -129,7 +124,6 @@ class TumblrFeed < Feed
   def format_audio_post(feed_uid, post)
     blog_link = get_user_link(feed_uid)
     get_pic(uid)
-    body = post["body"]
     post_url = post["short_url"]
     source_title = post["source_title"]
     caption = post["caption"]
