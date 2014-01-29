@@ -4,7 +4,7 @@
 <br>
 <% if @current_user && @current_user.feeds.length > 0 %>
   <% @feed.each do |post| %>
-    <%=raw post.content %> <br>
+    <div><%= post.content.try(:html_safe) %> <br></div>
   <% end %>
 <% elsif @current_user %>
   Search for users to grow your feed!

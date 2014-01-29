@@ -24,9 +24,9 @@ class FeedsController < ApplicationController
     render 'welcome/results'
   end
 
- def rss_feed
+  def rss_feed
     @feed_find = params[:search]
-    @feed_results = Feedzirra::Feed.fetch_and_parse(@feed_find)
+    @feed_results = Feedzirra::Feed.fetch_and_parse(params[:search])
     @feed = Feed.find_by(uid: @feed_find)
 
     # feed exists and User is following feed
@@ -38,12 +38,20 @@ class FeedsController < ApplicationController
     # feed exists and user is not following
     elsif @feed != nil
       UserFeed.create_relationship(@feed, @current_user)
+      set_rss_posts
       redirect_to root_path, notice: "You added feed"
     # feed does not exist and user is not following
     else
-      create_rss = Feed.create(uid: @feed_find, type: 'RSSFeed')
-      UserFeed.create_relationship(create_rss, @current_user)
+      @feed = Feed.create(uid: @feed_find, type: 'RSSFeed')
+      UserFeed.create_relationship(@feed, @current_user)
+      set_rss_posts
       redirect_to root_path, notice: "Feed is added"
+    end   
+  end
+
+  def set_rss_posts
+    @feed.get_posts(params[:search]).each do |post|
+      @feed.find_or_create_post(@feed_find, post)
     end
   end
 
