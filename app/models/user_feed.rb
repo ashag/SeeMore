@@ -4,8 +4,16 @@ class UserFeed < ActiveRecord::Base
 
   def self.following?(user_id, result_id)
     feed = Feed.find_by(uid: result_id.to_s)
-    # return false if relationship.nil? returns nil, not false
+    return false unless feed
+
     relationship = UserFeed.where("user_id = ? AND feed_id = ?", user_id, feed.id)
+    return false if relationship.nil?
+
+    return true
+  end
+
+  def self.rss_following?(user_id, result)
+    relationship = UserFeed.where("user_id = ? AND feed_id = ?", user_id, result.id)
     relationship.nil?
   end
 
