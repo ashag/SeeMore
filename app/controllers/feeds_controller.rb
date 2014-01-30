@@ -16,9 +16,12 @@ class FeedsController < ApplicationController
         twitter_search
       elsif @provider == "Tumblr"
         tumblr_search
+      elsif @provider == "Github"
+        github_search
       else
         twitter_search
         tumblr_search
+        github_search
       end
     render 'welcome/results'
   end
@@ -45,7 +48,7 @@ class FeedsController < ApplicationController
       UserFeed.create_relationship(@feed, @current_user)
       set_rss_posts
       redirect_to root_path, notice: "Feed is added"
-    end   
+    end
   end
 
   def set_rss_posts
@@ -73,4 +76,7 @@ class FeedsController < ApplicationController
     @tumblr_avatar = @tumblr_client.avatar(@tumblr_search_term)
   end
 
+
+  def github_search
+  end
 end
