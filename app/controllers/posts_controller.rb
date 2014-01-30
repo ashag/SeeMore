@@ -7,13 +7,15 @@ class PostsController < ApplicationController
   end
 
   def favorite
-    
+    client = TwitterFeed.user_client(@current_user)
+    tweet = client.status(params[:twitter_id])
+    client.favorite(tweet)
+    redirect_to root_path
   end
 
 
   def retweet
-    client = TwitterFeed.user_client(@current_user)
-    client.update(params[:tweet])
+
   end
 
 end

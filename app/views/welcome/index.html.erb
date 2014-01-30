@@ -10,4 +10,5 @@
   Search for users to grow your feed!
 <% end %>
 
-
+<%= @feed.first.inspect %>
+<%= link_to("Favorite", favorite_path(twitter_id: @feed.first.twitter_id), method: :post) %>
