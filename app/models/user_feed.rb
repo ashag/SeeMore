@@ -14,7 +14,7 @@ class UserFeed < ActiveRecord::Base
 
   def self.rss_following?(user_id, result)
     relationship = UserFeed.where("user_id = ? AND feed_id = ?", user_id, result.id)
-    relationship.nil?
+    relationship.any?
   end
 
   def self.create_relationship(feed, user)
