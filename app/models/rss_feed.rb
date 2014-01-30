@@ -21,9 +21,9 @@ class RSSFeed < Feed
         feed_uid: @find_feed.uid)
 
       if posts.summary
-        new_post[:content] = "<div class='rss-content'><img src='/assets/rssImage.jpg'/> #{posts.summary} <i><a href='#{posts.url}'>#{posts.title}</a></i> </div> "
+        new_post[:content] = "<div class='rss-content'><img src='/assets/rssImage.jpg'/> <h3>#{@find_rss.title}</h3> #{posts.summary} <i><a href='#{posts.url}'>#{posts.title}</a></i> </div> "
       else
-        new_post[:content] = "<div class='rss-content'>'><img src='/assets/rssImage.jpg'/><a href='#{posts.url}'>#{posts.title}</a> </div><br>"
+        new_post[:content] = "<div class='rss-content'>'><img src='/assets/rssImage.jpg'/> <h3>#{@find_rss.title}</h3> <a href='#{posts.url}'>#{posts.title}</a> </div><br>"
       end    
       new_post.save
     end

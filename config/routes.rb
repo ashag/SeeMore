@@ -23,4 +23,6 @@ SeeMore::Application.routes.draw do
   get '/auth/failure', :to => 'sessions#failure'
   get 'sign_out' => 'sessions#destroy', as: :sign_out
 
+  post 'tweet' => 'posts#tweet', as: 'tweet'
+
 end

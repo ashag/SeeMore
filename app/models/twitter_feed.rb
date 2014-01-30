@@ -46,12 +46,25 @@ class TwitterFeed < Feed
     end
   end
 
-  def self.show_feed(uid)
+  def self.show_feed(user)
     tweets = []
-    tweeter = TwitterFeed.client.user(uid)
-    @current_user.home_timeline.each do |tweet|
-      tweets << tweet.text
+    client = TwitterFeed.user_client(user)
+    client.home_timeline.each do |tweet|
+      author = client.user(tweet.user.id)
+      content = "<img src='#{author.profile_image_url}' alt='avatar for #{author.screen_name}'>
+              <a href='https://www.twitter.com/#{author.screen_name}'> #{author.screen_name} </a>
+              #{tweet.text}"
+      tweets << content
     end
     tweets
+  end
+
+  def self.user_client(user)
+    Twitter::REST::Client.new do |config|
+      config.consumer_key        = ENV["TWITTER_CONSUMER_KEY"]
+      config.consumer_secret     = ENV["TWITTER_CONSUMER_SECRET"]
+      config.access_token        = user.token
+      config.access_token_secret = user.secret
+    end
   end
 end
