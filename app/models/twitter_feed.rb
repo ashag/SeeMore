@@ -45,4 +45,13 @@ class TwitterFeed < Feed
       config.access_token_secret = ENV["TWITTER_ACCESS_TOKEN_SECRET"]
     end
   end
+
+  def self.show_feed(uid)
+    tweets = []
+    tweeter = TwitterFeed.client.user(uid)
+    @current_user.home_timeline.each do |tweet|
+      tweets << tweet.text
+    end
+    tweets
+  end
 end

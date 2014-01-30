@@ -2,7 +2,18 @@
   Sign in to FeedHunter to find your prey.
 <% end %>
 <br>
+
+<h2>Twitter Feed</h2><br>
+This section exists because ellen is trying to pass a user story while waiting for feedback from Elise<br>
+<% if @current_user %>
+  <% TwitterFeed.show_feed(@current_user.uid.to_i).each do |tweet| %>
+    <%= tweet.inspect %><br>
+  <% end %>
+<% end %>
+
+
 <% if @current_user && @current_user.feeds.length > 0 %>
+  <h2>FeedHunter Feed</h2><br>
   <% @feed.each do |post| %>
     <div id="feedpost"> <hr><%= post.content.try(:html_safe) %> </div>
   <% end %>
