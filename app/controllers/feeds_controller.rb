@@ -25,8 +25,8 @@ class FeedsController < ApplicationController
 
   def rss_feed
     @feed_find = params[:search]
-    @feed_results = Feedzirra::Feed.fetch_and_parse(params[:search])
-    @feed = Feed.find_by(uid: params[:search])
+    @feed_results = Feedzirra::Feed.fetch_and_parse(@feed_find)
+    @feed = Feed.find_by(uid: @feed_find)
 
     if @feed != nil && UserFeed.rss_following?(@current_user.id, @feed)
       redirect_to root_path, notice: "This feed is already your prey"
