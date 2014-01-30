@@ -78,5 +78,8 @@ class FeedsController < ApplicationController
 
 
   def github_search
+    @github_search_term = @user_name.delete(' ')
+
+    # use http to find users
   end
 end
