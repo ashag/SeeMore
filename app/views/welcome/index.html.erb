@@ -4,12 +4,7 @@
 <br>
 
 <h2>Twitter Feed</h2><br>
-This section exists because ellen is trying to pass a user story while waiting for feedback from Elise<br>
-<% if @current_user %>
-  <% TwitterFeed.show_feed(@current_user).each do |tweet| %>
-    <%= tweet.html_safe %><br>
-  <% end %>
-<% end %>
+<%= render 'welcome/result_feed' %>
 
 
 <% if @current_user && @current_user.feeds.length > 0 %>

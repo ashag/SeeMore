@@ -1,0 +1,5 @@
+<% if @current_user %>
+  <% TwitterFeed.show_feed(@current_user).each do |tweet| %>
+    <%= tweet.html_safe %><br>
+  <% end %>
+<% end %>
