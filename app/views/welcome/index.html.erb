@@ -5,15 +5,3 @@
 
 <h2>Twitter Feed</h2><br>
 <%= render 'welcome/result_feed' %>
-
-
-<% if @current_user && @current_user.feeds.length > 0 %>
-  <h2>FeedHunter Feed</h2><br>
-  <% @feed.each do |post| %>
-    <div id="feedpost"> <hr><%= post.content.try(:html_safe) %> </div>
-  <% end %>
-<% elsif @current_user %>
-  Search for users to grow your feed!
-<% end %>
-
-

@@ -6,11 +6,11 @@ class TwitterFeed < Feed
     content = "<img src='#{@feed.get_pic(feed_uid)}' alt='avatar for #{tweet_link[0]}'>
               <a href='#{tweet_link[1]}'> #{tweet_link[0]} </a>
               #{post.text}"
-    date = post.created_at
+    datetime = post.created_at
     Post.find_by(content: content) || Post.create(
       content: content,
       feed_id: @feed.id,
-      date: date,
+      datetime: datetime,
       feed_uid: feed_uid)
   end
 
@@ -46,17 +46,14 @@ class TwitterFeed < Feed
     end
   end
 
-  def self.show_feed(user)
-    tweets = []
+  def self.build_user_feed(user)
     client = TwitterFeed.user_client(user)
-    client.home_timeline.each do |tweet|
-      author = client.user(tweet.user.id)
-      content = "<img src='#{author.profile_image_url}' alt='avatar for #{author.screen_name}'>
-              <a href='https://www.twitter.com/#{author.screen_name}'> #{author.screen_name} </a>
-              #{tweet.text}"
-      tweets << content
+    tweets = client.home_timeline
+    tweets.each do |tweet|
+      feed = Feed.find_or_create({uid: tweet.user.id.to_s, type: "TwitterFeed"})
+      UserFeed.find_or_create(feed, user)
+      feed.find_or_create_post(feed.uid, tweet)
     end
-    tweets
   end
 
   def self.user_client(user)

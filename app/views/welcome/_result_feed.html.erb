@@ -1,5 +1,8 @@
-<% if @current_user %>
-  <% TwitterFeed.show_feed(@current_user).each do |tweet| %>
-    <%= tweet.html_safe %><br>
+<% if @current_user && @current_user.feeds.length > 0 %>
+  <% @feed = Feed.sort_feed(@current_user) %>
+  <% @feed.each do |post| %>
+    <div id="feedpost"> <hr><%= post.content.try(:html_safe) %> </div>
   <% end %>
+<% elsif @current_user %>
+  Search for users to grow your feed!
 <% end %>
