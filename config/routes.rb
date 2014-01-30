@@ -24,5 +24,6 @@ SeeMore::Application.routes.draw do
   get 'sign_out' => 'sessions#destroy', as: :sign_out
 
   post 'tweet' => 'posts#tweet', as: 'tweet'
+  post 'favorite' => 'posts#favorite', as: 'favorite'
 
 end
