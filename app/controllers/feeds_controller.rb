@@ -24,7 +24,7 @@ class FeedsController < ApplicationController
   end
 
   def rss_feed
-    # @feed_find = params[:search]
+    @feed_find = params[:search]
     @feed_results = Feedzirra::Feed.fetch_and_parse(params[:search])
     @feed = Feed.find_by(uid: params[:search])
 
@@ -37,7 +37,7 @@ class FeedsController < ApplicationController
       set_rss_posts
       redirect_to root_path, notice: "You added feed"
     else
-      @feed = Feed.create(uid: params[:search], type: 'RSSFeed')
+      @feed = Feed.create(uid: @feed_find, type: 'RSSFeed')
       UserFeed.create_relationship(@feed, @current_user)
       set_rss_posts
       redirect_to root_path, notice: "Feed is added"
