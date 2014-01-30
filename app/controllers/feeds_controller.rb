@@ -24,15 +24,15 @@ class FeedsController < ApplicationController
   end
 
   def rss_feed
-    @feed_find = params[:search]
+    # @feed_find = params[:search]
     @feed_results = Feedzirra::Feed.fetch_and_parse(params[:search])
-    @feed = Feed.find_by(uid: @feed_find)
+    @feed = Feed.find_by(uid: params[:search])
 
     # feed exists and User is following feed
     if @feed != nil && UserFeed.following?(@current_user.id, @feed.uid).count != 0
       redirect_to root_path, notice: "This feed is already your prey"
     # feed url is invalid
-    elsif @feed_results == 0
+    elsif @feed_results == 0 || @feed_results == 404
       redirect_to root_path, notice: "Invalid feed URL. Please try again."
     # feed exists and user is not following
     elsif @feed != nil
@@ -41,7 +41,7 @@ class FeedsController < ApplicationController
       redirect_to root_path, notice: "You added feed"
     # feed does not exist and user is not following
     else
-      @feed = Feed.create(uid: @feed_find, type: 'RSSFeed')
+      @feed = Feed.create(uid: params[:search], type: 'RSSFeed')
       UserFeed.create_relationship(@feed, @current_user)
       set_rss_posts
       redirect_to root_path, notice: "Feed is added"
@@ -50,7 +50,7 @@ class FeedsController < ApplicationController
 
   def set_rss_posts
     @feed.get_posts(params[:search]).each do |post|
-      @feed.find_or_create_post(@feed_find, post)
+      @feed.find_or_create_post(params[:search], post)
     end
   end
 
