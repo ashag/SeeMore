@@ -1,3 +1,5 @@
 Welcome to FeedHunter!
 
 We are live at feed-hunter.herokuapp.com.
+
+In order to run our app locally and/or run specs, you will need to have the correct provider access tokens in config/application.yml. We have included config/application_example.yml as a file in our project. Please contact one of us for the actual tokens!
