@@ -10,10 +10,10 @@ SeeMore::Application.routes.draw do
   post 'tweet'       => 'posts#tweet',      as: 'tweet'
   post 'favorite'    => 'posts#favorite',   as: 'favorite'
   get  '/auth/twitter',                     as: :sign_in
+  get  '/auth/failure',                     to: 'sessions#failure'
   get  '/auth/:provider/callback',          to: 'sessions#create'
   post '/auth/:provider/callback',          to: 'sessions#create'
-  get  '/auth/failure',                     to: 'sessions#failure'
 
   # This must be the last route listed, or every route afterwards will break
-  get  '/:page'      => 'feeds#feed',       as: 'page'
+  get  '/:page',                            to: 'welcome#index'
 end

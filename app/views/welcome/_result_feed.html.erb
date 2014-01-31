@@ -2,9 +2,9 @@
   <% if params[:page].nil? %>
     <% start_point = 1 %>
   <% else %>
-    <% start_point = params[:page] %>
+    <% start_point = params[:page].to_i %>
   <% end %>
-  <% x = 20(start_point - 1) %>
+  <% x = 20 * (start_point - 1) %>
   <% y = x + 20 %>
   <% @feed = Feed.sort_feed(@current_user)[x..y] %>
   <% @feed.each do |post| %>
@@ -13,6 +13,11 @@
       <span class="glyphicon glyphicon-star"></span> <%= link_to("Favorite", favorite_path(twitter_id: post.twitter_id), method: :post) %>
     <% end %>
   <% end %>
+  <%= form_tag(root_path(start_point + 1), method: 'get') do %>
+    <%= hidden_field_tag :page, start_point + 1 %>
+    <%= submit_tag("See More", :class => "btn btn-default") %>
+  <% end %>
 <% elsif @current_user %>
   Search for users to grow your feed!
 <% end %>
+
