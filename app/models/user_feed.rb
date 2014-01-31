@@ -23,4 +23,10 @@ class UserFeed < ActiveRecord::Base
       user_id: user.id,
     )
   end
+
+  def self.find_or_create(feed, user)
+    if UserFeed.where(feed_id: feed.id, user_id: user.id).empty?
+      UserFeed.create_relationship(feed, user)
+    end
+  end
 end

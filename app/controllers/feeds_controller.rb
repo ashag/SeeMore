@@ -23,6 +23,12 @@ class FeedsController < ApplicationController
     render 'welcome/results'
   end
 
+  def feed
+    unless params[:page]
+      params[:page] = 1
+    end
+  end
+
   def rss_feed
     @feed_find = params[:search]
     @feed_results = Feedzirra::Feed.fetch_and_parse(@feed_find)

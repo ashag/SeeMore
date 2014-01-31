@@ -2,12 +2,27 @@
   Sign in to FeedHunter to find your prey.
 <% end %>
 <br>
+
+<h2>Twitter Feed</h2><br>
+
 <% if @current_user && @current_user.feeds.length > 0 %>
+  <% if params[:page].nil? %>
+    <% start_point = 1 %>
+  <% else %>
+    <% start_point = params[:page].to_i %>
+  <% end %>
+  <% x = 20 * (start_point - 1) %>
+  <% y = x + 20 %>
+  <% @feed = Feed.sort_feed(@current_user)[x..y] %>
   <% @feed.each do |post| %>
     <div id="feedpost"> <hr><%= post.content.try(:html_safe) %> </div>
-    <% if post.twitter_id %>
+        <% if post.twitter_id %>
       <span class="glyphicon glyphicon-star goldenrod"></span> <span class="goldenrod"><%= link_to("Favorite this Tweet", favorite_path(twitter_id: post.twitter_id), method: :post) %></span>
     <% end %>
+  <% end %>
+  <%= form_tag(root_path(start_point + 1), method: 'get') do %>
+    <%= hidden_field_tag :page, start_point + 1 %>
+    <%= submit_tag("See More", :class => "btn btn-default") %>
   <% end %>
 <% elsif @current_user %>
   Search for users to grow your feed!

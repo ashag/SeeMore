@@ -14,9 +14,9 @@ class PostsController < ApplicationController
 
     begin
       client.favorite!(tweet)
-      redirect_to root_path, notice: "Tweet has been favorited!"
+      redirect_to :back, notice: "Tweet has been favorited!"
     rescue Twitter::Error::AlreadyFavorited => e
-      redirect_to root_path, alert: "You already favorited this tweet."
+      redirect_to :back, alert: "You already favorited this tweet."
     end
 
   end
