@@ -1,13 +1,13 @@
 <h2> GitHub Search Results </h2><hr>
 <%= @github_user.inspect  %>
 
-<% if @github_user.nil? raise %>
+<% if @github_user.nil?  %>
   <%= "No GitHub user '#{@github_search_term}' was found." %>
 <% else %>
   <p>
   askfhashf
-  <%= image_tag(@github_avatar) %>
-  <%= link_to @github_blog_info["name"][], @github_blog_info["blog"]["url"] %>
+<% image_tag(@github_user[:avatar]) %>
+  <%= link_to @github_user[:username], @github_user[:userlink] %>
 
 
       <% if UserFeed.following?(@current_user.id, @github_search_term) %>
@@ -15,7 +15,7 @@
       <% else %>
        <!-- Follow Button -->
        <%= form_tag(create_feed_path, method: "post") do %>
-         <%= hidden_field_tag :uid, "#{@github_user_info["login"]}" %>
+         <%= hidden_field_tag :uid, "#{@github_user["username"]}" %>
          <%= hidden_field_tag :type, "GitHub" %>
          <%= submit_tag("Follow", :class => "btn btn-default") %>
        <% end %>
