@@ -34,15 +34,16 @@
 <!-- SEARCH BAR -->
     <% if @current_user %>
       <%= form_tag search_path(page: 1), :class =>"navbar-form navbar-right", :method => 'get' do %>
-        <div class="form-group">
-          <input type="text" name="search" class="form-control" placeholder="Search" value=<%="#{params[:search]}"%>>
-        </div>
         <select name="provider">
           <option>Search All</option>
           <option>Twitter</option>
           <option>Tumblr</option>
           <option>Github</option>
         </select>
+        <div class="form-group">
+          <input type="text" name="search" class="form-control" placeholder="Search" value=<%="#{params[:search]}"%>>
+        </div>
+        
         <button type="submit" class="btn btn-default">Hunt for Prey</button>
       <% end %>
 

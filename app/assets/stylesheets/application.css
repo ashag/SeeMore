@@ -45,6 +45,10 @@
   color: darkgoldenrod;
 }
 
+.gray {
+  color: gray;
+}
+
 #twitter-box {
   display: block;
   width: 40%;
