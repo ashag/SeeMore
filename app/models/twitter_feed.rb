@@ -7,9 +7,11 @@ class TwitterFeed < Feed
               <a href='#{tweet_link[1]}'> #{tweet_link[0]} </a>
               #{post.text}"
     datetime = post.created_at
+    twitter_id = post.id
     Post.find_by(content: content) || Post.create(
       content: content,
       feed_id: @feed.id,
+      twitter_id: twitter_id,
       datetime: datetime,
       feed_uid: feed_uid)
   end

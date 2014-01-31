@@ -1,7 +1,17 @@
 <% if @current_user && @current_user.feeds.length > 0 %>
-  <% @feed = Feed.sort_feed(@current_user) %>
+  <% if params[:page].nil? %>
+    <% start_point = 1 %>
+  <% else %>
+    <% start_point = params[:page] %>
+  <% end %>
+  <% x = 20(start_point - 1) %>
+  <% y = x + 20 %>
+  <% @feed = Feed.sort_feed(@current_user)[x..y] %>
   <% @feed.each do |post| %>
     <div id="feedpost"> <hr><%= post.content.try(:html_safe) %> </div>
+    <% if post.twitter_id %>
+      <span class="glyphicon glyphicon-star"></span> <%= link_to("Favorite", favorite_path(twitter_id: post.twitter_id), method: :post) %>
+    <% end %>
   <% end %>
 <% elsif @current_user %>
   Search for users to grow your feed!

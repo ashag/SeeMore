@@ -8,6 +8,7 @@ SeeMore::Application.routes.draw do
   get  'results'     => 'welcome#results',  as: 'results'
   get  'sign_out'    => 'sessions#destroy', as: :sign_out
   post 'tweet'       => 'posts#tweet',      as: 'tweet'
+  post 'favorite'    => 'posts#favorite',   as: 'favorite'
   get  '/auth/twitter',                     as: :sign_in
   get  '/auth/:provider/callback',          to: 'sessions#create'
   post '/auth/:provider/callback',          to: 'sessions#create'
