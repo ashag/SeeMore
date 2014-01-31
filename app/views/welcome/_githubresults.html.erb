@@ -1,22 +1,14 @@
 <h2> GitHub Search Results </h2><hr>
 
-<% if @github_user.nil?  %>
+<% if @github_user[:userlink].nil?  %>
   <%= "No GitHub user '#{@github_search_term}' was found." %>
 <% else %>
   <p>
-<%= image_tag(@github_user[:avatar]) %>
-  <%= link_to @github_user[:username], @github_user[:userlink] %>
-
-
-      <% if UserFeed.following?(@current_user.id, @github_search_term) %>
-         You're already hunting.
-      <% else %>
-       <!-- Follow Button -->
-       <%= form_tag(create_feed_path, method: "post") do %>
-         <%= hidden_field_tag :uid, "#{@github_user["username"]}" %>
-         <%= hidden_field_tag :type, "GitHub" %>
-         <%= submit_tag("Follow", :class => "btn btn-default") %>
-       <% end %>
-    </p><br>
-  <% end %>
+<table>
+      <tr>
+        <td style='padding-right: 10px'> <%= image_tag(@github_user[:avatar]) %></td>
+        <td><b><%= link_to @github_user[:username], @github_user[:userlink] %></b><br>
+         <%= "FeedHunter can't follow a GitHub public feed quite yet. Come back soon for that functionality!" %>
+        </td></tr>
+      </table>
 <% end %>
