@@ -45,8 +45,8 @@ class FeedsController < ApplicationController
   end
 
   def set_rss_posts
-    @feed.get_posts(@feed_find).each do |post|
-      @feed.find_or_create_post(@feed_find, post)
+    @feed.get_posts(@feed.uid).each do |post|
+      @feed.find_or_create_post(@feed.uid, post)
     end
   end
 
