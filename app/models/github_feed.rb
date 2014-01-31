@@ -2,14 +2,15 @@ class GithubFeed < Feed
 
    def self.search(github_search_term)
     httparty_response = HTTParty.get("https://api.github.com/users/#{github_search_term}", :headers => {"User-Agent" => "FeedHunter"})
-      if httparty_response["message"] = "Not Found"
-        @github_user_info = nil
-    else
-      @github_user_info = {username: httparty_response["name"],
-                                        userlink: httparty_response["html_url"],
-                                        avatar: httparty_response["avatar_url"]}
-    end
-    return @github_user_info
+    #   if httparty_response["message"] = "Not Found"
+    #     @github_user = nil
+    # else
+    @github_user = {}
+    @github_user = {username: httparty_response["name"],
+                                userlink: httparty_response["html_url"],
+                                avatar: httparty_response["avatar_url"]}
+
+    return @github_user
   end
 
 

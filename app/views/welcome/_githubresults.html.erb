@@ -1,5 +1,7 @@
-<h2> GitHub Search Results </h2>
-<% if @github_user_info.nil? %>
+<h2> GitHub Search Results </h2><hr>
+<%= @github_user.inspect  %>
+
+<% if @github_user.nil? raise %>
   <%= "No GitHub user '#{@github_search_term}' was found." %>
 <% else %>
   <p>
