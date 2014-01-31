@@ -1,4 +1,4 @@
-<h2> Twitter Search Results </h2>
+<h2> Twitter Search Results </h2><hr>
 <% if @search.count == 0 %>
   <%= "No search results found." %><br><br>
 <% else %>
@@ -6,7 +6,7 @@
     <p>
       <table>
       <tr>
-        <td style='padding-right: 10px'><%= image_tag("#{result.profile_image_url}") %></td>
+        <td style='padding-right: 10px'><%= image_tag("#{result.profile_image_url}", :class => 'img-rounded') %></td>
         <td><b><%= link_to result.screen_name, "https://www.twitter.com/#{result.screen_name}" %></b><br>
           <% if UserFeed.following?(@current_user.id, result.id) %>
             You're already hunting.
