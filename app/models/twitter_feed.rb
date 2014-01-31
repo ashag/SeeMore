@@ -7,14 +7,16 @@ class TwitterFeed < Feed
               <a href='#{tweet_link[1]}'> #{tweet_link[0]} </a>
               #{post.text}
               <br>"
-    date = post.created_at
     twitter_id = post.id.to_s
+    datetime = post.created_at
     Post.find_by(content: content) || Post.create(
       content: content,
       feed_id: @feed.id,
       twitter_id: twitter_id,
-      date: date,
+      datetime: datetime,
       feed_uid: feed_uid)
+
+    rescue Twitter::Error::TooManyRequests
   end
 
   def get_user_link(uid)
@@ -47,6 +49,22 @@ class TwitterFeed < Feed
       config.access_token        = ENV["TWITTER_ACCESS_TOKEN"]
       config.access_token_secret = ENV["TWITTER_ACCESS_TOKEN_SECRET"]
     end
+  end
+
+  def self.build_user_feed(user, page)
+    if page.nil?
+      page = 1
+    else
+      page = page.to_i
+    end
+    client = TwitterFeed.user_client(user)
+    tweets = client.home_timeline(page: page)
+    tweets.each do |tweet|
+      feed = Feed.find_or_create({uid: tweet.user.id.to_s, type: "TwitterFeed"})
+      UserFeed.find_or_create(feed, user)
+      feed.find_or_create_post(feed.uid, tweet)
+    end
+    rescue Twitter::Error::TooManyRequests
   end
 
   def self.user_client(user)

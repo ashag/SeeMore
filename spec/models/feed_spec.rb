@@ -37,8 +37,8 @@ describe Feed do
     end
 
     it 'posts are in chronological order' do
-      expect(Feed.sort_feed(1)[0].date).to eq(Date.parse('2014-01-24'))
-      expect(Feed.sort_feed(1)[1].date).to eq(Date.parse('2014-01-23'))
+      expect(Feed.sort_feed(1)[0].datetime).to eq(DateTime.parse('2014-01-24'))
+      expect(Feed.sort_feed(1)[1].datetime).to eq(DateTime.parse('2014-01-23'))
     end
   end
 end

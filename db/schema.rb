@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140131195933) do
+ActiveRecord::Schema.define(version: 20140130230945) do
 
   create_table "feeds", force: true do |t|
     t.string   "uid"
@@ -22,12 +22,12 @@ ActiveRecord::Schema.define(version: 20140131195933) do
 
   create_table "posts", force: true do |t|
     t.integer  "feed_id"
-    t.text     "content",    limit: 4294967296
-    t.date     "date"
+    t.text     "content",    limit: 104857600
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "feed_uid"
     t.string   "twitter_id"
+    t.datetime "datetime"
   end
 
   create_table "user_feeds", force: true do |t|

@@ -28,12 +28,12 @@ class TumblrFeed < Feed
 
   def find_or_create_post(feed_uid, post)
     content = find_post_type(feed_uid, post)
-    date = post["date"]
+    datetime = post["date"]
     feed = Feed.find_by(uid: feed_uid)
     Post.find_by(content: content) || Post.create(
       content: content,
       feed_id: feed.id,
-      date: date,
+      datetime: datetime,
       feed_uid: feed_uid)
   end
 
