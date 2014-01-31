@@ -12,7 +12,9 @@ class FeedsController < ApplicationController
   def search
     @provider = params[:provider]
     @user_name = params[:search]
-      if @provider == "Twitter"
+      if @user_name.nil? || @user_name == ''
+      redirect_to '/'
+      elsif @provider == "Twitter"
         twitter_search
       elsif @provider == "Tumblr"
         tumblr_search
@@ -24,6 +26,13 @@ class FeedsController < ApplicationController
         github_search
       end
     render 'welcome/results'
+  end
+
+
+  def feed
+    unless params[:page]
+      params[:page] = 1
+    end
   end
 
   def rss_feed
@@ -48,8 +57,8 @@ class FeedsController < ApplicationController
   end
 
   def set_rss_posts
-    @feed.get_posts(@feed_find).each do |post|
-      @feed.find_or_create_post(@feed_find, post)
+    @feed.get_posts(@feed.uid).each do |post|
+      @feed.find_or_create_post(@feed.uid, post)
     end
   end
 

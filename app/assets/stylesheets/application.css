@@ -24,9 +24,23 @@
 }
 
 .notice {
-  font-size: 30px;
+  color: green;
+  font-size: 20px;
 }
 
 .alert {
   color: firebrick;
+  font-size: 20px;
+}
+
+.goldenrod {
+  color: goldenrod;
+}
+
+.goldenrod a {
+  color: goldenrod;
+}
+
+.goldenrod a:hover {
+  color: darkgoldenrod;
 }
