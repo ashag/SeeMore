@@ -1,12 +1,10 @@
 <h2> GitHub Search Results </h2><hr>
-<%= @github_user.inspect  %>
 
 <% if @github_user.nil?  %>
   <%= "No GitHub user '#{@github_search_term}' was found." %>
 <% else %>
   <p>
-  askfhashf
-<% image_tag(@github_user[:avatar]) %>
+<%= image_tag(@github_user[:avatar]) %>
   <%= link_to @github_user[:username], @github_user[:userlink] %>
 
 
