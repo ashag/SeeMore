@@ -12,15 +12,19 @@ class FeedsController < ApplicationController
   def search
     @provider = params[:provider]
     @user_name = params[:search]
-      if @provider == "Twitter"
-        twitter_search
-      elsif @provider == "Tumblr"
-        tumblr_search
-      else
-        twitter_search
-        tumblr_search
-      end
-    render 'welcome/results'
+    if @user_name.nil? || @user_name == ''
+      redirect_to '/'
+    else
+        if @provider == "Twitter"
+          twitter_search
+        elsif @provider == "Tumblr"
+         tumblr_search
+        else
+          twitter_search
+          tumblr_search
+        end
+      render 'welcome/results'
+    end
   end
 
   def feed
