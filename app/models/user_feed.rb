@@ -12,6 +12,11 @@ class UserFeed < ActiveRecord::Base
     return true
   end
 
+  def self.rss_following?(user_id, result)
+    relationship = UserFeed.where("user_id = ? AND feed_id = ?", user_id, result.id)
+    relationship.any?
+  end
+
   def self.create_relationship(feed, user)
     self.create!(
       feed_id: feed.id,
