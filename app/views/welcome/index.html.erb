@@ -3,8 +3,6 @@
 <% end %>
 <br>
 
-<h2>Twitter Feed</h2><br>
-
 <% if @current_user && @current_user.feeds.length > 0 %>
   <% if params[:page].nil? %>
     <% start_point = 1 %>
