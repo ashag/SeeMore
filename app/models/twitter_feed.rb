@@ -8,7 +8,7 @@ class TwitterFeed < Feed
               #{post.text}
               <br>"
     date = post.created_at
-    twitter_id = post.id
+    twitter_id = post.id.to_s
     Post.find_by(content: content) || Post.create(
       content: content,
       feed_id: @feed.id,
