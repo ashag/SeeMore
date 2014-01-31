@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(version: 20140130230945) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "feed_uid"
+    t.string   "twitter_id"
     t.datetime "datetime"
-    t.integer  "twitter_id"
   end
 
   create_table "user_feeds", force: true do |t|

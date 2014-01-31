@@ -4,24 +4,28 @@
 <% else %>
   <% @search.each do |result| %>
     <p>
-    <%= image_tag("#{result.profile_image_url}") %>
-    <%= link_to result.screen_name, "https://www.twitter.com/#{result.screen_name}" %>
-    <% if UserFeed.following?(@current_user.id, result.id) %>
-      You're already hunting.
-    <% else %>
-      <!-- Follow Button -->
-      <%= form_tag(create_feed_path, method: "post") do %>
-        <%= hidden_field_tag :uid, "#{result.id}" %>
-        <%= hidden_field_tag :type, "TwitterFeed" %>
-        <%= submit_tag("Follow", :class => "btn btn-default") %>
-      <% end %>
-    <% end %>
+      <table>
+      <tr>
+        <td style='padding-right: 10px'><%= image_tag("#{result.profile_image_url}") %></td>
+        <td><b><%= link_to result.screen_name, "https://www.twitter.com/#{result.screen_name}" %></b><br>
+          <% if UserFeed.following?(@current_user.id, result.id) %>
+            You're already hunting.
+          <% else %>
+            <!-- Follow Button -->
+            <%= form_tag(create_feed_path, method: "post") do %>
+              <%= hidden_field_tag :uid, "#{result.id}" %>
+              <%= hidden_field_tag :type, "TwitterFeed" %>
+              <%= submit_tag("Follow", :class => "btn btn-default btn-xs") %>
+            <% end %>
+          <% end %>
+        </td></tr>
+      </table>
     </p><br>
   <% end %>
 
   <%= form_tag("search", method: "get") do %>
     <%= hidden_field_tag :page, @page_num + 1 %>
     <%= hidden_field_tag :search, params[:search] %>
-    <%= submit_tag("See More", :class => "btn btn-default") %>
+    <%= submit_tag("See More", :class => "btn btn-default btn-sm") %>
   <% end %>
 <% end %>
