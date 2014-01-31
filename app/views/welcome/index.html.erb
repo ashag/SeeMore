@@ -3,7 +3,14 @@
 <% end %>
 <br>
 
-<h2>Twitter Feed</h2><br>
+<% if @current_user %>
+  <%= form_tag tweet_path, :method => 'post' do %>
+    <div class="form-group">
+      <%= text_field_tag :tweet, "", class: "form-control", placeholder: "Compose New Tweet", maxlength: "140" %>
+    </div>
+    <button type="sumbit" class="btn btn-default">Tweet</button>
+  <% end %>
+<% end %>
 
 <% if @current_user && @current_user.feeds.length > 0 %>
   <% if params[:page].nil? %>
