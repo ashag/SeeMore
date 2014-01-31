@@ -23,6 +23,11 @@ class FeedsController < ApplicationController
     render 'welcome/results'
   end
 
+  def insta_search
+    @instagram = Instagram.client.user_search(params[:search])
+    render 'welcome/insta_results'
+  end
+
   def rss_feed
     @feed_find = params[:search]
     @feed_results = Feedzirra::Feed.fetch_and_parse(@feed_find)

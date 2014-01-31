@@ -93,6 +93,11 @@ GEM
       http_parser.rb
     http_parser.rb (0.6.0)
     i18n (0.6.9)
+    instagram (0.10.0)
+      faraday (>= 0.7, < 0.9)
+      faraday_middleware (~> 0.8)
+      hashie (>= 0.4.0)
+      multi_json (~> 1.0, >= 1.0.3)
     jbuilder (1.5.3)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
@@ -256,6 +261,7 @@ DEPENDENCIES
   feedzirra
   figaro
   guard-rspec
+  instagram
   jbuilder (~> 1.2)
   jquery-rails
   omniauth

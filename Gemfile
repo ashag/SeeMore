@@ -66,3 +66,4 @@ gem 'tumblr_client', '= 0.8.2'
 
 gem 'feedzirra'
 gem 'debugger'
+gem 'instagram'

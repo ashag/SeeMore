@@ -9,6 +9,7 @@ SeeMore::Application.routes.draw do
   post 'feed_search'   => 'feeds#rss_feed', as: 'create_rss'
   # get 'search', to: 'welcome#index'
   get 'results'       => 'welcome#results', as: 'results'
+  get 'insta_search' => 'feeds#insta_search', as: 'search_ig'
 
 
   # Example of regular route:

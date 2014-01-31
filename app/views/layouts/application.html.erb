@@ -51,6 +51,15 @@
         </div>
         <button type="sumbit" class="btn btn-default">Go</button>
       <% end %>
+
+
+      <%= form_tag search_ig_path, :class =>"navbar-form navbar-right", :method => 'get' do %>
+        <div class="form-group">
+          <input type="text" name="search" class="form-control" placeholder="Find IG user">
+        </div>
+        <button type="sumbit" class="btn btn-default">Search</button>
+      <% end %>
+
     <% end %>
 
   </div><!-- /.navbar-collapse -->
