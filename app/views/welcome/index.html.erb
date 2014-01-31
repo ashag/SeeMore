@@ -6,7 +6,7 @@
 <% if @current_user %>
   <%= form_tag tweet_path, :method => 'post' do %>
     <div class="form-group">
-      <%= text_field_tag :tweet, "", class: "form-control", placeholder: "Compose New Tweet", maxlength: "140" %>
+      <%= text_area_tag :tweet, "", id: "twitter-box", rows: "3", width: '50%', placeholder: "Compose New Tweet", maxlength: "140" %>
     </div>
     <button type="sumbit" class="btn btn-default">Tweet</button>
   <% end %>
