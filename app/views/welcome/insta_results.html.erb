@@ -8,7 +8,9 @@
       <li>
       <div>
         <%= image_tag user.profile_picture %>
-        <%= user.username %></li>
+        <%= user.username %>
+        <%= user.id %>
+        </li>
       </div>
     </ul>
         <% if UserFeed.following?(@current_user.id, user.id) %>
@@ -16,7 +18,7 @@
         <% else %>
       <!-- Follow Button -->
           <%= form_tag(create_feed_path, method: "post") do %>
-            <%= hidden_field_tag :uid, user.id %>
+            <%= hidden_field_tag :uid, "#{user.id}" %>
             <%= hidden_field_tag :type, "InstagramFeed" %>
             <%= submit_tag("Follow", :class => "btn btn-default") %>
           <% end %>
@@ -24,9 +26,4 @@
     </p><br>
   <% end %>
 
-  <%= form_tag("search", method: "get") do %>
-    <%= hidden_field_tag :page, @page_num + 1 %>
-    <%= hidden_field_tag :search, params[:search] %>
-    <%= submit_tag("See More", :class => "btn btn-default") %>
-  <% end %>
 <% end %>
