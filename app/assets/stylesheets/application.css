@@ -30,3 +30,15 @@
 .alert {
   color: firebrick;
 }
+
+.goldenrod {
+  color: goldenrod;
+}
+
+.goldenrod a {
+  color: goldenrod;
+}
+
+.goldenrod a:hover {
+  color: darkgoldenrod;
+}
