@@ -57,19 +57,22 @@
 </nav>
 
 <div class="container">
+  <% if @current_user %>
+    <%= form_tag tweet_path, :method => 'post' do %>
+      <div class="form-group">
+        <%= text_field_tag :tweet, "", class: "form-control", placeholder: "Compose New Tweet", maxlength: "140" %>
+      </div>
+      <button type="sumbit" class="btn btn-default">Tweet</button>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="container">
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
 
-<% if @current_user %>
-  <%= form_tag tweet_path, :method => 'post' do %>
-    <div class="form-group">
-      <%= text_field_tag :tweet, "", class: "form-control", placeholder: "Compose New Tweet", maxlength: "140" %>
-    </div>
-    <button type="sumbit" class="btn btn-default">Tweet</button>
-  <% end %>
-<% end %>
-
   <%= yield %>
 </div>
-  </body>
+
+</body>
 </html>
