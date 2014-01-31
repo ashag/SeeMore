@@ -27,7 +27,7 @@ class Feed < ActiveRecord::Base
         feed_posts << post
       end
     end
-    feed_posts.sort_by {|post| post.date }.reverse
+    feed_posts.sort_by {|post| post.datetime }.reverse
   end
 
 end

@@ -1,19 +1,25 @@
+require 'date'
+
 class InstagramFeed < Feed 
 
   def find_or_create_post(feed_uid, post)
     @feed = Feed.find_by(uid: feed_uid)
-    assign_content
-    content = " <%= img src=\"#{@picture}\" %> <%= img src=\"#{@media}\" "
-    date = post.created_time
+    content = assign_content(post)
+    date = DateTime.strptime("#{post.created_time}", '%s')
     Post.find_by(content: content) || Post.create(
       content: content,
       feed_id: @feed.id,
-      date: date,
+      datetime: date,
       feed_uid: feed_uid)
   end
 
   def get_posts(user_id)
-    Instagram.user_recent_media(user_id)
+    @recent_media = Instagram.user_recent_media(user_id.to_i)
+    posts = []
+    @recent_media.each do |post|
+      posts << post
+    end
+    posts
   end
 
   def get_profile_picture(post)    
@@ -38,8 +44,12 @@ class InstagramFeed < Feed
   end
 
   def assign_content(post)
-    @picture = get_profile_picture(post)
-    @media = check_media_type(post)
+    picture = get_profile_picture(post)
+    media = check_media_type(post)
+    caption = get_caption(post)
+
+    content = " <img src=\"#{picture}\" /> <img src=\"#{media}\"/> #{caption} "
+    return content
   end
 
 
