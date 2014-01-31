@@ -24,7 +24,7 @@ class FeedsController < ApplicationController
   end
 
   def insta_search
-    # @instagram = InstagramFeed.client
+    InstagramFeed.client
     @instagram = Instagram.user_search(params[:search])
     render 'welcome/insta_results'
   end

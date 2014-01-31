@@ -2,8 +2,9 @@ class InstagramFeed < Feed
 
   def find_or_create_post(feed_uid, post)
     @feed = Feed.find_by(uid: feed_uid)
-    content = " "
-    date = post.created_at
+    assign_content
+    content = " <%= img src=\"#{@picture}\" %> <%= img src=\"#{@media}\" "
+    date = post.created_time
     Post.find_by(content: content) || Post.create(
       content: content,
       feed_id: @feed.id,
@@ -11,15 +12,35 @@ class InstagramFeed < Feed
       feed_uid: feed_uid)
   end
 
-  def self.get_user_media(id)
-    Instagram.user_recent_media(id)
+  def get_posts(user_id)
+    Instagram.user_recent_media(user_id)
   end
 
-  def profile_photo
-
+  def get_profile_picture(post)    
+    post["profile_picture"]
   end
 
+  def check_media_type(post)
+    # user_media = Instagram.user_recent_media(user_id)
+    type = post["type"]
 
+    case type
+    when "image"
+      @media = post["images"]["standard_resolution"]["url"]
+    when "video"
+      @media = post["videos"]["standard_resolution"]["url"]
+    end
+    return @media
+  end
+
+  def get_caption(post)
+    post["caption"]["text"]
+  end
+
+  def assign_content(post)
+    @picture = get_profile_picture(post)
+    @media = check_media_type(post)
+  end
 
 
   def self.client
