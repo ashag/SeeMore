@@ -14,8 +14,9 @@
   <% @feed = Feed.sort_feed(@current_user)[x..y] %>
   <% @feed.each do |post| %>
     <div id="feedpost"> <hr><%= post.content.try(:html_safe) %> </div>
-        <% if post.twitter_id %>
+    <% if post.twitter_id %>
       <span class="glyphicon glyphicon-star goldenrod"></span> <span class="goldenrod"><%= link_to("Favorite this Tweet", favorite_path(twitter_id: post.twitter_id), method: :post) %></span>
+      <span class="glyphicon glyphicon-retweet goldenrod"></span> <span class="goldenrod"><%= link_to("Retweet this Tweet", retweet_path(twitter_id: post.twitter_id), method: :post) %></span>
     <% end %>
   <% end %>
   <%= form_tag(root_path(start_point + 1), method: 'get') do %>

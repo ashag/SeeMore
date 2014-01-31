@@ -22,7 +22,14 @@ class PostsController < ApplicationController
   end
 
   def retweet
-
+    client = TwitterFeed.user_client(@current_user)
+    tweet = client.status(params[:twitter_id])
+    begin
+      client.retweet!(tweet)
+      redirect_to :back, notice: "Tweet has been retweeted!"
+    rescue Twitter::Error::AlreadyRetweeted => e 
+      redirect_to :back, alert: "You already retweeted this tweet."
+    end
   end
 
 end
