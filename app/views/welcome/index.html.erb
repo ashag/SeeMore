@@ -2,6 +2,16 @@
   Sign in to FeedHunter to find your prey.
 <% end %>
 <br>
+
+<% if @current_user %>
+  <%= form_tag tweet_path, :method => 'post' do %>
+    <div class="form-group">
+      <%= text_field_tag :tweet, "", class: "form-control", placeholder: "Compose New Tweet", maxlength: "140" %>
+    </div>
+    <button type="sumbit" class="btn btn-default">Tweet</button>
+  <% end %>
+<% end %>
+
 <% if @current_user && @current_user.feeds.length > 0 %>
   <% @feed.each do |post| %>
     <div id="feedpost"> <hr><%= post.content.try(:html_safe) %> </div>
