@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20140131195933) do
 
   create_table "posts", force: true do |t|
     t.integer  "feed_id"
-    t.text     "content",    limit: 104857600
+    t.text     "content",    limit: 4294967296
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "feed_uid"
@@ -31,8 +31,8 @@ ActiveRecord::Schema.define(version: 20140131195933) do
   end
 
   create_table "user_feeds", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "feed_id"
+    t.string   "user_id"
+    t.string   "feed_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
