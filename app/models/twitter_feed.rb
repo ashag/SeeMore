@@ -5,11 +5,14 @@ class TwitterFeed < Feed
     tweet_link = get_user_link(feed_uid)
     content = "<img src='#{@feed.get_pic(feed_uid)}' alt='avatar for #{tweet_link[0]}'>
               <a href='#{tweet_link[1]}'> #{tweet_link[0]} </a>
-              #{post.text}"
+              #{post.text}
+              <br>"
     date = post.created_at
+    twitter_id = post.id
     Post.find_by(content: content) || Post.create(
       content: content,
       feed_id: @feed.id,
+      twitter_id: twitter_id,
       date: date,
       feed_uid: feed_uid)
   end
