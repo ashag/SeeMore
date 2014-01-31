@@ -6,13 +6,14 @@ class PostsController < ApplicationController
     redirect_to root_path, notice: "Your tweet is a SUCCESS!"
   end
 
+# Write in logic for re-favoriting error.
+
   def favorite
     client = TwitterFeed.user_client(@current_user)
     tweet = client.status(params[:twitter_id])
-    client.favorite(tweet)
-    redirect_to root_path
+    client.favorite!(tweet)
+    redirect_to root_path, notice: "Tweet has been favorited!"
   end
-
 
   def retweet
 
