@@ -1,6 +1,6 @@
 <h2> Tumblr Search Results </h2>
 <% if @tumblr_blog_info["status"] == 404 %>
-  <%= "No tumblr '#{@tumblr_search_term}' was found." %>
+  <p><%= "No tumblr '#{@tumblr_search_term}' was found." %></p>
 <% else %>
   <p>
     <table>
