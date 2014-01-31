@@ -6,7 +6,7 @@
   <% @feed.each do |post| %>
     <div id="feedpost"> <hr><%= post.content.try(:html_safe) %> </div>
     <% if post.twitter_id %>
-      <span class="glyphicon glyphicon-star goldenrod"></span> <span class="goldenrod"><%= link_to("Favorite", favorite_path(twitter_id: post.twitter_id), method: :post) %></span>
+      <span class="glyphicon glyphicon-star goldenrod"></span> <span class="goldenrod"><%= link_to("Favorite this Tweet", favorite_path(twitter_id: post.twitter_id), method: :post) %></span>
     <% end %>
   <% end %>
 <% elsif @current_user %>
