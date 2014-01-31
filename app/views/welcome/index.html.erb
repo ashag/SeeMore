@@ -6,7 +6,7 @@
 <% if @current_user %>
   <%= form_tag tweet_path, :method => 'post' do %>
     <div class="form-group">
-      <%= text_field_tag :tweet, "", class: "form-control", placeholder: "Compose New Tweet", maxlength: "140" %>
+      <%= text_area_tag :tweet, "", id: "twitter-box", rows: "3", width: '50%', placeholder: "Compose New Tweet", maxlength: "140" %>
     </div>
     <button type="sumbit" class="btn btn-default">Tweet</button>
   <% end %>
@@ -22,7 +22,11 @@
   <% y = x + 20 %>
   <% @feed = Feed.sort_feed(@current_user)[x..y] %>
   <% @feed.each do |post| %>
-    <div id="feedpost"> <hr><%= post.content.try(:html_safe) %> </div>
+    <div id="feedpost">
+      <% datetime = post.datetime.localtime %>
+      <hr><small><%= datetime.strftime("%A, %B %d, %Y %I:%M%p") %> </small>
+      <%= post.content.try(:html_safe) %> 
+    </div>
     <% if post.twitter_id %>
       <span class="glyphicon glyphicon-star goldenrod"></span> <span class="goldenrod"><%= link_to("Favorite this Tweet", favorite_path(twitter_id: post.twitter_id), method: :post) %></span><vr>  
       <span class="goldenrod">  |  </span>
