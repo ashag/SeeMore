@@ -272,8 +272,8 @@ DEPENDENCIES
   figaro
   flog
   guard-rspec
-  instagram
   httparty
+  instagram
   jbuilder (~> 1.2)
   jquery-rails
   omniauth
