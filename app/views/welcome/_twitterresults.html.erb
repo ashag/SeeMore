@@ -1,6 +1,6 @@
 <h2> Twitter Search Results </h2><hr>
 <% if @search.count == 0 %>
-  <%= "No search results found." %><br><br>
+  <p><%= "No search results found." %></p>
 <% else %>
   <% @search.each do |result| %>
     <p>

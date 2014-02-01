@@ -1,7 +1,7 @@
 <h2> GitHub Search Results </h2><hr>
 
 <% if @github_user[:userlink].nil?  %>
-  <%= "No GitHub user '#{@github_search_term}' was found." %>
+  <p><%= "No GitHub user '#{@github_search_term}' was found." %></p>
 <% else %>
   <p>
 <table>
