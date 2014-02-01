@@ -1,5 +1,3 @@
-require 'date'
-
 class InstagramFeed < Feed 
 
   def find_or_create_post(feed_uid, post)
@@ -22,12 +20,11 @@ class InstagramFeed < Feed
     posts
   end
 
-  def get_profile_picture(post)    
+  def get_pic(post)    
     post["user"]["profile_picture"]
   end
 
   def check_media_type(post)
-    # user_media = Instagram.user_recent_media(user_id)
     type = post["type"]
 
     case type
@@ -40,7 +37,7 @@ class InstagramFeed < Feed
   end
 
   def get_caption(post)
-    post["caption"]["text"]
+    check_caption = post["caption"]["text"]
   end
 
   def get_username(post)
@@ -48,12 +45,19 @@ class InstagramFeed < Feed
   end
 
   def assign_content(post)
-    picture = get_profile_picture(post)
+    picture = get_pic(post)
     media = check_media_type(post)
+    username = get_username(post) 
     caption = get_caption(post)
-    username = get_username(post)
+    # if get_caption(post).nil? { |c| c.reject } 
 
-    content = " <table><td><strong>#{username}</strong> <img src=\"#{picture}\"/></td><td><img src=\"#{media}\"/></td> <td>#{caption} </td></table>"
+    # if find_caption.nil?
+    #   @caption = puts " "
+    # else
+    #   @caption = find_caption
+    # end 
+
+    content = " <table><tr><strong>#{username}</strong> <img src=\"#{picture}\"/></tr><br> <tr><img src=\"#{media}\"/></tr><br> <tr>#{@caption} </tr></table>"
     return content
   end
 

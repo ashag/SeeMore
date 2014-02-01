@@ -20,10 +20,13 @@ class FeedsController < ApplicationController
         tumblr_search
       elsif @provider == "Github"
         github_search
+      elsif @provider == "Instagram"
+        insta_search 
       else
         twitter_search
         tumblr_search
         github_search
+        insta_search
       end
     render 'welcome/results'
   end
@@ -32,7 +35,7 @@ class FeedsController < ApplicationController
   def insta_search
     InstagramFeed.client
     @instagram = Instagram.user_search(params[:search])
-    render 'welcome/insta_results'
+    # render 'welcome/insta_results'
   end
 
   def feed

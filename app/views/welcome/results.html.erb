@@ -7,11 +7,15 @@
   <% elsif @provider == "Github" %>
     <div class="col-md-6">
     <%= render 'welcome/githubresults' %></div>
+  <% elsif @provider == "Instagram" %>
+    <div class="col-md-6">
+    <%= render 'welcome/insta_results' %></div>
   <% else %>
     <div class="col-md-6"><%= render 'welcome/tumblrresults' %></div>
     <div class="col-md-6"><%= render 'welcome/githubresults' %></div>
     <div class="col-md-12"><br></div>
     <div class="col-md-6"><%= render 'welcome/twitterresults' %></div>
+    <div class="col-md-6"><%= render 'welcome/insta_results' %></div>
 <% end %>
 </div>
 
