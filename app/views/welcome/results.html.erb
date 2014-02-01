@@ -2,7 +2,10 @@
   <%= render 'welcome/tumblrresults' %>
 <% elsif @provider == "Twitter" %>
   <%= render 'welcome/twitterresults' %>
+  <% elsif @provider == "Github" %>
+    <%= render 'welcome/githubresults' %>
 <% else %>
+  <%= render 'welcome/githubresults' %>
   <%= render 'welcome/tumblrresults' %>
   <%= render 'welcome/twitterresults' %>
 <% end %>

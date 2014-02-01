@@ -12,21 +12,33 @@ class FeedsController < ApplicationController
   def search
     @provider = params[:provider]
     @user_name = params[:search]
-      if @provider == "Twitter"
+      if @user_name.nil? || @user_name == ''
+      redirect_to '/'
+      elsif @provider == "Twitter"
         twitter_search
       elsif @provider == "Tumblr"
         tumblr_search
+      elsif @provider == "Github"
+        github_search
       else
         twitter_search
         tumblr_search
+        github_search
       end
     render 'welcome/results'
   end
+
 
   def insta_search
     InstagramFeed.client
     @instagram = Instagram.user_search(params[:search])
     render 'welcome/insta_results'
+  end
+
+  def feed
+    unless params[:page]
+      params[:page] = 1
+    end
   end
 
   def rss_feed
@@ -47,12 +59,12 @@ class FeedsController < ApplicationController
       UserFeed.create_relationship(@feed, @current_user)
       set_rss_posts
       redirect_to root_path, notice: "Feed is added"
-    end   
+    end
   end
 
   def set_rss_posts
-    @feed.get_posts(@feed_find).each do |post|
-      @feed.find_or_create_post(@feed_find, post)
+    @feed.get_posts(@feed.uid).each do |post|
+      @feed.find_or_create_post(@feed.uid, post)
     end
   end
 
@@ -75,4 +87,9 @@ class FeedsController < ApplicationController
     @tumblr_avatar = @tumblr_client.avatar(@tumblr_search_term)
   end
 
+
+  def github_search
+    @github_search_term = @user_name.delete(' ')
+    @github_user = GithubFeed.search(@github_search_term)
+  end
 end

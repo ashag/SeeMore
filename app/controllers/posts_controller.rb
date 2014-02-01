@@ -14,15 +14,22 @@ class PostsController < ApplicationController
 
     begin
       client.favorite!(tweet)
-      redirect_to root_path, notice: "Tweet has been favorited!"
+      redirect_to :back, notice: "Tweet has been favorited!"
     rescue Twitter::Error::AlreadyFavorited => e
-      redirect_to root_path, alert: "You already favorited this tweet."
+      redirect_to :back, alert: "You already favorited this tweet."
     end
 
   end
 
   def retweet
-
+    client = TwitterFeed.user_client(@current_user)
+    tweet = client.status(params[:twitter_id])
+    begin
+      client.retweet!(tweet)
+      redirect_to :back, notice: "Tweet has been retweeted!"
+    rescue Twitter::Error::AlreadyRetweeted => e 
+      redirect_to :back, alert: "You already retweeted this tweet."
+    end
   end
 
 end
