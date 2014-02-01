@@ -68,7 +68,7 @@ private
     body = post["body"]
     post_url = post["short_url"]
     title = post["title"]
-    content = "<table><tr><td style='padding-right: 10px'><img src=\"#{@avatar}\"/></td><td><b><a href=\"#{blog_link[1]}\">#{blog_link[0]}</a></b></td></tr></table><br>
+    content = "<table><tr><td style='padding-right: 10px'><img src=\"#{@avatar}\" class=\"img-rounded\"/></td><td><b><a href=\"#{blog_link[1]}\">#{blog_link[0]}</a></b></td></tr></table><br>
                     <h4><a href=\"#{post_url}\">#{title}</a></h4><p>#{body}</p>"
     return content
   end
@@ -79,7 +79,7 @@ private
     post_url = post["short_url"]
     photo = post["photos"].map {|photo| "<img src= #{photo["alt_sizes"][1]["url"]}>"}.join
     caption = post["caption"]
-    content = "<table><tr><td style='padding-right: 10px'><img src=\"#{@avatar}\"/></td><td><b><a href=\"#{blog_link[1]}\">#{blog_link[0]}</a></b></td></tr></table><br>
+    content = "<table><tr><td style='padding-right: 10px'><img src=\"#{@avatar}\" class=\"img-rounded\"/></td><td><b><a href=\"#{blog_link[1]}\">#{blog_link[0]}</a></b></td></tr></table><br>
                       #{photo}<br>
                     <h4><a href=\"#{post_url}\">#{caption}</a></h4>"
     return content
@@ -91,7 +91,7 @@ private
     post_url = post["short_url"]
     quote = post["text"]
     source = post["source"]
-    content = "<table><tr><td style='padding-right: 10px'><img src=\"#{@avatar}\"/></td><td><b><a href=\"#{blog_link[1]}\">#{blog_link[0]}</a></b></td></tr></table><br>
+    content = "<table><tr><td style='padding-right: 10px'><img src=\"#{@avatar}\" class=\"img-rounded\"/></td><td><b><a href=\"#{blog_link[1]}\">#{blog_link[0]}</a></b></td></tr></table><br>
                       <h4><a href=\"#{post_url}\">#{quote}</a></h4>#{source}"
     return content
   end
@@ -103,7 +103,7 @@ private
     title = post["title"]
     url = post["url"]
     description = post["description"]
-    content = "<table><tr><td style='padding-right: 10px'><img src=\"#{@avatar}\"/></td><td><b><a href=\"#{blog_link[1]}\">#{blog_link[0]}</a></b></td></tr></table><br>
+    content = "<table><tr><td style='padding-right: 10px'><img src=\"#{@avatar}\" class=\"img-rounded\"/></td><td><b><a href=\"#{blog_link[1]}\">#{blog_link[0]}</a></b></td></tr></table><br>
                     <h4><a href=\"#{post_url}\">#{title}</a></h4><p>#{description}</p>"
     return content
   end
@@ -116,7 +116,7 @@ private
     source_title = post["source_title"]
     caption = post["caption"]
     player = post["player"][1]["embed_code"]
-    content = "<table><tr><td style='padding-right: 10px'><img src=\"#{@avatar}\"/></td><td><b><a href=\"#{blog_link[1]}\">#{blog_link[0]}</a></b></td></tr></table><br>
+    content = "<table><tr><td style='padding-right: 10px'><img src=\"#{@avatar}\" class=\"img-rounded\"/></td><td><b><a href=\"#{blog_link[1]}\">#{blog_link[0]}</a></b></td></tr></table><br>
                     <h4><a href=\"#{post_url}\">#{source_title}</a></h4>#{caption} "
     return content
   end
@@ -128,7 +128,7 @@ private
     source_title = post["source_title"]
     caption = post["caption"]
     player = post["player"]
-    content = "<table><tr><td style='padding-right: 10px'><img src=\"#{@avatar}\"/></td><td><b><a href=\"#{blog_link[1]}\">#{blog_link[0]}</a></b></td></tr></table><br>
+    content = "<table><tr><td style='padding-right: 10px'><img src=\"#{@avatar}\" class=\"img-rounded\"/></td><td><b><a href=\"#{blog_link[1]}\">#{blog_link[0]}</a></b></td></tr></table><br>
                     <a href=\"#{post_url}\">#{source_title}</a></h4>#{caption}"
     return content
   end
@@ -140,7 +140,7 @@ private
     answer = post["answer"]
     post_url = post["short_url"]
     title = post["title"]
-    content = "<table><tr><td style='padding-right: 10px'><img src=\"#{@avatar}\"/></td><td><b><a href=\"#{blog_link[1]}\">#{blog_link[0]}</a></b></td></tr></table><br>
+    content = "<table><tr><td style='padding-right: 10px'><img src=\"#{@avatar}\" class=\"img-rounded\"/></td><td><b><a href=\"#{blog_link[1]}\">#{blog_link[0]}</a></b></td></tr></table><br>
                     <h4><a href=\"#{post_url}\">#{question}</a></h4>#{answer}"
     return content
   end
@@ -151,7 +151,7 @@ private
     body = post["body"]
     post_url = post["short_url"]
     title = post["title"]
-    content = "<table><tr><td style='padding-right: 10px'><img src=\"#{@avatar}\"/></td><td><b><a href=\"#{blog_link[1]}\">#{blog_link[0]}</a></b></td></tr></table><br>
+    content = "<table><tr><td style='padding-right: 10px'><img src=\"#{@avatar}\" class=\"img-rounded\"/></td><td><b><a href=\"#{blog_link[1]}\">#{blog_link[0]}</a></b></td></tr></table><br>
                     <h4><a href=\"#{post_url}\">#{title}</a></h4><p>#{body}</p>"
     return content
   end

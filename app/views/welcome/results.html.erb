@@ -1,11 +1,22 @@
+<div class="row">
 <% if @provider == "Tumblr" %>
-  <%= render 'welcome/tumblrresults' %>
-<% elsif @provider == "Twitter" %>
-  <%= render 'welcome/twitterresults' %>
+    <div class="col-md-6"> <%= render 'welcome/tumblrresults' %></div>
+  <% elsif @provider == "Twitter" %>
+    <div class="col-md-6">
+    <%= render 'welcome/twitterresults' %></div>
   <% elsif @provider == "Github" %>
-    <%= render 'welcome/githubresults' %>
-<% else %>
-  <%= render 'welcome/githubresults' %>
-  <%= render 'welcome/tumblrresults' %>
-  <%= render 'welcome/twitterresults' %>
+    <div class="col-md-6">
+    <%= render 'welcome/githubresults' %></div>
+  <% else %>
+    <div class="col-md-6"><%= render 'welcome/tumblrresults' %></div>
+    <div class="col-md-6"><%= render 'welcome/githubresults' %></div>
+    <div class="col-md-12"><br></div>
+    <div class="col-md-6"><%= render 'welcome/twitterresults' %></div>
 <% end %>
+</div>
+
+
+
+
+
+
