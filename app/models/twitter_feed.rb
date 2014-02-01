@@ -5,7 +5,7 @@ class TwitterFeed < Feed
     tweet_link = get_user_link(feed_uid)
     content = "<table>
               <tr>
-                <td style='padding-right: 10px'><img src='#{@feed.get_pic(feed_uid)}' alt='avatar for #{tweet_link[0]}'></td>
+                <td style='padding-right: 10px'><img src='#{@feed.get_pic(feed_uid)}' alt='avatar for #{tweet_link[0]}' class=\"img-rounded\"></td>
                 <td><b><a href='#{tweet_link[1]}'> #{tweet_link[0]} </a></b><br>
               #{post.text}</td>
               </tr>

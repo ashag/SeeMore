@@ -1,11 +1,11 @@
-<h2> Tumblr Search Results </h2>
+<h2> Tumblr Search Results </h2><hr>
 <% if @tumblr_blog_info["status"] == 404 %>
   <p><%= "No tumblr '#{@tumblr_search_term}' was found." %></p>
 <% else %>
   <p>
     <table>
       <tr>
-        <td style='padding-right: 10px'><%= image_tag(@tumblr_avatar) %></td>
+        <td style='padding-right: 10px'><%= image_tag(@tumblr_avatar, :class => 'img-rounded') %></td>
         <td><b><%= link_to @tumblr_blog_info["blog"]["title"], @tumblr_blog_info["blog"]["url"] %></b><br>
           <% if UserFeed.following?(@current_user.id, @tumblr_search_term) %>
             You're already hunting.
