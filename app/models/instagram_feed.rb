@@ -16,14 +16,14 @@ class InstagramFeed < Feed
   def get_posts(user_id)
     @recent_media = Instagram.user_recent_media(user_id.to_i)
     posts = []
-    @recent_media.each do |post|
+    @recent_media.map do |post|
       posts << post
     end
     posts
   end
 
   def get_profile_picture(post)    
-    post["profile_picture"]
+    post["user"]["profile_picture"]
   end
 
   def check_media_type(post)
@@ -32,23 +32,28 @@ class InstagramFeed < Feed
 
     case type
     when "image"
-      @media = post["images"]["standard_resolution"]["url"]
+      media = post["images"]["low_resolution"]["url"]
     when "video"
-      @media = post["videos"]["standard_resolution"]["url"]
+      media = post["videos"]["low_resolution"]["url"]
     end
-    return @media
+    return media
   end
 
   def get_caption(post)
     post["caption"]["text"]
   end
 
+  def get_username(post)
+    post["user"]["username"]
+  end
+
   def assign_content(post)
     picture = get_profile_picture(post)
     media = check_media_type(post)
     caption = get_caption(post)
+    username = get_username(post)
 
-    content = " <img src=\"#{picture}\" /> <img src=\"#{media}\"/> #{caption} "
+    content = " <table><td><strong>#{username}</strong> <img src=\"#{picture}\"/></td><td><img src=\"#{media}\"/></td> <td>#{caption} </td></table>"
     return content
   end
 
