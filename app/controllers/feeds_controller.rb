@@ -20,15 +20,23 @@ class FeedsController < ApplicationController
         tumblr_search
       elsif @provider == "Github"
         github_search
+      elsif @provider == "Instagram"
+        insta_search 
       else
         twitter_search
         tumblr_search
         github_search
+        insta_search
       end
     render 'welcome/results'
     rescue Twitter::Error::TooManyRequests
   end
 
+
+  def insta_search
+    InstagramFeed.client
+    @instagram_search = Instagram.user_search(params[:search])
+  end
 
   def feed
     unless params[:page]

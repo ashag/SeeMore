@@ -1,0 +1,30 @@
+<h2>Instagram Search Results</h2>
+
+<% if @instagram_search.count == 0 %>
+  <%= "No users found" %>
+<% else %>
+  <% @instagram_search.each do |user| %>
+    <p>
+      <table>
+        <tr>
+        <td>
+          <%= image_tag user.profile_picture, :class => 'img-rounded', :height => "100px", :width => "100px" %>
+          <strong><%= user.username %></strong>
+          <br>
+          <% if UserFeed.following?(@current_user.id, user.id) %>
+            You're already hunting.
+            <br>  
+          <% else %>
+        <!-- Follow Button -->
+            <%= form_tag(create_feed_path, method: "post") do %>
+              <%= hidden_field_tag :uid, "#{user.id}" %>
+              <%= hidden_field_tag :type, "InstagramFeed" %>
+              <%= submit_tag("Follow", :class => "btn btn-default") %>
+            <% end %>
+          <% end %>
+        </td></tr>
+      </table>  
+    </p><br>
+  <% end %>
+
+<% end %>
