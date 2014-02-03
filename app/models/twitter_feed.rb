@@ -24,16 +24,18 @@ class TwitterFeed < Feed
 
   def get_user_link(uid)
     unless uid.nil?
-      get_tweeter(uid.to_i)
-      [@tweeter.screen_name, "https://www.twitter.com/#{@tweeter.screen_name}"]
+      unless get_tweeter(uid.to_i).nil?
+        [@tweeter.screen_name, "https://www.twitter.com/#{@tweeter.screen_name}"]
+      end
     end
     rescue Twitter::Error::TooManyRequests
   end
 
   def get_pic(uid)
     unless uid.nil?
-      get_tweeter(uid.to_i)
-      @tweeter.profile_image_url
+      unless get_tweeter(uid.to_i).nil?
+        @tweeter.profile_image_url
+      end
     end
     rescue Twitter::Error::TooManyRequests
   end
@@ -47,10 +49,11 @@ class TwitterFeed < Feed
 
   def get_posts(uid)
     unless uid.nil?
-      get_tweeter(uid.to_i)
-      posts = []
-      TwitterFeed.client.user_timeline(@tweeter).each do |tweet|
-        posts << tweet
+      unless get_tweeter(uid.to_i).nil?
+        posts = []
+        TwitterFeed.client.user_timeline(@tweeter).each do |tweet|
+          posts << tweet
+        end
       end
       posts
     end
