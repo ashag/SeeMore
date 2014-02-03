@@ -6,7 +6,7 @@
   <p>
 <table>
       <tr>
-        <td style='padding-right: 10px'> <%= image_tag(@github_user[:avatar], :class => 'img-rounded') %></td>
+        <td style='padding-right: 10px'> <%= image_tag(@github_user[:avatar], :class => 'img-rounded', :height => "100px", :width => "100px") %></td>
         <td><b><%= link_to @github_user[:username], @github_user[:userlink] %></b><br>
          <%= "FeedHunter can't follow a GitHub public feed quite yet. Come back soon for that functionality!" %>
         </td></tr>

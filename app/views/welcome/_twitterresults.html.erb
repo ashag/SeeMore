@@ -23,9 +23,11 @@
     </p><br>
   <% end %>
 
+<% unless @search.count < 20 %>
   <%= form_tag("search", method: "get") do %>
     <%= hidden_field_tag :page, @page_num + 1 %>
     <%= hidden_field_tag :search, params[:search] %>
     <%= submit_tag("See More", :class => "btn btn-default btn-sm") %>
+  <% end %>
   <% end %>
 <% end %>

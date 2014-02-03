@@ -8,7 +8,7 @@
         <td style='padding-right: 10px'><%= image_tag(@tumblr_avatar, :class => 'img-rounded') %></td>
         <td><b><%= link_to @tumblr_blog_info["blog"]["title"], @tumblr_blog_info["blog"]["url"] %></b><br>
           <% if UserFeed.following?(@current_user.id, @tumblr_search_term) %>
-            You're already hunting.
+          <%= "You're already hunting." %>
           <% else %>
           <!-- Follow Button -->
           <%= form_tag(create_feed_path, method: "post") do %>
@@ -16,6 +16,7 @@
             <%= hidden_field_tag :type, "TumblrFeed" %>
             <%= submit_tag("Follow", :class => "btn btn-default btn-xs") %>
           <% end %>
+        <% end %>
         </td>
       </tr>
     </table>
@@ -26,4 +27,5 @@
     <%= hidden_field_tag :search, params[:search] %>
     <%= submit_tag("See More", :class => "btn btn-default btn-sm") %>
   <% end %>
+
 <% end %>
