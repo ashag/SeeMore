@@ -10,7 +10,6 @@ class TwitterFeed < Feed
               #{post.text}</td>
               </tr>
               </table><br>"
-    date = post.created_at
     twitter_id = post.id.to_s
     datetime = post.created_at
     Post.find_by(content: content) || Post.create(
@@ -24,26 +23,38 @@ class TwitterFeed < Feed
   end
 
   def get_user_link(uid)
-    get_tweeter(uid.to_i)
-    [@tweeter.screen_name, "https://www.twitter.com/#{@tweeter.screen_name}"]
+    unless uid.nil?
+      get_tweeter(uid.to_i)
+      [@tweeter.screen_name, "https://www.twitter.com/#{@tweeter.screen_name}"]
+    end
+    rescue Twitter::Error::TooManyRequests
   end
 
   def get_pic(uid)
-    get_tweeter(uid.to_i)
-    @tweeter.profile_image_url
+    unless uid.nil?
+      get_tweeter(uid.to_i)
+      @tweeter.profile_image_url
+    end
+    rescue Twitter::Error::TooManyRequests
   end
 
   def get_tweeter(uid)
-    @tweeter = TwitterFeed.client.user(uid.to_i)
+    unless uid.nil?
+      @tweeter = TwitterFeed.client.user(uid.to_i)
+    end
+    rescue Twitter::Error::TooManyRequests
   end
 
   def get_posts(uid)
-    get_tweeter(uid.to_i)
-    posts = []
-    TwitterFeed.client.user_timeline(@tweeter).each do |tweet|
-      posts << tweet
+    unless uid.nil?
+      get_tweeter(uid.to_i)
+      posts = []
+      TwitterFeed.client.user_timeline(@tweeter).each do |tweet|
+        posts << tweet
+      end
+      posts
     end
-    posts
+    rescue Twitter::Error::TooManyRequests
   end
 
   def self.client
