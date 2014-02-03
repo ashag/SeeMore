@@ -1,24 +1,27 @@
 class TwitterFeed < Feed
 
   def find_or_create_post(feed_uid, post)
-    @feed = Feed.find_by(uid: feed_uid)
-    tweet_link = get_user_link(feed_uid)
-    content = "<table>
-              <tr>
-                <td style='padding-right: 10px'><img src='#{@feed.get_pic(feed_uid)}' alt='avatar for #{tweet_link[0]}' class=\"img-rounded\"></td>
-                <td><b><a href='#{tweet_link[1]}'> #{tweet_link[0]} </a></b><br>
-              #{post.text}</td>
-              </tr>
-              </table><br>"
-    twitter_id = post.id.to_s
-    datetime = post.created_at
-    Post.find_by(content: content) || Post.create(
-      content: content,
-      feed_id: @feed.id,
-      twitter_id: twitter_id,
-      datetime: datetime,
-      feed_uid: feed_uid)
-
+    unless feed_uid.nil? || post.nil?
+      @feed = Feed.find_by(uid: feed_uid)
+      tweet_link = get_user_link(feed_uid)
+    end
+    unless tweet_link.nil? || feed_uid.nil? || post.nil?
+      content = "<table>
+                <tr>
+                  <td style='padding-right: 10px'><img src='#{@feed.get_pic(feed_uid)}' alt='avatar for #{tweet_link[0]}' class=\"img-rounded\"></td>
+                  <td><b><a href='#{tweet_link[1]}'> #{tweet_link[0]} </a></b><br>
+                #{post.text}</td>
+                </tr>
+                </table><br>"
+      twitter_id = post.id.to_s
+      datetime = post.created_at
+      Post.find_by(content: content) || Post.create(
+        content: content,
+        feed_id: @feed.id,
+        twitter_id: twitter_id,
+        datetime: datetime,
+        feed_uid: feed_uid)
+    end
     rescue Twitter::Error::TooManyRequests
   end
 
@@ -55,6 +58,10 @@ class TwitterFeed < Feed
           posts << tweet
         end
       end
+    end
+    if posts.nil
+      return ['', '']
+    else
       posts
     end
     rescue Twitter::Error::TooManyRequests
