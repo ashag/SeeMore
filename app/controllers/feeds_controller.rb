@@ -26,6 +26,7 @@ class FeedsController < ApplicationController
         github_search
       end
     render 'welcome/results'
+    rescue Twitter::Error::TooManyRequests
   end
 
 

@@ -1,2 +1,15 @@
-  <h1><%= image_tag current_user.avatar_url %>
-  <%= current_user.username %></h1>
+<h1><%= image_tag current_user.avatar_url %>
+<%= current_user.username %></h1>
+<% twitter = current_user.feeds.where(type: "TwitterFeed").length %>
+<% tumblr = current_user.feeds.where(type: "TumblrFeed").length %>
+<% rss = current_user.feeds.where(type: "RSSFeed").length %>
+<% instagram = current_user.feeds.where(type: "InstagramFeed").length %>
+<% github = current_user.feeds.where(type: "GithubFeed").length %>
+
+<h2>Your Prey</h2>
+<h3>Total Feeds: <%= current_user.feeds.length %><h3>
+<h4>Twitter Feeds: <%= twitter %></h4>
+<h4>Tumblr Feeds: <%= tumblr %></h4>
+<h4>RSS Feeds: <%= rss %></h4>
+<h4>Instagram Feeds: <%= instagram %></h4>
+<h4>Github Feeds: <%= github %></h4>
