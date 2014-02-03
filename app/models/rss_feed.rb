@@ -11,6 +11,15 @@ class RSSFeed < Feed
       feed_uid: feed_uid)
   end
 
+  def get_pic(url)
+    '/assets/rssImage.jpg'
+  end
+
+  def get_user_link(url)
+    @find_rss = Feedzirra::Feed.fetch_and_parse(url)
+    [@find_rss.title, @find_rss.url]
+  end
+
   def get_posts(url)
     @find_rss = Feedzirra::Feed.fetch_and_parse(url)
     @find_feed = Feed.find_by(uid: url)

@@ -14,10 +14,3 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
-
-(function(){
-  document.addEventListener("DOMContentLoaded", function(e){
-    
-    })
-  }
-)();

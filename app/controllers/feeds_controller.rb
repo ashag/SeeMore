@@ -29,6 +29,7 @@ class FeedsController < ApplicationController
         insta_search
       end
     render 'welcome/results'
+    rescue Twitter::Error::TooManyRequests
   end
 
 
