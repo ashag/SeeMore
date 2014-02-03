@@ -48,16 +48,15 @@ class InstagramFeed < Feed
     picture = get_pic(post)
     media = check_media_type(post)
     username = get_username(post) 
-    caption = get_caption(post)
-    # if get_caption(post).nil? { |c| c.reject } 
+    cap = get_caption(post)
+    
+    if cap.nil? 
+      @caption = puts " "
+    else
+      @caption = cap
+    end 
 
-    # if find_caption.nil?
-    #   @caption = puts " "
-    # else
-    #   @caption = find_caption
-    # end 
-
-    content = " <table><tr><strong>#{username}</strong> <img src=\"#{picture}\"/></tr><br> <tr><img src=\"#{media}\"/></tr><br> <tr>#{@caption} </tr></table>"
+    content = " <table><tr> <img class='insta_profile_pic' src=\"#{picture}\"/><br></tr> <tr><strong>#{username}</strong></tr><br><br> <tr><img src=\"#{media}\"/></tr><br> <tr>#{@caption} </tr></table>"
     return content
   end
 

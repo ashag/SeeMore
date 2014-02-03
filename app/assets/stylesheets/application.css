@@ -49,6 +49,11 @@
   color: gray;
 }
 
+.insta_profile_pic {
+  width: 80px;
+  height: 80px;
+}
+
 #twitter-box {
   display: block;
   width: 40%;
