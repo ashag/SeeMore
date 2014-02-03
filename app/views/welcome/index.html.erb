@@ -25,10 +25,10 @@
     <div id="feedpost">
       <% datetime = post.datetime.localtime %>
       <hr><p><small><span class="gray"><%= datetime.strftime("%A, %B %d, %Y %I:%M%p") %> </span></small></p>
-      <%= post.content.try(:html_safe) %> 
+      <%= post.content.try(:html_safe) %>
     </div>
     <% if post.twitter_id %>
-      <span class="glyphicon glyphicon-star goldenrod"></span> <span class="goldenrod"><%= link_to("Favorite this Tweet", favorite_path(twitter_id: post.twitter_id), method: :post) %></span><vr>  
+      <span class="glyphicon glyphicon-star goldenrod"></span> <span class="goldenrod"><%= link_to("Favorite this Tweet", favorite_path(twitter_id: post.twitter_id), method: :post) %></span><vr>
       <span class="goldenrod">  |  </span>
       <span class="glyphicon glyphicon-retweet goldenrod"></span> <span class="goldenrod"><%= link_to("Retweet this Tweet", retweet_path(twitter_id: post.twitter_id), method: :post) %></span>
     <% end %>
